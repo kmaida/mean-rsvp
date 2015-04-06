@@ -1,0 +1,12 @@
+<div ng-controller="HeaderCtrl as header" nav-control>
+	<a ng-if="header.isAuthenticated()" class="toggle-offcanvas" ng-click="toggleNav()"><span></span></a>
+
+	<!-- only show navigation if user is logged in -->
+	<nav ng-if="header.isAuthenticated()" id="nav" class="nav" role="navigation">
+		<ul class="nav-list">
+			<li><a ng-class="{active: header.indexIsActive('/')}" ng-href="/"><i class="fa fa-home"></i> Home</a></li>
+			<li><a ng-class="{active: header.navIsActive('/account')}" ng-href="/account"><i class="fa fa-user"></i> My Account</a></li>
+			<li><a ng-click="header.logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+		</ul>
+	</nav>
+</div>

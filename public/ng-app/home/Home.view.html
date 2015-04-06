@@ -1,0 +1,21 @@
+<article id="content-wrapper" class="content-wrapper home-wrapper" view-switch>
+	<section id="content-main" class="content-main home-content clearfix" ng-controller="HomeCtrl as home" ng-cloak>
+
+		<h1 class="content-heading">kmaida.io</h1>
+
+		<user></user>
+
+		<p ng-bind-html="home.stringOfHTML | trustAsHTML"></p>
+
+		<div id="wrapper-markupView" class="wrapper-markupView" ng-switch on="vs.viewformat">
+			<div ng-switch-when="large">
+				<section ng-include src="'ng-app/home/large.tpl.html'"></section>
+			</div>
+
+			<div ng-switch-when="small">
+				<section ng-include src="'ng-app/home/small.tpl.html'"></section>
+			</div>
+		</div>
+
+	</section>
+</article>

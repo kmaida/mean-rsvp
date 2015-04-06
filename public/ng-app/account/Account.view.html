@@ -1,0 +1,84 @@
+<article id="content-wrapper" class="content-wrapper account-wrapper" view-switch>
+	<section id="content-main" class="content-main account-main clearfix" ng-controller="AccountCtrl as account"
+			 ng-cloak>
+		<h1 class="content-heading">My Account</h1>
+
+		<div ng-if="account.administrator" class="alert alert-info"><i class="fa fa-cogs"></i> You are an
+			administrator.</div>
+
+		<section class="updateInfo-wrapper content-section">
+			<h2>
+				<i class="fa fa-pencil-square-o"></i> User Info
+			</h2>
+
+			<p class="lead">
+				Update your display name.
+			</p>
+
+			<form method="post" ng-submit="account.updateProfile()" class="form-inline">
+				<div class="form-group">
+					<label class="sr-only" for="displayName">Name</label>
+					<input id="displayName" type="text" class="form-control" ng-model="account.user.displayName" placeholder="Name" />
+				</div>
+
+				<button type="submit" class="btn-save btn" ng-class="{'btn-primary': !account.btnSaved, 'btn-success': account.btnSaved}">
+					<i class="fa" ng-class="{'fa-download': !account.btnSaved, 'fa-check': account.btnSaved}"></i> {{account.btnSaveText}}
+				</button>
+			</form>
+		</section>
+
+		<section class="linkAccounts-wrapper content-section">
+			<h2>
+				<i class="fa fa-group"></i> Manage Logins
+			</h2>
+
+			<p class="lead">
+				Manage your login options by authorizing and linking third-party accounts. Once linked, you may use
+				that service to login.
+			</p>
+
+			<div class="linkAccounts-content">
+
+				<div class="anAccount-wrapper" ng-repeat="login in account.logins">
+					<div class="panel" ng-class="{'panel-success': account.user[login.account], 'panel-default': !account.user[login.account]}">
+
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-{{login.account}}"></i> {{login.name}}
+							</h3>
+						</div>
+
+						<div class="panel-body">
+							<p ng-if="!account.user[login.account]">
+								Visit <a href="{{login.url}}">{{login.url}}</a> to view your account or sign&nbsp;up.
+							</p>
+
+							<p ng-if="account.user[login.account]">
+								Your account is currently linked. You may use {{login.name}} to&nbsp;login.
+							</p>
+
+							<div ng-if="account.user[login.account] && account.linkedAccounts.length === 1" class="alert alert-warning" role="alert">
+								<i class="fa fa-info-circle"></i> {{login.name}} is currently your only login.
+							</div>
+
+							<!-- Link/Unlink buttons -->
+
+							<button class="btn btn-sm btn-danger" ng-if="account.user[login.account] && account.linkedAccounts.length > 1" ng-click="account.unlink(login.account)">
+								<i class="fa fa-unlink"></i> Unlink {{login.name}}
+							</button>
+
+							<button class="btn btn-sm btn-primary" ng-if="!account.user[login.account]"
+									ng-click="account.link(login.account)">
+								<i class="fa fa-link"></i> Link {{login.name}}
+							</button>
+						</div>
+
+					</div>
+				</div> <!-- /.anAccount-wrapper -->
+
+			</div>
+
+		</section>
+
+	</section>
+</article>

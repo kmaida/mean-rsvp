@@ -1,0 +1,48 @@
+{
+  "name": "reStart-mean",
+  "version": "0.1.0",
+  "author": "Kim Maida",
+  "description": "MEAN stack",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kmaida/reStart-mean"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "Restricted",
+  "bugs": {
+    "url": "https://github.com/kmaida/reStart-mean/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "http://kmaida.io",
+  "dependencies": {
+    "async": "^0.9.0",
+    "bcryptjs": "^2.1.0",
+    "body-parser": "^1.10.0",
+    "compression": "^1.4.3",
+    "express": "^4.10.6",
+    "jwt-simple": "^0.2.0",
+    "lodash": "^2.4.1",
+    "method-override": "^2.3.2",
+    "moment": "^2.8.3",
+    "mongoose": "^3.8.16",
+    "morgan": "^1.3.0",
+    "request": "^2.42.0",
+    "mongoose-encryption": "^1.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.1.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-debug": "^2.0.1",
+    "gulp-minify-css": "^1.0.0",
+    "gulp-sass": "^1.3.3",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.4"
+  }
+}

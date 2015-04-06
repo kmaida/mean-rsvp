@@ -1,0 +1,21 @@
+/*--------------------
+   MY ACCOUNT PAGE
+--------------------*/
+
+.account-wrapper .alert {
+	font-size: 13px;
+	margin-bottom: 0;
+}
+
+@include mq($mq-large) {
+	.linkAccounts-content {
+		margin-left: -2%;
+
+		.anAccount-wrapper {
+			display: inline-block;
+			padding-left: 2%;
+			vertical-align: top;
+			width: 50%;
+		}
+	}
+}
