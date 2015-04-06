@@ -13,10 +13,13 @@ Boilerplate MEAN stack application with simple authentication via Oauth.
 
 ## Changelog
 
-* 4/6/15 - Upload files
+* 4/6/15 - Upload files, improve services
 
 ## To Do
 
+- [x] Enhance services
+ - [x] Integrate `success` and `error` with `$http` services
+ - [x] Update controllers to use updated services
 - [ ] More base styles
  - [ ] Improve default styling for nav
  - [ ] Improve default styling for Account page

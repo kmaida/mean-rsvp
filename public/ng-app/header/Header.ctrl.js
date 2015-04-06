@@ -24,6 +24,8 @@
 		 * function isAuthenticated()
 		 *
 		 * Is the user logged in?
+		 *
+		 * @returns {boolean}
 		 */
 		header.isAuthenticated = function() {
 			return $auth.isAuthenticated();
@@ -33,6 +35,9 @@
 		 * function getJSON()
 		 *
 		 * Get local data from static JSON
+		 *
+		 * @param function (success callback)
+		 * @returns {*}
 		 */
 		localData.getJSON(function(data) {
 			header.json = data;
