@@ -37,25 +37,20 @@
 		 * Get user's profile information.
 		 */
 		account.getProfile = function() {
-			userData.getUser()
-				.success(function(data) {
-					account.user = data;
 
-					account.administrator = account.user.isAdmin;
+			userData.getUser(function(data) {
+				account.user = data;
+				account.administrator = account.user.isAdmin;
+				account.linkedAccounts = [];
 
-					account.linkedAccounts = [];
+				angular.forEach(account.logins, function(actObj) {
+					var act = actObj.account;
 
-					angular.forEach(account.logins, function(actObj) {
-						var act = actObj.account;
-
-						if (account.user[act]) {
-							account.linkedAccounts.push(act);
-						}
-					});
-				})
-				.error(function(error) {
-					alert(error.message);
+					if (account.user[act]) {
+						account.linkedAccounts.push(act);
+					}
 				});
+			});
 		};
 
 		/***
@@ -78,16 +73,12 @@
 		account.updateProfile = function() {
 			var profileData = { displayName: account.user.displayName };
 
-			userData.updateUser(profileData)
-				.success(function() {
-					account.btnSaved = true;
-					account.btnSaveText = 'Saved!';
+			userData.updateUser(profileData, function() {
+				account.btnSaved = true;
+				account.btnSaveText = 'Saved!';
 
-					$timeout(btnSaveReset, 2500);
-				})
-				.error(function(error) {
-					alert(error.message);
-				});
+				$timeout(btnSaveReset, 2500);
+			});
 		};
 
 		/***

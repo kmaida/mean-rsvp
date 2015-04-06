@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('HomeCtrl', HomeCtrl);
 
-	HomeCtrl.$inject = ['GlobalObj', 'JSONData', '$window', '$rootScope', '$auth', 'userData'];
+	HomeCtrl.$inject = ['GlobalObj', '$rootScope', '$auth', 'localData'];
 
-	function HomeCtrl(GlobalObj, JSONData, $window, $rootScope, $auth, userData) {
+	function HomeCtrl(GlobalObj, $rootScope, $auth, localData) {
 		// controllerAs ViewModel
 		var home = this;
 
@@ -21,6 +21,17 @@
 		home.isAuthenticated = function() {
 			return $auth.isAuthenticated();
 		};
+
+		/***
+		 * getJSON()
+		 *
+		 * Gets local JSON data
+		 *
+		 * @returns data response, executes success callback OR throws error
+		 */
+		localData.getJSON(function(data) {
+			home.localData = data;
+		});
 
 		home.user = $rootScope.user;
 

@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('HeaderCtrl', headerCtrl);
 
-	headerCtrl.$inject = ['$scope', '$location', 'JSONData', '$auth'];
+	headerCtrl.$inject = ['$scope', '$location', 'localData', '$auth'];
 
-	function headerCtrl($scope, $location, JSONData, $auth) {
+	function headerCtrl($scope, $location, localData, $auth) {
 		// controllerAs ViewModel
 		var header = this;
 
@@ -30,11 +30,11 @@
 		};
 
 		/***
-		 * function getDataAsync()
+		 * function getJSON()
 		 *
-		 * Get the data from static JSON
+		 * Get local data from static JSON
 		 */
-		JSONData.getDataAsync(function(data) {
+		localData.getJSON(function(data) {
 			header.json = data;
 		});
 

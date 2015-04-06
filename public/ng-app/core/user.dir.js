@@ -18,13 +18,9 @@
 				return $auth.isAuthenticated();
 			};
 
-			userData.getUser()
-				.success(function(user) {
-					u.user = user;
-				})
-				.error(function(error) {
-					alert(error.message);
-				});
+			userData.getUser(function(user) {
+				u.user = user;
+			});
 		}
 
 		return {
