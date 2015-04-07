@@ -109,6 +109,23 @@ module.exports = function(app, config) {
 
 	/*
 	 |--------------------------------------------------------------------------
+	 | GET /api/users (authorize as admin)
+	 |--------------------------------------------------------------------------
+	 */
+	app.get('/api/users', ensureAdmin, function(req, res) {
+		User.find({}, function(err, users) {
+			var userArr = [];
+
+			users.forEach(function(user) {
+				userArr.push(user);
+			});
+
+			res.send(userArr);
+		});
+	});
+
+	/*
+	 |--------------------------------------------------------------------------
 	 | Log in with Email
 	 |--------------------------------------------------------------------------
 	 */

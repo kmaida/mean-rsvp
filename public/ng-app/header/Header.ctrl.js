@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('HeaderCtrl', headerCtrl);
 
-	headerCtrl.$inject = ['$scope', '$location', 'localData', '$auth'];
+	headerCtrl.$inject = ['$scope', '$location', 'localData', '$auth', 'userData'];
 
-	function headerCtrl($scope, $location, localData, $auth) {
+	function headerCtrl($scope, $location, localData, $auth, userData) {
 		// controllerAs ViewModel
 		var header = this;
 
@@ -19,6 +19,15 @@
 		header.logout = function() {
 			$auth.logout('/login');
 		};
+
+		/***
+		 * function getUser()
+		 *
+		 * Check if the user is an administrator
+		 */
+		userData.getUser(function(user) {
+			header.adminUser = user.isAdmin;
+		});
 
 		/***
 		 * function isAuthenticated()

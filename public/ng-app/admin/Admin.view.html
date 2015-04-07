@@ -1,0 +1,26 @@
+<article id="content-wrapper" class="content-wrapper admin-wrapper" view-switch>
+	<section id="content-main" class="content-main admin-main clearfix" ng-controller="AdminCtrl as admin" ng-cloak>
+		<h1 class="content-heading">Admin</h1>
+
+		<div ng-if="admin.showAdmin">
+
+			<section class="userList-wrapper content-section">
+				<h2>
+					<i class="fa fa-users"></i> Users
+				</h2>
+
+				<ul>
+					<li ng-repeat="user in admin.users">
+						{{user.displayName}}
+					</li>
+				</ul>
+
+			</section>
+		</div>
+
+		<div ng-if="!admin.showAdmin">
+			You are not authorized to view this page.
+		</div>
+
+	</section>
+</article>

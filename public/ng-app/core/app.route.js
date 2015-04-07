@@ -21,6 +21,10 @@
 				templateUrl: 'ng-app/account/Account.view.html',
 				secure: true
 			})
+			.when('/admin', {
+				templateUrl: 'ng-app/admin/Admin.view.html',
+				secure: true
+			})
 			.when('/subpage', {
 				templateUrl: 'ng-app/sub/Sub.view.html',
 				secure: true
