@@ -20,6 +20,8 @@ Boilerplate MEAN stack application with simple authentication via Oauth.
 - [x] Enhance services
  - [x] Integrate `success` and `error` with `$http` services
  - [x] Update controllers to use updated services
-- [ ] More base styles
+- [ ] Base styles
+ - [ ] Bootstrap All The Things
  - [ ] Improve default styling for nav
  - [ ] Improve default styling for Account page
+ - [ ] Style Admin page

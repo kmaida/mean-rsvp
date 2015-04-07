@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('LoginCtrl', LoginCtrl);
 
-	LoginCtrl.$inject = ['GlobalObj', '$auth', '$rootScope', 'userData', '$window'];
+	LoginCtrl.$inject = ['GlobalObj', '$auth'];
 
-	function LoginCtrl(GlobalObj, $auth, $rootScope, userData, $window) {
+	function LoginCtrl(GlobalObj, $auth) {
 		// controllerAs ViewModel
 		var login = this;
 

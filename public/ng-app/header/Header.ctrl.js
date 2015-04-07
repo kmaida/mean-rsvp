@@ -17,17 +17,27 @@
 		 * Log the user out of whatever authentication they've signed in with
 		 */
 		header.logout = function() {
+			header.adminUser = undefined;
 			$auth.logout('/login');
 		};
 
 		/***
-		 * function getUser()
+		 * function checkUserAdmin()
 		 *
-		 * Check if the user is an administrator
+		 * If user is authenticated and adminUser is undefined, get the user and set adminUser boolean
 		 */
-		userData.getUser(function(user) {
-			header.adminUser = user.isAdmin;
-		});
+		function checkUserAdmin() {
+			// if user is authenticated and not defined yet, check if they're an admin
+			if ($auth.isAuthenticated() && header.adminUser === undefined) {
+				userData.getUser(function (user) {
+					header.adminUser = user.isAdmin;
+				});
+			}
+		}
+
+		checkUserAdmin();
+
+		$scope.$on('$locationChangeSuccess', checkUserAdmin);
 
 		/***
 		 * function isAuthenticated()
@@ -76,26 +86,6 @@
 		header.navIsActive = function (path) {
 			return $location.path().substr(0, path.length) === path;
 		};
-
-		/***
-		 * function $on('$locationChangeSuccess')
-		 *
-		 * Apply body class depending on what page you're on
-		 * TODO: consider moving to a factory
-		 */
-		$scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
-			var getBodyClass = function (url) {
-					var bodyClass = url.substr(url.lastIndexOf('/') + 1);
-
-					return !!bodyClass ? 'page-' + bodyClass : 'page-home';
-				},
-				oldBodyClass = getBodyClass(oldUrl),
-				newBodyClass = getBodyClass(newUrl);
-
-			angular.element('body')
-				.removeClass(oldBodyClass)
-				.addClass(newBodyClass);
-		});
 	}
 
 })();
