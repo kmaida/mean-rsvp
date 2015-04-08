@@ -24,7 +24,11 @@
 		/***
 		 * function checkUserAdmin()
 		 *
-		 * If user is authenticated and adminUser is undefined, get the user and set adminUser boolean
+		 * If user is authenticated and adminUser is undefined,
+		 * get the user and set adminUser boolean.
+		 *
+		 * Do this on first controller load (init, refresh)
+		 * and subsequent location changes (ie, catching logout, login, etc).
 		 */
 		function checkUserAdmin() {
 			// if user is authenticated and not defined yet, check if they're an admin
@@ -34,9 +38,7 @@
 				});
 			}
 		}
-
 		checkUserAdmin();
-
 		$scope.$on('$locationChangeSuccess', checkUserAdmin);
 
 		/***
@@ -56,7 +58,7 @@
 		 * Get local data from static JSON
 		 *
 		 * @param function (success callback)
-		 * @returns {*}
+		 * @returns {json}
 		 */
 		localData.getJSON(function(data) {
 			header.json = data;
@@ -83,7 +85,7 @@
 		 * @param path
 		 * @returns {boolean}
 		 */
-		header.navIsActive = function (path) {
+		header.navIsActive = function(path) {
 			return $location.path().substr(0, path.length) === path;
 		};
 	}

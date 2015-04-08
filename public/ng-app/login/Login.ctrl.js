@@ -17,7 +17,8 @@
 		/***
 		 * function authenticate()
 		 *
-		 * Authenticate the user via the provider (Twitter, Facebook, etc.)
+		 * Authenticate the user via Oauth with the provider
+		 * (Twitter, Facebook, etc.)
 		 *
 		 * @param provider
 		 */

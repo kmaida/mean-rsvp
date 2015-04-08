@@ -9,9 +9,9 @@
 					<i class="fa fa-users"></i> Users
 				</h2>
 
-				<ul>
-					<li ng-repeat="user in admin.users">
-						{{user.displayName}}
+				<ul class="userList-list">
+					<li ng-repeat="user in admin.users" class="userList-list-item">
+						<img class="img-userPicture" ng-src="{{user.picture}}" /> {{user.displayName}}
 					</li>
 				</ul>
 
