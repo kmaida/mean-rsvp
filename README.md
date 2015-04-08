@@ -1,19 +1,15 @@
 # reStart-mean
 
-Boilerplate MEAN stack application with simple authentication via Oauth.
+Boilerplate MEAN stack application with simple authentication via third-party Oauth.
 
-* Node
-* Express
 * MongoDB
-* Gulp
+* Express
 * AngularJS (with [reStart-angular](https://github.com/kmaida/reStart-angular))
-* [Satellizer](https://github.com/sahat/satellizer)
+* Node
+* Token-based authentication (with [Satellizer](https://github.com/sahat/satellizer))
 * FontAwesome
 * Bootstrap 3
-
-## Changelog
-
-* 4/6/15 - Upload files, improve services
+* Gulp
 
 ## To Do
 
@@ -30,3 +26,7 @@ Boilerplate MEAN stack application with simple authentication via Oauth.
  - [ ] Improve default styling for nav
  - [ ] Improve default styling for Account page
  - [ ] Style Admin page
+ 
+## Changelog
+ 
+* **v0.1.0** - 4/6/15: Upload files, improve services
