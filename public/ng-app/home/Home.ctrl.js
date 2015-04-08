@@ -12,22 +12,18 @@
 		var home = this;
 
 		/***
-		 * isAuthenticated()
-		 *
 		 * Determines if the user is logged in
 		 *
-		 * @returns {*}
+		 * @returns {boolean}
 		 */
 		home.isAuthenticated = function() {
 			return $auth.isAuthenticated();
 		};
 
 		/***
-		 * getJSON()
-		 *
 		 * Gets local JSON data
 		 *
-		 * @returns data response, executes success callback OR throws error
+		 * @returns {Object}
 		 */
 		localData.getJSON(function(data) {
 			home.localData = data;

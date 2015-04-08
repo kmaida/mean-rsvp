@@ -15,12 +15,10 @@
 		login.global = GlobalObj;
 
 		/***
-		 * function authenticate()
-		 *
 		 * Authenticate the user via Oauth with the provider
 		 * (Twitter, Facebook, etc.)
 		 *
-		 * @param provider
+		 * @param {String} provider
 		 */
 		login.authenticate = function(provider) {
 			$auth.authenticate(provider)

@@ -11,6 +11,11 @@
 		// controllerAs ViewModel
 		var admin = this;
 
+		/***
+		 * Get all the users
+		 *
+		 * @returns {Array}
+		 */
 		userData.getAllUsers(function(data) {
 			admin.showAdmin = true;
 			admin.users = data;

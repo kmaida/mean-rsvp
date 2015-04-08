@@ -32,9 +32,7 @@
 		];
 
 		/***
-		 * function getProfile()
-		 *
-		 * Get user's profile information.
+		 * Get user's profile information
 		 */
 		account.getProfile = function() {
 
@@ -54,8 +52,6 @@
 		};
 
 		/***
-		 * function btnSaveReset()
-		 *
 		 * Reset profile save button to initial state
 		 */
 		function btnSaveReset() {
@@ -66,8 +62,6 @@
 		btnSaveReset();
 
 		/***
-		 * function updateProfile()
-		 *
 		 * Update user's profile information.
 		 */
 		account.updateProfile = function() {
@@ -82,10 +76,9 @@
 		};
 
 		/***
-		 * function link()
-		 *
-		 * @param provider (string)
 		 * Link third-party provider.
+		 *
+		 * @param {String} provider
 		 */
 		account.link = function(provider) {
 			$auth.link(provider)
@@ -98,10 +91,9 @@
 		};
 
 		/***
-		 * function unlink()
-		 *
-		 * @param provider (string)
 		 * Unlink third-party provider.
+		 *
+		 * @param {String} provider
 		 */
 		account.unlink = function(provider) {
 			$auth.unlink(provider)

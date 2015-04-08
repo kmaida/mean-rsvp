@@ -12,8 +12,6 @@
 		var header = this;
 
 		/***
-		 * function logout()
-		 *
 		 * Log the user out of whatever authentication they've signed in with
 		 */
 		header.logout = function() {
@@ -22,8 +20,6 @@
 		};
 
 		/***
-		 * function checkUserAdmin()
-		 *
 		 * If user is authenticated and adminUser is undefined,
 		 * get the user and set adminUser boolean.
 		 *
@@ -42,9 +38,7 @@
 		$scope.$on('$locationChangeSuccess', checkUserAdmin);
 
 		/***
-		 * function isAuthenticated()
-		 *
-		 * Is the user logged in?
+		 * Is the user authenticated?
 		 *
 		 * @returns {boolean}
 		 */
@@ -53,23 +47,19 @@
 		};
 
 		/***
-		 * function getJSON()
-		 *
 		 * Get local data from static JSON
 		 *
 		 * @param function (success callback)
-		 * @returns {json}
+		 * @returns {Object}
 		 */
 		localData.getJSON(function(data) {
 			header.json = data;
 		});
 
 		/***
-		 * function indexIsActive()
-		 *
 		 * Apply class to currently active nav item when '/' index
 		 *
-		 * @param path
+		 * @param {String} path
 		 * @returns {boolean}
 		 */
 		header.indexIsActive = function(path) {
@@ -78,11 +68,9 @@
 		};
 
 		/***
-		 * function navIsActive()
-		 *
 		 * Apply class to currently active nav item
 		 *
-		 * @param path
+		 * @param {String} path
 		 * @returns {boolean}
 		 */
 		header.navIsActive = function(path) {
