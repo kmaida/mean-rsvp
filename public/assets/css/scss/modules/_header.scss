@@ -84,9 +84,8 @@
 
 	@include mq($mq-large) {
 		display: flex;
-		justify-content: center;
 		flex-wrap: wrap;
-
+		justify-content: center;
 		list-style: none;
 		padding: 0;
 		width: 100%;

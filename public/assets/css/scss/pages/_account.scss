@@ -9,13 +9,18 @@
 
 @include mq($mq-large) {
 	.linkAccounts-content {
+		display: flex;
+		flex-wrap: wrap;
 		margin-left: -2%;
 
 		.anAccount-wrapper {
-			display: inline-block;
+			display: flex;
 			padding-left: 2%;
-			vertical-align: top;
 			width: 50%;
+
+			.panel {
+				width: 100%;
+			}
 		}
 	}
 }
