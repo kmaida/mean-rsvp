@@ -71,15 +71,25 @@
 	}
 }
 .nav-list {
-	a:hover,
-	a:active,
-	a:focus {
-		text-decoration: none;
+	a {
+		display: block;
+		padding: 6px;
+
+		&:hover,
+		&:active,
+		&:focus {
+			text-decoration: none;
+		}
 	}
 
 	@include mq($mq-large) {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+
 		list-style: none;
-		padding-left: 0;
+		padding: 0;
+		width: 100%;
 
 		a,
 		a:hover,
@@ -88,8 +98,7 @@
 			color: $color-white;
 		}
 		li {
-			display: inline-block;
-			width: 24%;
+			padding: 0 20px;
 		}
 	}
 }

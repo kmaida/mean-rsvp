@@ -13,8 +13,6 @@ module.exports = function(app, config) {
 	 */
 
 	/***
-	 * function ensureAuthenticated()
-	 *
 	 * Make sure user is authenticated
 	 *
 	 * @param req
@@ -36,8 +34,6 @@ module.exports = function(app, config) {
 	}
 
 	/***
-	 * function ensureAdmin()
-	 *
 	 * Make sure user is authenticated and is administrator
 	 *
 	 * @param req
