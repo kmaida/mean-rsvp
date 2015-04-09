@@ -21,7 +21,7 @@
 					<input id="displayName" type="text" class="form-control" ng-model="account.user.displayName" placeholder="Name" />
 				</div>
 
-				<button type="submit" class="btn-save btn" ng-class="{'btn-primary': !account.btnSaved, 'btn-success': account.btnSaved, 'btn-danger': account.btnSaved === 'error'}">
+				<button type="submit" class="btn-save btn" ng-class="{'btn-primary': !account.btnSaved, 'btn-success': account.btnSaved === true, 'btn-danger': account.btnSaved === 'error'}">
 					<i class="fa" ng-class="{'fa-download': !account.btnSaved, 'fa-check': account.btnSaved}"></i> {{account.btnSaveText}}
 				</button>
 			</form>

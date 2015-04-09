@@ -93,7 +93,7 @@
 			}
 
 			// Update the user, passing profile data, success callback function, and error callback function
-			userData.updateUser(profileData, updateSuccess);
+			userData.updateUser(profileData, updateSuccess, updateError);
 		};
 
 		/***
