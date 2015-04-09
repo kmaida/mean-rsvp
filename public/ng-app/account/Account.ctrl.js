@@ -62,17 +62,38 @@
 		btnSaveReset();
 
 		/***
-		 * Update user's profile information.
+		 * Update user's profile information
+		 *
+		 * Called on submission of update form
 		 */
 		account.updateProfile = function() {
 			var profileData = { displayName: account.user.displayName };
 
-			userData.updateUser(profileData, function() {
+			// Set status to saving... to update upon success or error in callbacks
+			account.btnSaveText = 'Saving...';
+
+			/***
+			 * Success callback when profile has been updated
+			 */
+			function updateSuccess() {
 				account.btnSaved = true;
 				account.btnSaveText = 'Saved!';
 
 				$timeout(btnSaveReset, 2500);
-			});
+			}
+
+			/***
+			 * Failure callback when profile update has failed
+			 */
+			function updateError() {
+				account.btnSaved = 'error';
+				account.btnSaveText = 'Error saving!';
+
+				$timeout(btnSaveReset, 3000);
+			}
+
+			// Update the user, passing profile data, success callback function, and error callback function
+			userData.updateUser(profileData, updateSuccess);
 		};
 
 		/***

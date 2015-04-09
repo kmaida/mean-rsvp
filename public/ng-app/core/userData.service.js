@@ -9,23 +9,26 @@
 	userData.$inject = ['$http'];
 
 	function userData($http) {
-		this.getUser = function(callback) {
+		this.defaultErrorCallback = function(error) {
+			alert(error.message);
+		};
+		this.getUser = function(successCallback, errorCallback) {
 			return $http
 				.get('/api/me')
-				.success(callback)
-				.error(function(error) { alert(error.message); });
+				.success(successCallback)
+				.error(errorCallback || this.defaultErrorCallback);
 		};
-		this.updateUser = function(profileData, callback) {
+		this.updateUser = function(profileData, successCallback, errorCallback) {
 			return $http
 				.put('/api/me', profileData)
-				.success(callback)
-				.error(function(error) { alert(error.message); });
+				.success(successCallback)
+				.error(errorCallback || this.defaultErrorCallback);
 		};
-		this.getAllUsers = function(callback) {
+		this.getAllUsers = function(successCallback, errorCallback) {
 			return $http
 				.get('/api/users')
-				.success(callback)
-				.error(function(error) { console.log(error.message); });
+				.success(successCallback)
+				.error(errorCallback || this.defaultErrorCallback);
 		}
 	}
 })();
