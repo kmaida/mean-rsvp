@@ -11,6 +11,7 @@
 		// controllerAs ViewModel
 		var account = this;
 
+		// array of all available login services
 		account.logins = [
 			{
 				account: 'google',
@@ -35,8 +36,12 @@
 		 * Get user's profile information
 		 */
 		account.getProfile = function() {
-
-			userData.getUser(function(data) {
+			/**
+			 * Success callback for API call getting user's profile data
+			 *
+			 * @param data {object} provided by $http success
+			 */
+			function getUserSuccess(data) {
 				account.user = data;
 				account.administrator = account.user.isAdmin;
 				account.linkedAccounts = [];
@@ -48,7 +53,9 @@
 						account.linkedAccounts.push(act);
 					}
 				});
-			});
+			}
+
+			userData.getUser(getUserSuccess);
 		};
 
 		/**
@@ -63,7 +70,6 @@
 
 		/**
 		 * Update user's profile information
-		 *
 		 * Called on submission of update form
 		 */
 		account.updateProfile = function() {
@@ -83,7 +89,7 @@
 			}
 
 			/**
-			 * Failure callback when profile update has failed
+			 * Error callback when profile update has failed
 			 */
 			function updateError() {
 				account.btnSaved = 'error';
