@@ -14,10 +14,16 @@
 			// controllerAs ViewModel
 			var u = this;
 
+			/**
+			 * Is the current user authenticated?
+			 *
+			 * @returns {boolean}
+			 */
 			u.isAuthenticated = function() {
 				return $auth.isAuthenticated();
 			};
 
+			// API request to get the user, passing anonymous success callback function
 			userData.getUser(function(user) {
 				u.user = user;
 			});

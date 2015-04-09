@@ -14,7 +14,7 @@
 		/**
 		 * Get all the users
 		 *
-		 * @returns {array}
+		 * @returns {Array}
 		 */
 		userData.getAllUsers(function(data) {
 			admin.showAdmin = true;
