@@ -12,7 +12,7 @@ module.exports = function(app, config) {
 	 |--------------------------------------------------------------------------
 	 */
 
-	/***
+	/**
 	 * Make sure user is authenticated
 	 *
 	 * @param req
@@ -33,7 +33,7 @@ module.exports = function(app, config) {
 		next();
 	}
 
-	/***
+	/**
 	 * Make sure user is authenticated and is administrator
 	 *
 	 * @param req

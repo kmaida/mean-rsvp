@@ -21,7 +21,7 @@ var userSchema = new mongoose.Schema({
 	twitter: String
 });
 
-/***
+/**
  * https://www.npmjs.com/package/mongoose-encryption
  *
  * To encrypt "isAdmin" field, add the field to the DB entry via Robomongo

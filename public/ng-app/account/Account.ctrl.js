@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('AccountCtrl', AccountCtrl);
 
-	AccountCtrl.$inject = ['$auth', '$rootScope', 'userData', '$timeout'];
+	AccountCtrl.$inject = ['$auth', 'userData', '$timeout'];
 
-	function AccountCtrl($auth, $rootScope, userData, $timeout) {
+	function AccountCtrl($auth, userData, $timeout) {
 		// controllerAs ViewModel
 		var account = this;
 
@@ -31,7 +31,7 @@
 			}
 		];
 
-		/***
+		/**
 		 * Get user's profile information
 		 */
 		account.getProfile = function() {
@@ -51,7 +51,7 @@
 			});
 		};
 
-		/***
+		/**
 		 * Reset profile save button to initial state
 		 */
 		function btnSaveReset() {
@@ -61,7 +61,7 @@
 
 		btnSaveReset();
 
-		/***
+		/**
 		 * Update user's profile information
 		 *
 		 * Called on submission of update form
@@ -72,7 +72,7 @@
 			// Set status to saving... to update upon success or error in callbacks
 			account.btnSaveText = 'Saving...';
 
-			/***
+			/**
 			 * Success callback when profile has been updated
 			 */
 			function updateSuccess() {
@@ -82,7 +82,7 @@
 				$timeout(btnSaveReset, 2500);
 			}
 
-			/***
+			/**
 			 * Failure callback when profile update has failed
 			 */
 			function updateError() {
@@ -96,10 +96,10 @@
 			userData.updateUser(profileData, updateSuccess, updateError);
 		};
 
-		/***
+		/**
 		 * Link third-party provider.
 		 *
-		 * @param {String} provider
+		 * @param {string} provider
 		 */
 		account.link = function(provider) {
 			$auth.link(provider)
@@ -111,10 +111,10 @@
 				});
 		};
 
-		/***
+		/**
 		 * Unlink third-party provider.
 		 *
-		 * @param {String} provider
+		 * @param {string} provider
 		 */
 		account.unlink = function(provider) {
 			$auth.unlink(provider)

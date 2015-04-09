@@ -11,7 +11,7 @@
 		// controllerAs ViewModel
 		var header = this;
 
-		/***
+		/**
 		 * Log the user out of whatever authentication they've signed in with
 		 */
 		header.logout = function() {
@@ -19,7 +19,7 @@
 			$auth.logout('/login');
 		};
 
-		/***
+		/**
 		 * If user is authenticated and adminUser is undefined,
 		 * get the user and set adminUser boolean.
 		 *
@@ -37,7 +37,7 @@
 		checkUserAdmin();
 		$scope.$on('$locationChangeSuccess', checkUserAdmin);
 
-		/***
+		/**
 		 * Is the user authenticated?
 		 *
 		 * @returns {boolean}
@@ -46,20 +46,20 @@
 			return $auth.isAuthenticated();
 		};
 
-		/***
+		/**
 		 * Get local data from static JSON
 		 *
 		 * @param function (success callback)
-		 * @returns {Object}
+		 * @returns {object}
 		 */
 		localData.getJSON(function(data) {
 			header.json = data;
 		});
 
-		/***
+		/**
 		 * Apply class to currently active nav item when '/' index
 		 *
-		 * @param {String} path
+		 * @param {string} path
 		 * @returns {boolean}
 		 */
 		header.indexIsActive = function(path) {
@@ -67,10 +67,10 @@
 			return $location.path() === path;
 		};
 
-		/***
+		/**
 		 * Apply class to currently active nav item
 		 *
-		 * @param {String} path
+		 * @param {string} path
 		 * @returns {boolean}
 		 */
 		header.navIsActive = function(path) {

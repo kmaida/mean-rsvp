@@ -11,7 +11,7 @@
 		// controllerAs ViewModel
 		var home = this;
 
-		/***
+		/**
 		 * Determines if the user is logged in
 		 *
 		 * @returns {boolean}
@@ -20,10 +20,10 @@
 			return $auth.isAuthenticated();
 		};
 
-		/***
+		/**
 		 * Gets local JSON data
 		 *
-		 * @returns {Object}
+		 * @returns {object}
 		 */
 		localData.getJSON(function(data) {
 			home.localData = data;

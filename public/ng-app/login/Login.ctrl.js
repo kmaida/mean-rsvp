@@ -14,11 +14,11 @@
 		// put global variables in scope
 		login.global = GlobalObj;
 
-		/***
+		/**
 		 * Authenticate the user via Oauth with the provider
 		 * (Twitter, Facebook, etc.)
 		 *
-		 * @param {String} provider
+		 * @param {string} provider
 		 */
 		login.authenticate = function(provider) {
 			$auth.authenticate(provider)

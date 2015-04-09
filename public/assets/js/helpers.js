@@ -4,18 +4,14 @@ window.helpers = (function() {
 
 	init();
 
-	/***
-	 * function init()
-	 *
+	/**
 	 * Initialize public window.helpers functions
 	 */
 	function init() {
 		fixBrowsers();
 	}
 
-	/***
-	 * function fixBrowsers()
-	 *
+	/**
 	 * Fix browser weirdness
 	 * Correct Modernizr bugs
 	 */
