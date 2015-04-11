@@ -34,7 +34,7 @@ module.exports = function(app, config) {
 	}
 
 	/**
-	 * Make sure user is authenticated and is administrator
+	 * Make sure user is authenticated and is authorized as an administrator
 	 *
 	 * @param req
 	 * @param res
@@ -125,40 +125,40 @@ module.exports = function(app, config) {
 	 | Log in with Email
 	 |--------------------------------------------------------------------------
 	 */
-	app.post('/auth/login', function(req, res) {
-		User.findOne({ email: req.body.email }, '+password', function(err, user) {
-			if (!user) {
-				return res.status(401).send({ message: 'Wrong email and/or password' });
-			}
-			user.comparePassword(req.body.password, function(err, isMatch) {
-				if (!isMatch) {
-					return res.status(401).send({ message: 'Wrong email and/or password' });
-				}
-				res.send({ token: createToken(user) });
-			});
-		});
-	});
+	//app.post('/auth/login', function(req, res) {
+	//	User.findOne({ email: req.body.email }, '+password', function(err, user) {
+	//		if (!user) {
+	//			return res.status(401).send({ message: 'Wrong email and/or password' });
+	//		}
+	//		user.comparePassword(req.body.password, function(err, isMatch) {
+	//			if (!isMatch) {
+	//				return res.status(401).send({ message: 'Wrong email and/or password' });
+	//			}
+	//			res.send({ token: createToken(user) });
+	//		});
+	//	});
+	//});
 
 	/*
 	 |--------------------------------------------------------------------------
 	 | Create Email and Password Account
 	 |--------------------------------------------------------------------------
 	 */
-	app.post('/auth/signup', function(req, res) {
-		User.findOne({ email: req.body.email }, function(err, existingUser) {
-			if (existingUser) {
-				return res.status(409).send({ message: 'Email is already taken' });
-			}
-			var user = new User({
-				displayName: req.body.displayName,
-				email: req.body.email,
-				password: req.body.password
-			});
-			user.save(function() {
-				res.send({ token: createToken(user) });
-			});
-		});
-	});
+	//app.post('/auth/signup', function(req, res) {
+	//	User.findOne({ email: req.body.email }, function(err, existingUser) {
+	//		if (existingUser) {
+	//			return res.status(409).send({ message: 'Email is already taken' });
+	//		}
+	//		var user = new User({
+	//			displayName: req.body.displayName,
+	//			email: req.body.email,
+	//			password: req.body.password
+	//		});
+	//		user.save(function() {
+	//			res.send({ token: createToken(user) });
+	//		});
+	//	});
+	//});
 
 	/*
 	 |--------------------------------------------------------------------------
