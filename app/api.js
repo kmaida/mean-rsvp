@@ -215,6 +215,10 @@ module.exports = function(app, config) {
 						user.google = profile.sub;
 						user.picture = profile.picture;
 						user.displayName = profile.name;
+
+						// TODO: to create an admin user, allow one-time isAdmin = true in one of the account creations
+						// user.isAdmin = true;
+
 						user.save(function() {
 							var token = createToken(user);
 							res.send({ token: token });
