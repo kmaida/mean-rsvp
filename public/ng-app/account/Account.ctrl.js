@@ -5,32 +5,14 @@
 		.module('myApp')
 		.controller('AccountCtrl', AccountCtrl);
 
-	AccountCtrl.$inject = ['$auth', 'userData', '$timeout'];
+	AccountCtrl.$inject = ['$auth', 'userData', '$timeout', 'OAUTH', 'User'];
 
-	function AccountCtrl($auth, userData, $timeout) {
+	function AccountCtrl($auth, userData, $timeout, OAUTH, User) {
 		// controllerAs ViewModel
 		var account = this;
 
 		// array of all available login services
-		account.logins = [
-			{
-				account: 'google',
-				name: 'Google',
-				url: 'http://accounts.google.com'
-			}, {
-				account: 'twitter',
-				name: 'Twitter',
-				url: 'http://twitter.com'
-			}, {
-				account: 'facebook',
-				name: 'Facebook',
-				url: 'http://facebook.com'
-			}, {
-				account: 'github',
-				name: 'GitHub',
-				url: 'http://github.com'
-			}
-		];
+		account.logins = OAUTH.LOGINS;
 
 		/**
 		 * Get user's profile information
@@ -44,15 +26,7 @@
 			function getUserSuccess(data) {
 				account.user = data;
 				account.administrator = account.user.isAdmin;
-				account.linkedAccounts = [];
-
-				angular.forEach(account.logins, function(actObj) {
-					var act = actObj.account;
-
-					if (account.user[act]) {
-						account.linkedAccounts.push(act);
-					}
-				});
+				account.linkedAccounts = User.getLinkedAccounts(account.user, 'account');
 			}
 
 			userData.getUser(getUserSuccess);

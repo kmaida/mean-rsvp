@@ -8,6 +8,7 @@
 
 	/**
 	 * Default error callback for userData service API calls
+	 * Alerts error message
 	 *
 	 * @param error
 	 * @private

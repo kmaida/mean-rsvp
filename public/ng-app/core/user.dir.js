@@ -15,7 +15,7 @@
 			var u = this;
 
 			/**
-			 * Is the current user authenticated?
+			 * Check if the current user is authenticated
 			 *
 			 * @returns {boolean}
 			 */
@@ -23,7 +23,7 @@
 				return $auth.isAuthenticated();
 			};
 
-			// API request to get the user, passing anonymous success callback function
+			// API request to get the user, passing success callback function that sets the user's info
 			userData.getUser(function(user) {
 				u.user = user;
 			});
@@ -33,7 +33,7 @@
 			restrict: 'EA',
 			controller: userCtrl,
 			controllerAs: 'u',
-			template: '<div ng-if="u.isAuthenticated() && !!u.user"><img ng-if="!!u.user.picture" ng-src="{{u.user.picture}}" class="img-userPicture" /> {{u.user.displayName}}</div>'
+			template: '<div ng-if="u.isAuthenticated() && !!u.user" class="user clearfix"><img ng-if="!!u.user.picture" ng-src="{{u.user.picture}}" class="user-picture" /><span class="user-displayName">{{u.user.displayName}}</span></div>'
 		};
 	}
 })();

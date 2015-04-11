@@ -15,7 +15,8 @@
 		function viewSwitchLink($scope) {
 			// data object
 			$scope.vs = {};
-			
+
+			// initialize mediaCheck
 			mediaCheck.init({
 				scope: $scope,
 				mq: MQ.SMALL,

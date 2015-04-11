@@ -22,7 +22,9 @@
 @import 'modules/api';
 @import 'modules/header';
 @import 'modules/footer';
+@import 'modules/user';
 
 /*-- Pages --*/
 @import 'pages/login';
 @import 'pages/account';
+@import 'pages/admin';

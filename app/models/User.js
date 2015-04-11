@@ -5,7 +5,7 @@
  */
 
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+//var bcrypt = require('bcryptjs');
 var encrypt = require('mongoose-encryption');
 var config = require('../config');
 
