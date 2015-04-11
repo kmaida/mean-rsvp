@@ -4,11 +4,11 @@
 
 	angular
 		.module('myApp')
-		.config(appRoutes);
+		.config(appConfig);
 
-	appRoutes.$inject = ['$routeProvider', '$locationProvider'];
+	appConfig.$inject = ['$routeProvider', '$locationProvider'];
 
-	function appRoutes($routeProvider, $locationProvider) {
+	function appConfig($routeProvider, $locationProvider) {
 		$routeProvider
 			.when('/', {
 				templateUrl: 'ng-app/home/Home.view.html',
@@ -23,10 +23,6 @@
 			})
 			.when('/admin', {
 				templateUrl: 'ng-app/admin/Admin.view.html',
-				secure: true
-			})
-			.when('/subpage', {
-				templateUrl: 'ng-app/sub/Sub.view.html',
 				secure: true
 			})
 			.otherwise({
