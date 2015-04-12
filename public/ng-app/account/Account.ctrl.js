@@ -77,7 +77,7 @@
 		};
 
 		/**
-		 * Link third-party provider.
+		 * Link third-party provider
 		 *
 		 * @param {string} provider
 		 */
@@ -92,7 +92,7 @@
 		};
 
 		/**
-		 * Unlink third-party provider.
+		 * Unlink third-party provider
 		 *
 		 * @param {string} provider
 		 */

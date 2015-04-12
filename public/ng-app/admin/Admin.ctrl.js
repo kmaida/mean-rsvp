@@ -12,21 +12,19 @@
 		var admin = this;
 
 		/**
-		 * Get all the users
+		 * Success callback for API call getting user list
 		 *
-		 * @returns {Array}
+		 * @param data {Array} provided by $http success
 		 */
-		userData.getAllUsers(function(data) {
+		function getAllUsersSuccess(data) {
 			admin.showAdmin = true;
 			admin.users = data;
 
 			angular.forEach(admin.users, function(user) {
 				user.linkedAccounts = User.getLinkedAccounts(user);
-
-				console.log(user.linkedAccounts);
 			});
+		}
 
-			console.log(admin.users);
-		});
+		userData.getAllUsers(getAllUsersSuccess);
 	}
 })();

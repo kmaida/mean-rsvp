@@ -11,7 +11,12 @@
 	function viewSwitch(mediaCheck, MQ, $timeout) {
 
 		viewSwitchLink.$inject = ['$scope'];
-		
+
+		/**
+		 * viewSwitch directive link function
+		 *
+		 * @param $scope
+		 */
 		function viewSwitchLink($scope) {
 			// data object
 			$scope.vs = {};

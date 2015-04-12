@@ -1,4 +1,6 @@
 .user {
+	margin-bottom: 15px;
+
 	&-picture {
 		border-radius: 100px;
 		display: inline-block;
@@ -8,7 +10,7 @@
 	}
 	&-displayName {
 		display: inline-block;
-		margin-left: 6px;
+		margin-left: 4px;
 		vertical-align: middle;
 	}
 }

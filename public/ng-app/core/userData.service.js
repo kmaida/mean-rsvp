@@ -1,4 +1,4 @@
-// fetch user data
+// User API $http calls
 (function() {
 	'use strict';
 

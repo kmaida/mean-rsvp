@@ -71,6 +71,9 @@
 	}
 }
 .nav-list {
+	list-style: none;
+	padding-left: 0;
+
 	a {
 		display: block;
 		padding: 6px;
@@ -86,7 +89,6 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		list-style: none;
 		padding: 0;
 		width: 100%;
 

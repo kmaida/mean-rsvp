@@ -1,4 +1,4 @@
-// "global" object to share between controllers
+// User functions
 (function() {
 	'use strict';
 
@@ -9,6 +9,13 @@
 	User.$inject = ['OAUTH'];
 
 	function User(OAUTH) {
+
+		/**
+		 * Create array of a user's currently-linked account logins
+		 *
+		 * @param userObj
+		 * @returns {Array}
+		 */
 		function getLinkedAccounts(userObj) {
 			var linkedAccounts = [];
 

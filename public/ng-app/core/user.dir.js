@@ -10,6 +10,9 @@
 
 	function user(userData, $auth) {
 
+		/**
+		 * User directive controller
+		 */
 		function userCtrl() {
 			// controllerAs ViewModel
 			var u = this;
