@@ -64,6 +64,13 @@ module.exports = function(app, config) {
 	 | Generate JSON Web Token
 	 |--------------------------------------------------------------------------
 	 */
+
+	/**
+	 * Create JSON Web Token for authentication
+	 *
+	 * @param user
+	 * @returns {*}
+	 */
 	function createToken(user) {
 		var payload = {
 			sub: user._id,

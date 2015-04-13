@@ -28,6 +28,7 @@
 			.otherwise({
 				redirectTo: '/'
 			});
+
 		$locationProvider
 			.html5Mode({
 				enabled: true

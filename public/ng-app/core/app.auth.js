@@ -1,7 +1,8 @@
 (function() {
 	'use strict';
 
-	angular.module('myApp')
+	angular
+		.module('myApp')
 		.config(authConfig)
 		.run(authRun);
 
@@ -9,7 +10,7 @@
 
 	function authConfig($authProvider) {
 		$authProvider.loginUrl = 'http://localhost:8080/auth/login';
-		$authProvider.signupUrl = 'http://localhost:8080/auth/signup';
+		//$authProvider.signupUrl = 'http://localhost:8080/auth/signup';
 
 		$authProvider.facebook({
 			clientId: '343789249146966'
@@ -33,6 +34,7 @@
 	function authRun($rootScope, $location, $auth) {
 		$rootScope.$on('$routeChangeStart', function(event, next, current) {
 			if (next && next.$$route && next.$$route.secure) {
+				// If user is not authenticated, send them back to /login
 				if (!$auth.isAuthenticated()) {
 					$rootScope.$evalAsync(function() {
 						$location.path('/login');

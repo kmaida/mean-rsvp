@@ -13,7 +13,7 @@
 		 * Get local JSON data file and return results
 		 *
 		 * @param callback
-		 * @returns {*}
+		 * @returns {function} success or error callback
 		 */
 		this.getJSON = function(callback) {
 			return $http

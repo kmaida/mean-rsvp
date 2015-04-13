@@ -21,20 +21,34 @@
 			// data object
 			$scope.vs = {};
 
-			// initialize mediaCheck
+			/**
+			 * Function to execute on enter media query
+			 *
+			 * @private
+			 */
+			function _enterFn() {
+				$timeout(function () {
+					$scope.vs.viewformat = 'small';
+				});
+			}
+
+			/**
+			 * Function to execute on exit media query
+			 *
+			 * @private
+			 */
+			function _exitFn() {
+				$timeout(function () {
+					$scope.vs.viewformat = 'large';
+				});
+			}
+
+			// Initialize mediaCheck
 			mediaCheck.init({
 				scope: $scope,
 				mq: MQ.SMALL,
-				enter: function () {
-					$timeout(function () {
-						$scope.vs.viewformat = 'small';
-					});
-				},
-				exit: function () {
-					$timeout(function () {
-						$scope.vs.viewformat = 'large';
-					});
-				}
+				enter: _enterFn,
+				exit: _exitFn
 			});
 		}
 
