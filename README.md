@@ -36,10 +36,10 @@ Demo is available at [restart-mean.kmaida.net](http://restart-mean.kmaida.net).
  - [x] Clean up code and remove logs (server and client)
  - [x] Remove GlobalObj (unnecessary example)
 - [x] Deploy demo 
-- [x] Add ad-blocking detection on login and account pages
+- [x] Add ad-blocking detection on login page (directive in case reuse needed)
  
 ## Changelog
  
-* **v0.1.2** - 4/13/15: Cleaned up and commented
+* **v0.1.2** - 4/13/15: Cleaned up and commented, demo deployed
 * **v0.1.1** - 4/11/15: Base styles and user functionality in place
 * **v0.1.0** - 4/6/15: Upload files, improve services
