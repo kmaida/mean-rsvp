@@ -36,7 +36,7 @@ Demo is available at [restart-mean.kmaida.net](http://restart-mean.kmaida.net).
  - [x] Clean up code and remove logs (server and client)
  - [x] Remove GlobalObj (unnecessary example)
 - [x] Deploy demo 
-- [ ] Add ad-blocking detection on login page and notify user if login buttons are being blocked!
+- [x] Add ad-blocking detection on login and account pages
  
 ## Changelog
  
