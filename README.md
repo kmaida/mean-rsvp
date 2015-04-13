@@ -11,6 +11,10 @@ Boilerplate MEAN stack application with simple authentication via third-party Oa
 * Bootstrap 3 (local)
 * Gulp
 
+## Demo
+
+Demo is available at [restart-mean.kmaida.net](http://restart-mean.kmaida.net).
+
 ## To Do
 
 - [x] Enhance services
@@ -31,7 +35,7 @@ Boilerplate MEAN stack application with simple authentication via third-party Oa
  - [x] Clean up JSDoc comments
  - [x] Clean up code and remove logs (server and client)
  - [x] Remove GlobalObj (unnecessary example)
-- [ ] Deploy demo 
+- [x] Deploy demo 
  
 ## Changelog
  
