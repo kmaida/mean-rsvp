@@ -5,20 +5,16 @@
 		.module('myApp')
 		.controller('LoginCtrl', LoginCtrl);
 
-	LoginCtrl.$inject = ['GlobalObj', '$auth'];
+	LoginCtrl.$inject = ['$auth'];
 
-	function LoginCtrl(GlobalObj, $auth) {
+	function LoginCtrl($auth) {
 		// controllerAs ViewModel
 		var login = this;
 
-		// put global variables in scope
-		login.global = GlobalObj;
-
 		/**
-		 * Authenticate the user via Oauth with the provider
-		 * (Twitter, Facebook, etc.)
+		 * Authenticate the user via Oauth with the specified provider
 		 *
-		 * @param {string} provider
+		 * @param {string} provider - (twitter, facebook, github, google)
 		 */
 		login.authenticate = function(provider) {
 			$auth.authenticate(provider)

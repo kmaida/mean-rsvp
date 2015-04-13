@@ -8,7 +8,7 @@ Boilerplate MEAN stack application with simple authentication via third-party Oa
 * Node
 * Token-based authentication (with Oauth via [Satellizer](https://github.com/sahat/satellizer))
 * FontAwesome (CDN)
-* Bootstrap 3 (CDN)
+* Bootstrap 3 (local)
 * Gulp
 
 ## To Do
@@ -27,9 +27,10 @@ Boilerplate MEAN stack application with simple authentication via third-party Oa
  - [x] Improve default styling for Account page
  - [x] Style Admin page
 - [ ] CLEAN UP!
- - [ ] Clean up JSDoc comments
+ - [x] Improve module styles
+ - [x] Clean up JSDoc comments
  - [ ] Clean up code and remove logs (server and client)
- - [ ] Remove GlobalObj (unnecessary example)
+ - [x] Remove GlobalObj (unnecessary example)
  
 ## Changelog
  

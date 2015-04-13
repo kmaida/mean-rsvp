@@ -57,7 +57,7 @@
 		});
 
 		/**
-		 * Apply class to currently active nav item when '/' index
+		 * Currently active nav item when '/' index
 		 *
 		 * @param {string} path
 		 * @returns {boolean}
@@ -68,7 +68,7 @@
 		};
 
 		/**
-		 * Apply class to currently active nav item
+		 * Currently active nav item
 		 *
 		 * @param {string} path
 		 * @returns {boolean}

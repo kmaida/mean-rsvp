@@ -11,7 +11,7 @@
 
 				<p class="lead">View all users and their currently linked authentication accounts.</p>
 
-				<ul class="userList">
+				<ul class="userList-list">
 					<li ng-repeat="user in admin.users | orderBy:'displayName'" class="userList-item user clearfix">
 						<img class="user-picture" ng-src="{{user.picture}}"/>
 						<span class="user-displayName">{{user.displayName}}</span>

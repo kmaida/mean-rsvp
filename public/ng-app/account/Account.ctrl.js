@@ -11,7 +11,7 @@
 		// controllerAs ViewModel
 		var account = this;
 
-		// array of all available login services
+		// All available login services
 		account.logins = OAUTH.LOGINS;
 
 		/**
@@ -49,7 +49,7 @@
 		account.updateProfile = function() {
 			var profileData = { displayName: account.user.displayName };
 
-			// Set status to saving... to update upon success or error in callbacks
+			// Set status to Saving... and update upon success or error in callbacks
 			account.btnSaveText = 'Saving...';
 
 			/**

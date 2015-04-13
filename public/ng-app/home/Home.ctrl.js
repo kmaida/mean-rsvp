@@ -5,14 +5,14 @@
 		.module('myApp')
 		.controller('HomeCtrl', HomeCtrl);
 
-	HomeCtrl.$inject = ['GlobalObj', '$rootScope', '$auth', 'localData'];
+	HomeCtrl.$inject = ['$rootScope', '$auth', 'localData'];
 
-	function HomeCtrl(GlobalObj, $rootScope, $auth, localData) {
+	function HomeCtrl($rootScope, $auth, localData) {
 		// controllerAs ViewModel
 		var home = this;
 
 		/**
-		 * Determines if the user is logged in
+		 * Determines if the user is authenticated
 		 *
 		 * @returns {boolean}
 		 */
@@ -23,20 +23,13 @@
 		/**
 		 * Gets local JSON data
 		 *
-		 * @returns {object}
+		 * @returns {*}
 		 */
 		localData.getJSON(function(data) {
 			home.localData = data;
 		});
 
-		home.user = $rootScope.user;
-
-		// put global variables in scope
-		home.global = GlobalObj;
-
-		// simple data binding example
-		home.name = 'Visitor';
-
+		// Simple SCE example
 		home.stringOfHTML = '<strong>Some bold text</strong> bound as HTML with a <a href="#">link</a>!';
 	}
 })();

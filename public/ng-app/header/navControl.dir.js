@@ -44,34 +44,51 @@
 				_navOpen = false;
 			}
 
+			/**
+			 * Function to execute when entering mobile media query
+			 * Close nav and set up menu toggling functionality
+			 *
+			 * @private
+			 */
+			function _enterMobile() {
+				_closeNav();
+
+				$timeout(function () {
+					/**
+					 * Toggle mobile navigation open/closed
+					 */
+					$scope.nav.toggleNav = function () {
+						if (!_navOpen) {
+							_openNav();
+						} else {
+							_closeNav();
+						}
+					};
+				});
+
+				$scope.$on('$locationChangeSuccess', _closeNav);
+			}
+
+			/**
+			 * Function to execute when exiting mobile media query
+			 * Disable menu toggling and remove body classes
+			 *
+			 * @private
+			 */
+			function _exitMobile() {
+				$timeout(function () {
+					$scope.nav.toggleNav = null;
+				});
+
+				_body.removeClass('nav-closed nav-open');
+			}
+
+			// Set up functionality to run on enter/exit of media query
 			mediaCheck.init({
 				scope: $scope,
 				mq: MQ.SMALL,
-				enter: function () {
-					_closeNav();
-
-					$timeout(function () {
-						/**
-						 * Toggle mobile navigation open/closed
-						 */
-						$scope.nav.toggleNav = function () {
-							if (!_navOpen) {
-								_openNav();
-							} else {
-								_closeNav();
-							}
-						};
-					});
-
-					$scope.$on('$locationChangeSuccess', _closeNav);
-				},
-				exit: function () {
-					$timeout(function () {
-						$scope.nav.toggleNav = null;
-					});
-
-					_body.removeClass('nav-closed nav-open');
-				}
+				enter: _enterMobile,
+				exit: _exitMobile
 			});
 		}
 

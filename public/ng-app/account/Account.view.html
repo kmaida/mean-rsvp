@@ -7,7 +7,7 @@
 			<i class="fa fa-wrench"></i> <strong>Administrator:</strong> <a ng-href="/admin">View all users</a>
 		</div>
 
-		<section class="updateInfo-wrapper content-section">
+		<section class="updateInfo content-section">
 			<h2>
 				<i class="fa fa-pencil-square-o"></i> User Info
 			</h2>
@@ -28,7 +28,7 @@
 			</form>
 		</section>
 
-		<section class="linkAccounts-wrapper content-section">
+		<section class="linkAccounts content-section">
 			<h2>
 				<i class="fa fa-link"></i> Manage Logins
 			</h2>
@@ -40,7 +40,7 @@
 
 			<div class="linkAccounts-content">
 
-				<div class="anAccount-wrapper" ng-repeat="login in account.logins">
+				<div class="linkAccounts-account" ng-repeat="login in account.logins">
 					<div class="panel" ng-class="{'panel-success': account.user[login.account], 'panel-default': !account.user[login.account]}">
 
 						<div class="panel-heading">
@@ -75,7 +75,7 @@
 						</div>
 
 					</div>
-				</div> <!-- /.anAccount-wrapper -->
+				</div> <!-- /.linkAccounts-account -->
 
 			</div>
 
