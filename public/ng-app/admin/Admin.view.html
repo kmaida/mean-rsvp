@@ -1,8 +1,8 @@
 <article id="content-wrapper" class="content-wrapper admin-wrapper" view-switch>
 	<section id="content-main" class="content-main admin-main clearfix" ng-controller="AdminCtrl as admin" ng-cloak>
-		<h1 class="content-heading">Admin</h1>
 
-		<div ng-if="admin.showAdmin">
+		<div ng-if="admin.isAuthenticated() && admin.showAdmin">
+			<h1 class="content-heading">Admin</h1>
 
 			<section class="userList content-section">
 				<h2>

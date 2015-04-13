@@ -5,11 +5,20 @@
 		.module('myApp')
 		.controller('AdminCtrl', AdminCtrl);
 
-	AdminCtrl.$inject = ['userData', 'User'];
+	AdminCtrl.$inject = ['$auth', 'userData', 'User'];
 
-	function AdminCtrl(userData, User) {
+	function AdminCtrl($auth, userData, User) {
 		// controllerAs ViewModel
 		var admin = this;
+
+		/**
+		 * Determines if the user is authenticated
+		 *
+		 * @returns {boolean}
+		 */
+		admin.isAuthenticated = function() {
+			return $auth.isAuthenticated();
+		};
 
 		/**
 		 * Success callback for API call getting user list

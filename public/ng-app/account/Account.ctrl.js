@@ -15,6 +15,15 @@
 		account.logins = OAUTH.LOGINS;
 
 		/**
+		 * Is the user authenticated?
+		 *
+		 * @returns {boolean}
+		 */
+		account.isAuthenticated = function() {
+			return $auth.isAuthenticated();
+		};
+
+		/**
 		 * Get user's profile information
 		 */
 		account.getProfile = function() {
