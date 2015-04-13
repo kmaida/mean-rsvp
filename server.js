@@ -57,7 +57,7 @@ var User = require('./app/models/User.js');
 
 var app = express();
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 8989);
 
 app.use(logger('dev'));
 
