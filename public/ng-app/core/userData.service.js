@@ -14,7 +14,7 @@
 	 * @private
 	 */
 	function _defaultErrorCallback(error) {
-		alert(error.message);
+		console.log('userData error:', error.message);
 	}
 
 	userData.$inject = ['$http'];
