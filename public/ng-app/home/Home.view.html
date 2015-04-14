@@ -2,7 +2,7 @@
 	<section id="content-main" class="content-main home-content clearfix" ng-controller="HomeCtrl as home" ng-cloak>
 
 		<div ng-if="home.isAuthenticated()">
-			<h1 class="content-heading">{{home.localData.title}}</h1>
+			<h1 class="content-heading">{{::home.localData.title}}</h1>
 
 			<user></user>
 

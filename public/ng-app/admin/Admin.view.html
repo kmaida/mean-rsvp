@@ -15,7 +15,7 @@
 
 				<ul class="userList-list">
 					<li ng-repeat="user in admin.users | orderBy:'displayName'" class="userList-item user clearfix">
-						<img class="user-picture" ng-src="{{user.picture}}"/>
+						<img class="user-picture" ng-src="{{::user.picture}}"/>
 						<span class="user-displayName">{{user.displayName}}</span>
 						<i ng-if="user.isAdmin" class="fa fa-wrench" title="Admin"></i>
 						<i class="user-logins fa fa-{{login}}" ng-repeat="login in user.linkedAccounts"></i>

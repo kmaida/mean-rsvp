@@ -5,11 +5,13 @@
 		.module('myApp')
 		.controller('LoginCtrl', LoginCtrl);
 
-	LoginCtrl.$inject = ['$auth'];
+	LoginCtrl.$inject = ['$auth', 'OAUTH'];
 
-	function LoginCtrl($auth) {
+	function LoginCtrl($auth, OAUTH) {
 		// controllerAs ViewModel
 		var login = this;
+
+		login.logins = OAUTH.LOGINS;
 
 		/**
 		 * Authenticate the user via Oauth with the specified provider
