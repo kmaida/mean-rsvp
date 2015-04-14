@@ -23,6 +23,7 @@ Demo is available at [restart-mean.kmaida.net](http://restart-mean.kmaida.net).
 - [x] Add ad-blocking detection
 - [x] Deploy demo 
 - [x] Clean up!
+  - [ ] Check for memory leaks
  
 ## Changelog
  

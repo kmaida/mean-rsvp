@@ -32,7 +32,8 @@
     "mongoose": "^3.8.16",
     "morgan": "^1.3.0",
     "request": "^2.42.0",
-    "mongoose-encryption": "^1.0.1"
+    "mongoose-encryption": "^1.0.1",
+    "memwatch": "^0.2.2"
   },
   "devDependencies": {
     "gulp": "^3.8.11",

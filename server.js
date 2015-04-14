@@ -26,6 +26,21 @@ var config = require('./app/config');
 
 /*
  |--------------------------------------------------------------------------
+ | Memwatch (to detect memory leaks)
+ |--------------------------------------------------------------------------
+ */
+
+var memwatch = require('memwatch');
+
+memwatch.on('leak', function(info) {
+	console.error('memwatch - memory leak detected: ', info);
+});
+memwatch.on('stats', function(stats) {
+	console.log('memwatch - stats: ', stats);
+});
+
+/*
+ |--------------------------------------------------------------------------
  | MongoDB
  |--------------------------------------------------------------------------
  */
