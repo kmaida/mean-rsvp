@@ -11,6 +11,8 @@
 
 				<p class="lead">View all users and their currently linked authentication accounts.</p>
 
+				<detect-adblock></detect-adblock>
+
 				<ul class="userList-list">
 					<li ng-repeat="user in admin.users | orderBy:'displayName'" class="userList-item user clearfix">
 						<img class="user-picture" ng-src="{{user.picture}}"/>
