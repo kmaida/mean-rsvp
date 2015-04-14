@@ -22,7 +22,10 @@
 			 * @private
 			 */
 			function _areAdsBlocked() {
-				$scope.ab.blocked = angular.element('[class*="facebook"]').height() <= 0 || angular.element('[class*="twitter"]').height() <= 0;
+				$scope.ab.blocked = angular.element('[class*="facebook"]').height() <= 0
+									|| angular.element('[class*="twitter"]').height() <= 0
+									|| !angular.element('.fa-facebook:visible').length
+									|| !angular.element('.fa-twitter:visible').length;
 			}
 
 			$timeout(_areAdsBlocked, 200);
