@@ -14,6 +14,7 @@
 			// data object
 			$scope.ab = {};
 
+			// hostname for messaging
 			$scope.ab.host = $location.host();
 
 			/**
@@ -22,10 +23,9 @@
 			 * @private
 			 */
 			function _areAdsBlocked() {
-				$scope.ab.blocked = angular.element('[class*="facebook"]').height() <= 0
-									|| angular.element('[class*="twitter"]').height() <= 0
-									|| !angular.element('.fa-facebook:visible').length
-									|| !angular.element('.fa-twitter:visible').length;
+				var _a = $elem.find('.ad');
+
+				$scope.ab.blocked = _a.height() <= 0 || !$elem.find('.ad:visible').length;
 			}
 
 			$timeout(_areAdsBlocked, 200);
@@ -34,7 +34,8 @@
 		return {
 			restrict: 'EA',
 			link: _detectAdblockLink,
-			template: '<div ng-if="ab.blocked" class="alert alert-danger"><i class="fa fa-warning"></i> Disable AdBlocking on <strong>{{ab.host}}</strong> to access additional login options.</div>'
+			template:   '<span class="ad facebook twitter" style="height:1px;position:absolute;left:-9999px;"></span>' +
+						'<div ng-if="ab.blocked" class="alert alert-danger"><i class="fa fa-warning"></i> Disable AdBlocking on <strong>{{ab.host}}</strong> to access additional login options.</div>'
 		}
 	}
 
