@@ -20,6 +20,22 @@ body {
 	transition: $transition-all;
 }
 
+/*-- AdBlock messaging --*/
+
+.ad-test {
+	&:before {
+		position: absolute;
+		left: -9999px;
+	}
+}
+.ab-message {
+	line-height: 1.4;
+
+	.account-main .linkAccounts & {
+		margin-bottom: 20px;
+	}
+}
+
 /*------------------------------------------------------------------------- Content --*/
 
 .content-wrapper {

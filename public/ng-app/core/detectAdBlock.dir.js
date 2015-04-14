@@ -23,9 +23,9 @@
 			 * @private
 			 */
 			function _areAdsBlocked() {
-				var _a = $elem.find('.ad');
+				var _a = $elem.find('.ad-test');
 
-				$scope.ab.blocked = _a.height() <= 0 || !$elem.find('.ad:visible').length;
+				$scope.ab.blocked = _a.height() <= 0 || !$elem.find('.ad-test:visible').length;
 			}
 
 			$timeout(_areAdsBlocked, 200);
@@ -34,8 +34,10 @@
 		return {
 			restrict: 'EA',
 			link: _detectAdblockLink,
-			template:   '<span class="ad facebook twitter" style="height:1px;position:absolute;left:-9999px;"></span>' +
-						'<div ng-if="ab.blocked" class="alert alert-danger"><i class="fa fa-warning"></i> Disable AdBlocking on <strong>{{ab.host}}</strong> to access additional login options.</div>'
+			template:   '<div class="ad-test fa-facebook fa-twitter" style="height:1px;"></div>' +
+						'<div ng-if="ab.blocked" class="ab-message alert alert-danger">' +
+							'<i class="fa fa-ban"></i> <strong>AdBlock</strong> is prohibiting important functionality! Please disable ad blocking on <strong>{{ab.host}}</strong>. This site is ad-free.' +
+						'</div>'
 		}
 	}
 

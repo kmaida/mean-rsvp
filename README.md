@@ -36,9 +36,7 @@ Demo is available at [restart-mean.kmaida.net](http://restart-mean.kmaida.net).
  - [x] Clean up code and remove logs (server and client)
  - [x] Remove GlobalObj (unnecessary example)
 - [x] Deploy demo 
-- [ ] Add ad-blocking detection
- - [x] Login page
- - [ ] Admin page (current detection doesn't work on this page)
+- [x] Add ad-blocking detection and apply on all pages that have social icons
  
 ## Changelog
  
