@@ -25,8 +25,10 @@
 		 *
 		 * Do this on first controller load (init, refresh)
 		 * and subsequent location changes (ie, catching logout, login, etc).
+		 *
+		 * @private
 		 */
-		function checkUserAdmin() {
+		function _checkUserAdmin() {
 			// if user is authenticated and not defined yet, check if they're an admin
 			if ($auth.isAuthenticated() && header.adminUser === undefined) {
 				userData.getUser(function (user) {
@@ -34,8 +36,8 @@
 				});
 			}
 		}
-		checkUserAdmin();
-		$scope.$on('$locationChangeSuccess', checkUserAdmin);
+		_checkUserAdmin();
+		$scope.$on('$locationChangeSuccess', _checkUserAdmin);
 
 		/**
 		 * Is the user authenticated?

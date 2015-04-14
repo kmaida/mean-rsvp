@@ -24,8 +24,9 @@
 		 * Success callback for API call getting user list
 		 *
 		 * @param data {Array} provided by $http success
+		 * @private
 		 */
-		function getAllUsersSuccess(data) {
+		function _getAllUsersSuccess(data) {
 			admin.showAdmin = true;
 			admin.users = data;
 
@@ -34,6 +35,6 @@
 			});
 		}
 
-		userData.getAllUsers(getAllUsersSuccess);
+		userData.getAllUsers(_getAllUsersSuccess);
 	}
 })();

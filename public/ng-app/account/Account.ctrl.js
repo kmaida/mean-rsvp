@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('AccountCtrl', AccountCtrl);
 
-	AccountCtrl.$inject = ['$auth', 'userData', '$timeout', 'OAUTH', 'User'];
+	AccountCtrl.$inject = ['$scope', '$auth', 'userData', '$timeout', 'OAUTH', 'User'];
 
-	function AccountCtrl($auth, userData, $timeout, OAUTH, User) {
+	function AccountCtrl($scope, $auth, userData, $timeout, OAUTH, User) {
 		// controllerAs ViewModel
 		var account = this;
 
@@ -31,25 +31,45 @@
 			 * Success callback for API call getting user's profile data
 			 *
 			 * @param data {object} provided by $http success
+			 * @private
 			 */
-			function getUserSuccess(data) {
+			function _getUserSuccess(data) {
 				account.user = data;
 				account.administrator = account.user.isAdmin;
 				account.linkedAccounts = User.getLinkedAccounts(account.user, 'account');
 			}
 
-			userData.getUser(getUserSuccess);
+			userData.getUser(_getUserSuccess);
 		};
 
 		/**
 		 * Reset profile save button to initial state
+		 *
+		 * @private
 		 */
-		function btnSaveReset() {
+		function _btnSaveReset() {
 			account.btnSaved = false;
 			account.btnSaveText = 'Save';
 		}
 
-		btnSaveReset();
+		_btnSaveReset();
+
+		/**
+		 * Watch display name changes to check for empty or null string
+		 * Set button text accordingly
+		 *
+		 * @param newVal {string} updated displayName value from input field
+		 * @param oldVal {*} previous displayName value
+		 * @private
+		 */
+		function _watchDisplayName(newVal, oldVal) {
+			if (newVal === '' || newVal === null) {
+				account.btnSaveText = 'Enter Name';
+			} else {
+				account.btnSaveText = 'Save';
+			}
+		}
+		$scope.$watch('account.user.displayName', _watchDisplayName);
 
 		/**
 		 * Update user's profile information
@@ -58,31 +78,37 @@
 		account.updateProfile = function() {
 			var profileData = { displayName: account.user.displayName };
 
-			// Set status to Saving... and update upon success or error in callbacks
-			account.btnSaveText = 'Saving...';
-
 			/**
 			 * Success callback when profile has been updated
+			 *
+			 * @private
 			 */
-			function updateSuccess() {
+			function _updateSuccess() {
 				account.btnSaved = true;
 				account.btnSaveText = 'Saved!';
 
-				$timeout(btnSaveReset, 2500);
+				$timeout(_btnSaveReset, 2500);
 			}
 
 			/**
 			 * Error callback when profile update has failed
+			 *
+			 * @private
 			 */
-			function updateError() {
+			function _updateError() {
 				account.btnSaved = 'error';
 				account.btnSaveText = 'Error saving!';
 
-				$timeout(btnSaveReset, 3000);
+				$timeout(_btnSaveReset, 3000);
 			}
 
-			// Update the user, passing profile data, success callback function, and error callback function
-			userData.updateUser(profileData, updateSuccess, updateError);
+			if (!!account.user.displayName) {
+				// Set status to Saving... and update upon success or error in callbacks
+				account.btnSaveText = 'Saving...';
+
+				// Update the user, passing profile data, success callback function, and error callback function
+				userData.updateUser(profileData, _updateSuccess, _updateError);
+			}
 		};
 
 		/**
