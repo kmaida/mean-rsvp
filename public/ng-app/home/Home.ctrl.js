@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('HomeCtrl', HomeCtrl);
 
-	HomeCtrl.$inject = ['$rootScope', '$auth', 'localData'];
+	HomeCtrl.$inject = ['$auth', 'localData'];
 
-	function HomeCtrl($rootScope, $auth, localData) {
+	function HomeCtrl($auth, localData) {
 		// controllerAs ViewModel
 		var home = this;
 

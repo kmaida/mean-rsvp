@@ -2,7 +2,7 @@
 	<section id="content-main" class="content-main account-main clearfix" ng-controller="AccountCtrl as account"
 			 ng-cloak>
 
-		<div ng-if="account.isAuthenticated()">
+		<div ng-if="account.isAuthenticated() && account.showAccount">
 			<h1 class="content-heading">My Account</h1>
 
 			<div ng-if="account.administrator" class="alert alert-info">

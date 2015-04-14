@@ -29,6 +29,7 @@
 		account.getProfile = function() {
 			/**
 			 * Success callback for API call getting user's profile data
+			 * Show Account UI
 			 *
 			 * @param data {object} provided by $http success
 			 * @private
@@ -37,6 +38,7 @@
 				account.user = data;
 				account.administrator = account.user.isAdmin;
 				account.linkedAccounts = User.getLinkedAccounts(account.user, 'account');
+				account.showAccount = true;
 			}
 
 			userData.getUser(_getUserSuccess);

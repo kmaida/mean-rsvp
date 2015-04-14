@@ -22,17 +22,19 @@
 
 		/**
 		 * Success callback for API call getting user list
+		 * Show Admin UI
 		 *
 		 * @param data {Array} provided by $http success
 		 * @private
 		 */
 		function _getAllUsersSuccess(data) {
-			admin.showAdmin = true;
 			admin.users = data;
 
 			angular.forEach(admin.users, function(user) {
 				user.linkedAccounts = User.getLinkedAccounts(user);
 			});
+
+			admin.showAdmin = true;
 		}
 
 		userData.getAllUsers(_getAllUsersSuccess);
