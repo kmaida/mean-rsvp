@@ -30,14 +30,14 @@ var config = require('./app/config');
  |--------------------------------------------------------------------------
  */
 
-var memwatch = require('memwatch');
-
-memwatch.on('leak', function(info) {
-	console.error('memwatch - memory leak detected: ', info);
-});
-memwatch.on('stats', function(stats) {
-	console.log('memwatch - stats: ', stats);
-});
+//var memwatch = require('memwatch');
+//
+//memwatch.on('leak', function(info) {
+//	console.error('memwatch - memory leak detected: ', info);
+//});
+//memwatch.on('stats', function(stats) {
+//	console.log('memwatch - stats: ', stats);
+//});
 
 /*
  |--------------------------------------------------------------------------
