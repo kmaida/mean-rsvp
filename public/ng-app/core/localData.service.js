@@ -19,7 +19,7 @@
 			return $http
 				.get('/ng-app/data/data.json')
 				.success(callback)
-				.error(function(error) { alert(error.message); });
+				.error(function(error) { console.log(error.message); });
 		}
 	}
 })();
