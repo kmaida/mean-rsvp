@@ -20,11 +20,13 @@ Demo is available at [restart-mean.kmaida.net](http://restart-mean.kmaida.net).
 - [x] Enhance services
 - [x] Create admin-protected API route
 - [x] Base styles / Bootstrap All The Things
-- [x] Add ad-blocking detection
+- [x] Add ad-blocking detection so that Oauth login buttons aren't blocked
 - [x] Deploy demo 
 - [x] Clean up!
-  - [x] Check for memory leaks
-  - [x] Update to use one-time data bindings where appropriate
+  - [x] Use one-time data bindings where appropriate
+  - [ ] Use promises `then` instead of `success` and `error` callbacks
+    - [x] `localData.service.js`
+    - [ ] `userData.service.js`
  
 ## Changelog
  

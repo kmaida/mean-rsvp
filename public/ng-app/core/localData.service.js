@@ -6,20 +6,39 @@
 		.module('myApp')
 		.service('localData', localData);
 
+	/**
+	 * Promise success function
+	 *
+	 * @param data
+	 * @returns {*}
+	 * @private
+	 */
+	function _promiseSuccess(data) {
+		return data;
+	}
+
+	/**
+	 * Promise error function
+	 *
+	 * @param error
+	 * @private
+	 */
+	function _promiseError(error) {
+		console.log('Error getting data:', error);
+	}
+
 	localData.$inject = ['$http'];
 
 	function localData($http) {
 		/**
 		 * Get local JSON data file and return results
 		 *
-		 * @param callback
-		 * @returns {function} success or error callback
+		 * @returns {promise}
 		 */
-		this.getJSON = function(callback) {
+		this.getJSON = function() {
 			return $http
 				.get('/ng-app/data/data.json')
-				.success(callback)
-				.error(function(error) { console.log(error.message); });
+				.then(_promiseSuccess, _promiseError);
 		}
 	}
 })();

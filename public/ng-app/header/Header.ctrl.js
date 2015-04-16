@@ -31,8 +31,8 @@
 		function _checkUserAdmin() {
 			// if user is authenticated and not defined yet, check if they're an admin
 			if ($auth.isAuthenticated() && header.adminUser === undefined) {
-				userData.getUser(function (user) {
-					header.adminUser = user.isAdmin;
+				userData.getUser().then(function (response) {
+					header.adminUser = response.data.isAdmin;
 				});
 			}
 		}
@@ -47,16 +47,6 @@
 		header.isAuthenticated = function() {
 			return $auth.isAuthenticated();
 		};
-
-		/**
-		 * Get local data from static JSON
-		 *
-		 * @param function (success callback)
-		 * @returns {object}
-		 */
-		localData.getJSON(function(data) {
-			header.json = data;
-		});
 
 		/**
 		 * Currently active nav item when '/' index

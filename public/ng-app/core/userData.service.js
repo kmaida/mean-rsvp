@@ -7,14 +7,24 @@
 		.service('userData', userData);
 
 	/**
-	 * Default error callback for userData service API calls
-	 * Alerts error message
+	 * Promise success function
+	 *
+	 * @param data
+	 * @returns {*}
+	 * @private
+	 */
+	function _promiseSuccess(data) {
+		return data;
+	}
+
+	/**
+	 * Promise error function
 	 *
 	 * @param error
 	 * @private
 	 */
-	function _defaultErrorCallback(error) {
-		console.log('userData error:', error.message);
+	function _promiseError(error) {
+		console.log('Error getting data:', error);
 	}
 
 	userData.$inject = ['$http'];
@@ -23,42 +33,35 @@
 		/**
 		 * Get current user's data
 		 *
-		 * @param successCallback {function}
-		 * @param errorCallback {function}
-		 * @returns {*}
+		 * @returns {promise}
 		 */
-		this.getUser = function(successCallback, errorCallback) {
+		this.getUser = function() {
 			return $http
 				.get('/api/me')
-				.success(successCallback)
-				.error(errorCallback || _defaultErrorCallback);
+				.then(_promiseSuccess, _promiseError);
 		};
 		/**
 		 * Update current user's profile data
 		 *
 		 * @param profileData {object}
 		 * @param successCallback {function}
-		 * @param errorCallback {function}
 		 * @returns {*}
 		 */
-		this.updateUser = function(profileData, successCallback, errorCallback) {
+		this.updateUser = function(profileData, successCallback) {
 			return $http
 				.put('/api/me', profileData)
 				.success(successCallback)
-				.error(errorCallback || _defaultErrorCallback);
+				.error(_promiseError);
 		};
 		/**
 		 * Get all users (admin authorized only)
 		 *
-		 * @param successCallback {function}
-		 * @param errorCallback {function}
-		 * @returns {*}
+		 * @returns {promise}
 		 */
-		this.getAllUsers = function(successCallback, errorCallback) {
+		this.getAllUsers = function() {
 			return $http
 				.get('/api/users')
-				.success(successCallback)
-				.error(errorCallback || _defaultErrorCallback);
+				.then(_promiseSuccess, _promiseError);
 		}
 	}
 })();

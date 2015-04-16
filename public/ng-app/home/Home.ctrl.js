@@ -21,13 +21,15 @@
 		};
 
 		/**
-		 * Gets local JSON data
+		 * Get local data from static JSON
 		 *
-		 * @returns {*}
+		 * @param function (successful promise returns)
+		 * @returns {object} data
 		 */
-		localData.getJSON(function(data) {
-			home.localData = data;
-		});
+		localData.getJSON()
+			.then(function(response) {
+				home.localData = response.data;
+			});
 
 		// Simple SCE example
 		home.stringOfHTML = '<strong>Some bold text</strong> bound as HTML with a <a href="#">link</a>!';
