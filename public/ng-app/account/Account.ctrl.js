@@ -108,8 +108,9 @@
 				// Set status to Saving... and update upon success or error in callbacks
 				account.btnSaveText = 'Saving...';
 
-				// Update the user, passing profile data, success callback function, and error callback function
-				userData.updateUser(profileData, _updateSuccess, _updateError);
+				// Update the user, passing profile data and assigning success and error callbacks
+				userData.updateUser(profileData)
+					.then(_updateSuccess, _updateError);
 			}
 		};
 

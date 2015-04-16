@@ -44,14 +44,12 @@
 		 * Update current user's profile data
 		 *
 		 * @param profileData {object}
-		 * @param successCallback {function}
-		 * @returns {*}
+		 * @returns {promise}
 		 */
-		this.updateUser = function(profileData, successCallback) {
+		this.updateUser = function(profileData) {
 			return $http
 				.put('/api/me', profileData)
-				.success(successCallback)
-				.error(_promiseError);
+				.then(_promiseSuccess, _promiseError);
 		};
 		/**
 		 * Get all users (admin authorized only)
