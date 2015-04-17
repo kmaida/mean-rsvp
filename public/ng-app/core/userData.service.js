@@ -35,16 +35,7 @@
 				.get('/api/me')
 				.then(_getRes);
 		};
-		/**
-		 * Get all users (admin authorized only)
-		 *
-		 * @returns {promise}
-		 */
-		this.getAllUsers = function() {
-			return $http
-				.get('/api/users')
-				.then(_getRes);
-		};
+
 		/**
 		 * Update current user's profile data
 		 *
@@ -54,6 +45,17 @@
 		this.updateUser = function(profileData) {
 			return $http
 				.put('/api/me', profileData);
+		};
+
+		/**
+		 * Get all users (admin authorized only)
+		 *
+		 * @returns {promise}
+		 */
+		this.getAllUsers = function() {
+			return $http
+				.get('/api/users')
+				.then(_getRes);
 		};
 	}
 })();

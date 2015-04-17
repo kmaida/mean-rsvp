@@ -2,8 +2,13 @@
 	<section id="content-main" class="content-main account-main clearfix" ng-controller="AccountCtrl as account"
 			 ng-cloak>
 
+		<h1 class="content-heading">My Account</h1>
+
+		<div ng-if="account.errorGettingUser" class="alert alert-danger">
+			<i class="fa fa-warning"></i> There was an error retrieving your information!
+		</div>
+
 		<div ng-if="account.isAuthenticated() && account.showAccount">
-			<h1 class="content-heading">My Account</h1>
 
 			<div ng-if="account.administrator" class="alert alert-info">
 				<i class="fa fa-wrench"></i> <strong>Administrator:</strong> <a ng-href="/admin">View all users</a>
@@ -33,6 +38,7 @@
 						<i class="fa" ng-class="{'fa-download': !account.btnSaved, 'fa-check': account.btnSaved, 'fa-asterisk': account.user.displayName === '' || account.user.displayName === null, 'fa-ban': account.btnSaved === 'error'}"></i> {{account.btnSaveText}}
 					</button>
 				</form>
+
 			</section>
 
 			<section class="linkAccounts content-section">

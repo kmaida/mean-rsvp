@@ -21,8 +21,9 @@
 		};
 
 		/**
-		 * Success callback for API call getting user list
+		 * Function for successful API call getting user list
 		 * Show Admin UI
+		 * Display list of users
 		 *
 		 * @param data {Array} promise provided by $http success
 		 * @private
@@ -37,6 +38,19 @@
 			admin.showAdmin = true;
 		}
 
-		userData.getAllUsers().then(_getAllUsersSuccess);
+		/**
+		 * Function for error API call getting user list
+		 * Show Admin UI
+		 * Show an error alert in the UI
+		 *
+		 * @param error
+		 * @private
+		 */
+		function _getAllUsersError(error) {
+			admin.errorGettingUserlist = true;
+			admin.showAdmin = true;
+		}
+
+		userData.getAllUsers().then(_getAllUsersSuccess, _getAllUsersError);
 	}
 })();

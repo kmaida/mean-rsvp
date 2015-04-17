@@ -28,7 +28,7 @@
 		 */
 		account.getProfile = function() {
 			/**
-			 * Success callback for API call getting user's profile data
+			 * Function for successful API call getting user's profile data
 			 * Show Account UI
 			 *
 			 * @param data {object} promise provided by $http success
@@ -41,7 +41,19 @@
 				account.showAccount = true;
 			}
 
-			userData.getUser().then(_getUserSuccess);
+			/**
+			 * Function for error API call getting user's profile data
+			 * Show an error alert in the UI
+			 *
+			 * @param error
+			 * @private
+			 */
+			function _getUserError(error) {
+				account.errorGettingUser = true;
+				account.errorGettingUserMsg = error.message;
+			}
+
+			userData.getUser().then(_getUserSuccess, _getUserError);
 		};
 
 		/**
@@ -100,8 +112,6 @@
 			function _updateError() {
 				account.btnSaved = 'error';
 				account.btnSaveText = 'Error saving!';
-
-				$timeout(_btnSaveReset, 3000);
 			}
 
 			if (!!account.user.displayName) {
@@ -109,9 +119,7 @@
 				account.btnSaveText = 'Saving...';
 
 				// Update the user, passing profile data and assigning success and error callbacks
-				userData.updateUser(profileData)
-					.then(_updateSuccess)
-					.catch(_updateError);
+				userData.updateUser(profileData).then(_updateSuccess, _updateError);
 			}
 		};
 
