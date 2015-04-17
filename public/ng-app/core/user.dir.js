@@ -27,8 +27,8 @@
 			};
 
 			// API request to get the user, passing success callback function that sets the user's info
-			userData.getUser().then(function(response) {
-				u.user = response.data;
+			userData.getUser().then(function(data) {
+				u.user = data;
 			});
 		}
 

@@ -31,11 +31,11 @@
 			 * Success callback for API call getting user's profile data
 			 * Show Account UI
 			 *
-			 * @param response {object} promise provided by $http success
+			 * @param data {object} promise provided by $http success
 			 * @private
 			 */
-			function _getUserSuccess(response) {
-				account.user = response.data;
+			function _getUserSuccess(data) {
+				account.user = data;
 				account.administrator = account.user.isAdmin;
 				account.linkedAccounts = User.getLinkedAccounts(account.user, 'account');
 				account.showAccount = true;
@@ -110,7 +110,8 @@
 
 				// Update the user, passing profile data and assigning success and error callbacks
 				userData.updateUser(profileData)
-					.then(_updateSuccess, _updateError);
+					.then(_updateSuccess)
+					.catch(_updateError);
 			}
 		};
 

@@ -31,9 +31,10 @@
 		function _checkUserAdmin() {
 			// if user is authenticated and not defined yet, check if they're an admin
 			if ($auth.isAuthenticated() && header.adminUser === undefined) {
-				userData.getUser().then(function(response) {
-					header.adminUser = response.data.isAdmin;
-				});
+				userData.getUser()
+					.then(function(data) {
+						header.adminUser = data.isAdmin;
+					});
 			}
 		}
 		_checkUserAdmin();
