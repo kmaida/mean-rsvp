@@ -24,7 +24,8 @@ Demo is available at [restart-mean.kmaida.net](http://restart-mean.kmaida.net).
 - [x] Deploy demo 
 - [x] Clean up!
   - [x] Use one-time data bindings where appropriate
-  - [x] Use promises `then` instead of `success` and `error` callbacks
+  - [x] Use promises `then`
+    - [ ] Verify promise error functionality with `userData.updateUser()` service
  
 ## Changelog
  
