@@ -38,19 +38,6 @@
 			admin.showAdmin = true;
 		}
 
-		/**
-		 * Function for error API call getting user list
-		 * Show Admin UI
-		 * Show an error alert in the UI
-		 *
-		 * @param error
-		 * @private
-		 */
-		function _getAllUsersError(error) {
-			admin.errorGettingUserlist = true;
-			admin.showAdmin = true;
-		}
-
-		userData.getAllUsers().then(_getAllUsersSuccess, _getAllUsersError);
+		userData.getAllUsers().then(_getAllUsersSuccess);
 	}
 })();
