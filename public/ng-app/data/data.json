@@ -1,6 +1,6 @@
 {
-  "title": "reStart-mean",
-  "summary": "MEAN stack app",
+  "title": "RSVP",
+  "summary": "RSVP to events",
   "sampleContent": [
     { "fruit": "apples", "color": "red" },
     { "fruit": "bananas", "color": "yellow" },
