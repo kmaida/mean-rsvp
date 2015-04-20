@@ -12,7 +12,7 @@
 		$authProvider.loginUrl = 'http://localhost:8081/auth/login';
 
 		$authProvider.facebook({
-			clientId: '343789249146966'
+			clientId: '471837599630371'
 		});
 
 		$authProvider.google({
@@ -24,7 +24,7 @@
 		});
 
 		$authProvider.github({
-			clientId: '8096e95c2eba33b81adb'
+			clientId: 'b303ff4b216c0571f6ce'
 		});
 	}
 
