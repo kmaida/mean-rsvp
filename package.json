@@ -1,24 +1,24 @@
 {
-  "name": "reStart-mean",
-  "version": "0.1.3",
+  "name": "RSVP",
+  "version": "0.1.0",
   "author": "Kim Maida",
-  "description": "A boilerplate MEAN stack application with simple Oauth",
+  "description": "RSVP MEAN application",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kmaida/reStart-mean"
+    "url": "https://github.com/kmaida/mean-rsvp"
   },
   "keywords": [
     "angular"
   ],
   "license": "Restricted",
   "bugs": {
-    "url": "https://github.com/kmaida/reStart-mean/issues"
+    "url": "https://github.com/kmaida/mean-rsvp/issues"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "http://restart-mean.kmaida.net",
+  "homepage": "http://rsvp.kmaida.io",
   "dependencies": {
     "async": "^0.9.0",
     "bcryptjs": "^2.1.0",
