@@ -1,0 +1,67 @@
+<section class="eventForm">
+	<h2>
+		<i class="fa fa-calendar"></i> Add Event
+	</h2>
+
+	<p class="lead">
+		Create a new event announcement and enable RSVP.
+	</p>
+
+	<form>
+		<div class="form-group">
+			<label for="eventTitle">Title</label>
+			<input id="eventTitle" type="text" ng-model="newEvent.title" class="form-control"
+				   placeholder="Event Title">
+		</div>
+
+		<div class="form-group">
+			<label for="eventDate">Date</label>
+			<input id="eventDate" type="date" ng-model="newEvent.date" class="form-control"
+				   placeholder="mm/dd/yy">
+		</div>
+
+		<div class="form-group">
+			<label for="eventLocation">Location</label>
+			<input id="eventLocation" ng-model="newEvent.location" class="form-control"
+				   placeholder="123 Some Street, City, State">
+		</div>
+
+		<div class="form-group">
+			<label for="eventDesc">Description</label>
+						<textarea id="eventDesc" ng-model="newEvent.description" class="form-control"
+								  rows="3"></textarea>
+		</div>
+
+		<div class="form-group">
+			<label>Public</label>
+			<p class="help-block">
+				Event to appear on main Events listing:
+			</p>
+
+			<div class="radio">
+				<label class="radio-inline">
+					<input type="radio" ng-value="true" ng-model="newEvent.viewPublic">Yes
+				</label>
+
+				<label class="radio-inline">
+					<input type="radio" ng-value="false" ng-model="newEvent.viewPublic">No
+				</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label>RSVP</label>
+
+			<div class="radio">
+				<label class="radio-inline">
+					<input type="radio" ng-value="true" ng-model="newEvent.rsvp">Open
+				</label>
+
+				<label class="radio-inline">
+					<input type="radio" ng-value="false" ng-model="newEvent.rsvp">Closed
+				</label>
+			</div>
+		</div>
+	</form>
+
+</section>

@@ -20,6 +20,22 @@
 			return $auth.isAuthenticated();
 		};
 
+		// TODO: Tabs
+
+		admin.tabs = ['Events', 'Add Event', 'Users'];
+		admin.currentTab = 0;
+
+		admin.changeTab = function(tabIndex) {
+			admin.currentTab = tabIndex;
+		};
+
+
+
+		// TODO: Create new event
+
+
+
+
 		/**
 		 * Function for successful API call getting user list
 		 * Show Admin UI

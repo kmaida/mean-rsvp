@@ -1,0 +1,38 @@
+<section class="eventAdminListing" ng-controller="AdminEventListCtrl as adminEventList">
+	<h2>
+		<i class="fa fa-calendar"></i> All Events
+	</h2>
+
+	<p class="lead">
+		View all events and access detail links, update, or delete.
+	</p>
+
+	<table ng-if="adminEventList.showEvents" class="eventTable table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>ID / URL</th>
+				<th class="eventTable-action-head">Update</th>
+				<th class="eventTable-action-head">Delete</th>
+			</tr>
+		</thead>
+		<tr ng-repeat="evt in adminEventList.events" id="e{{$index}}">
+			<td><a ng-href="/event/{{evt._id}}">{{evt.title}}</a></td>
+
+			<td>
+				<a ng-show="adminEventList.copyInput !== $index"
+				   class="eventTable-link-copy"
+				   ng-click="adminEventList.showUrlInput($index)">{{evt._id}}</a>
+
+				<input ng-show="adminEventList.copyInput === $index"
+					   type="text"
+					   class="form-control eventTable-link-input"
+					   ng-value="adminEventList.evtUrl + evt._id"
+					   ng-blur="adminEventList.blurUrlInput()">
+			</td>
+			<td class="eventTable-action edit"><i class="fa fa-edit"></i></td>
+			<td class="eventTable-action delete"><i class="fa fa-trash"></i></td>
+		</tr>
+	</table>
+
+</section>

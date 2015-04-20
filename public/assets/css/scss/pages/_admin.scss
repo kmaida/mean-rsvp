@@ -1,3 +1,40 @@
+/*------------------------------------------------------------------------- Tabs --*/
+
+.adminTabs {
+	a {
+		cursor: pointer;
+	}
+}
+
+/*------------------------------------------------------------------------- Event List --*/
+
+.eventTable {
+	th,
+	td {
+		vertical-align: middle !important;
+	}
+	&-link-copy {
+		border: 1px solid transparent;
+		cursor: copy;
+		display: inline-block;
+		height: 34px;
+		padding: 10px 0;
+	}
+	&-link-input {
+		width: 90%;
+	}
+	&-action {
+		font-size: 18px;
+		text-align: center;
+
+		&-head {
+			text-align: center;
+		}
+	}
+}
+
+/*------------------------------------------------------------------------- User List --*/
+
 .userList {
 	&-list {
 		list-style: none;
