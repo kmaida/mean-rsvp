@@ -16,7 +16,7 @@
 		});
 
 		$authProvider.google({
-			clientId: '1035478814047-smgdv5da5hg5jbgd857tocgiu4mub8qo.apps.googleusercontent.com'
+			clientId: '1035478814047-41n8v2umgsupknvmj7q0e6n1gr4nauav.apps.googleusercontent.com'
 		});
 
 		$authProvider.twitter({

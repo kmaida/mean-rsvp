@@ -166,6 +166,7 @@ module.exports = function(app, config) {
 							user.google = profile.sub;
 							user.picture = user.picture || profile.picture;
 							user.displayName = user.displayName || profile.name;
+
 							user.save(function() {
 								var token = createToken(user);
 								res.send({ token: token });
@@ -380,6 +381,7 @@ module.exports = function(app, config) {
 							}
 							user.twitter = profile.user_id;
 							user.displayName = user.displayName || profile.screen_name;
+
 							user.save(function(err) {
 								res.send({ token: createToken(user) });
 							});
@@ -395,6 +397,7 @@ module.exports = function(app, config) {
 						var user = new User();
 						user.twitter = profile.user_id;
 						user.displayName = profile.screen_name;
+
 						user.save(function() {
 							var token = createToken(user);
 							res.send({ token: token });
