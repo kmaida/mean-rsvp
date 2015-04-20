@@ -11,10 +11,11 @@ MEAN stack RSVP application
 ## To Do
 
 - [x] Set up new MongoDB
-- [x] Set up third-party Oauth apps
+- [x] Set up third-party Oauth apps and configure
+- [x] Create admin user
 - [ ] Include FontAwesome locally (instead of CDN)
-- [ ] Create admin user
+- [ ] Create events API
  
 ## Changelog
  
-* **v0.1.0** - 4/20/15: Launch site
+* **v0.1.0** - 4/20/15: Clone and set up new apps
