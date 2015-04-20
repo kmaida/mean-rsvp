@@ -20,11 +20,14 @@
 			return $auth.isAuthenticated();
 		};
 
-		// TODO: Tabs
-
 		admin.tabs = ['Events', 'Add Event', 'Users'];
 		admin.currentTab = 0;
 
+		/**
+		 * Switch tabs
+		 *
+		 * @param tabIndex
+		 */
 		admin.changeTab = function(tabIndex) {
 			admin.currentTab = tabIndex;
 		};

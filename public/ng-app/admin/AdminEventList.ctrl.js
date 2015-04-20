@@ -13,10 +13,18 @@
 
 		aEvt.evtUrl = $location.protocol() + '://' + $location.host() + '/event/';
 
+		/**
+		 * Hide URL input field when blurred
+		 */
 		aEvt.blurUrlInput = function() {
 			aEvt.copyInput = null;
 		};
 
+		/**
+		 * Show URL input field when ID link is clicked
+		 *
+		 * @param index
+		 */
 		aEvt.showUrlInput = function(index) {
 			aEvt.copyInput = index;
 
