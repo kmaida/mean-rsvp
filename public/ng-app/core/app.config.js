@@ -11,11 +11,15 @@
 	function appConfig($routeProvider, $locationProvider) {
 		$routeProvider
 			.when('/', {
-				templateUrl: 'ng-app/home/Home.view.html',
+				templateUrl: 'ng-app/events/Events.view.html',
 				secure: true
 			})
 			.when('/login', {
 				templateUrl: 'ng-app/login/Login.view.html'
+			})
+			.when('/event/:eventId', {
+				templateUrl: 'ng-app/event-detail/EventDetail.view.html',
+				secure: true
 			})
 			.when('/account', {
 				templateUrl: 'ng-app/account/Account.view.html',
