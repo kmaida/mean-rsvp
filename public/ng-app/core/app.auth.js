@@ -9,15 +9,14 @@
 	authConfig.$inject = ['$authProvider'];
 
 	function authConfig($authProvider) {
-		$authProvider.loginUrl = 'http://localhost:8080/auth/login';
-		//$authProvider.signupUrl = 'http://localhost:8080/auth/signup';
+		$authProvider.loginUrl = 'http://localhost:8081/auth/login';
 
 		$authProvider.facebook({
 			clientId: '343789249146966'
 		});
 
 		$authProvider.google({
-			clientId: '479651367330-trvf8efoo415ie0usfhm4i59410vk3j9.apps.googleusercontent.com'
+			clientId: '1035478814047-smgdv5da5hg5jbgd857tocgiu4mub8qo.apps.googleusercontent.com'
 		});
 
 		$authProvider.twitter({
