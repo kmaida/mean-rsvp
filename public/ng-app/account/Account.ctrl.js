@@ -50,7 +50,6 @@
 			 */
 			function _getUserError(error) {
 				account.errorGettingUser = true;
-				account.errorGettingUserMsg = error.message;
 			}
 
 			userData.getUser().then(_getUserSuccess, _getUserError);

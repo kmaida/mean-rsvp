@@ -1,4 +1,10 @@
 {
-	"title": "reStart-mean",
-	"summary": "MEAN stack app"
+  "title": "reStart-mean",
+  "summary": "MEAN stack app",
+  "sampleContent": [
+    { "fruit": "apples", "color": "red" },
+    { "fruit": "bananas", "color": "yellow" },
+    { "fruit": "kiwi fruits", "color": "green" },
+    { "fruit": "peaches", "color": "pink" }
+  ]
 }

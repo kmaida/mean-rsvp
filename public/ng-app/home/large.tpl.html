@@ -1,14 +1,14 @@
-<table>
+<table class="table table-striped">
 	<thead>
 		<tr>
-			<th>Table Heading</th>
-			<th>Another Table Heading</th>
+			<th>Color</th>
+			<th>Fruit</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>LARGE view table cell</td>
-			<td>Table cell</td>
+		<tr ng-repeat="item in home.localData.sampleContent">
+			<td>{{::item.color}}</td>
+			<td>{{::item.fruit}}</td>
 		</tr>
 	</tbody>
 </table>
