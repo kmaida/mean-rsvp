@@ -3,9 +3,11 @@
 			 ng-cloak>
 
 		<div ng-if="event.isAuthenticated()">
-			<h1 class="content-heading">Event Detail</h1>
+			<h1 class="content-heading">{{event.detail.title}}</h1>
 
-
+			<p class="lead">
+				{{event.detail.description}}
+			</p>
 		</div>
 
 	</section>

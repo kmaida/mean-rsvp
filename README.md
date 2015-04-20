@@ -15,6 +15,8 @@ MEAN stack RSVP application
 - [x] Create admin user
 - [ ] Include FontAwesome locally (instead of CDN)
 - [ ] Create events API
+  - [ ] `POST` new events
+  - [ ] RSVP functionality (associate user responses with events)
  
 ## Changelog
  

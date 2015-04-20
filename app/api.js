@@ -3,6 +3,7 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 var qs = require('querystring');
 var User = require('./models/User');
+var Event = require('./models/Event');
 
 module.exports = function(app, config) {
 
@@ -424,6 +425,46 @@ module.exports = function(app, config) {
 				res.status(200).end();
 			});
 		});
+	});
+
+	/*
+	 |--------------------------------------------------------------------------
+	 | GET /api/event/:id
+	 |--------------------------------------------------------------------------
+	 */
+	app.get('/api/events/:id', ensureAuthenticated, function(req, res) {
+		Event.findById(req.params.id, function(err, event) {
+			if (err) { res.send(err); }
+			res.json(event);
+		});
+	});
+
+	/*
+	 |--------------------------------------------------------------------------
+	 | GET /api/events
+	 |--------------------------------------------------------------------------
+	 */
+	app.get('/api/events', ensureAuthenticated, function(req, res) {
+		Event.find(function(err, events) {
+			if (err) { res.send(err); }
+
+			var eventArr = [];
+
+			events.forEach(function(event) {
+				eventArr.push(event);
+			});
+
+			res.send(eventArr);
+		});
+	});
+
+	/*
+	 |--------------------------------------------------------------------------
+	 | POST /api/events
+	 |--------------------------------------------------------------------------
+	 */
+	app.post('/api/events', ensureAdmin, function(req, res) {
+		// CREATE NEW EVENT
 	});
 
 };

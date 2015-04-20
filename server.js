@@ -48,6 +48,7 @@ monDb.once('open', function callback() {
  */
 
 var User = require('./app/models/User.js');
+var Event = require('./app/models/Event.js');
 
 /*
  |--------------------------------------------------------------------------

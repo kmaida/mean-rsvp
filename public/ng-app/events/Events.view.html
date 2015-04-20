@@ -4,7 +4,11 @@
 		<div ng-if="events.isAuthenticated()">
 			<h1 class="content-heading">Events</h1>
 
-
+			<ul>
+				<li ng-repeat="evt in events.allEvents">
+					<a ng-href="/event/{{evt._id}}">{{evt.title}}</a>
+				</li>
+			</ul>
 		</div>
 
 	</section>

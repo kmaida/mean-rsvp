@@ -1,0 +1,61 @@
+// User API $http calls
+(function() {
+	'use strict';
+
+	angular
+		.module('myApp')
+		.service('eventData', eventData);
+
+	/**
+	 * GET promise response function
+	 * Checks typeof data returned and succeeds if JS object, throws error if not
+	 *
+	 * @param response {*} data from $http
+	 * @returns {*} object, array
+	 * @private
+	 */
+	function _getRes(response) {
+		if (typeof response.data === 'object') {
+			return response.data;
+		} else {
+			throw new Error('retrieved data is not typeof object.');
+		}
+	}
+
+	eventData.$inject = ['$http'];
+
+	function eventData($http) {
+		/**
+		 * Get event by ID
+		 *
+		 * @returns {promise}
+		 */
+		this.getEvent = function(id) {
+			return $http
+				.get('/api/events/' + id)
+				.then(_getRes);
+		};
+
+		/**
+		 * Create a new event
+		 *
+		 * @param eventData
+		 * @returns {promise}
+		 */
+		this.createEvent = function(eventData) {
+			return $http
+				.post('/api/events', eventData);
+		};
+
+		/**
+		 * Get all events
+		 *
+		 * @returns {promise}
+		 */
+		this.getAllEvents = function() {
+			return $http
+				.get('/api/events')
+				.then(_getRes);
+		};
+	}
+})();
