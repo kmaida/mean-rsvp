@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('AdminCtrl', AdminCtrl);
 
-	AdminCtrl.$inject = ['$auth', 'userData', 'User', 'eventData', '$timeout', '$scope'];
+	AdminCtrl.$inject = ['$auth', 'userData', 'User', 'rsvpData'];
 
-	function AdminCtrl($auth, userData, User, eventData, $timeout, $scope) {
+	function AdminCtrl($auth, userData, User, rsvpData) {
 		// controllerAs ViewModel
 		var admin = this;
 
@@ -56,5 +56,16 @@
 		}
 
 		userData.getAllUsers().then(_getAllUsersSuccess);
+
+
+
+
+
+
+		admin.showGuests = function(eventId) {
+			rsvpData.getEventGuests(eventId).then(function(data) {
+				console.log(data);
+			});
+		};
 	}
 })();

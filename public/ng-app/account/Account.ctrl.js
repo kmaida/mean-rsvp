@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('AccountCtrl', AccountCtrl);
 
-	AccountCtrl.$inject = ['$scope', '$auth', 'userData', '$timeout', 'OAUTH', 'User'];
+	AccountCtrl.$inject = ['$scope', '$auth', 'userData', '$timeout', 'OAUTH', 'User', 'rsvpData'];
 
-	function AccountCtrl($scope, $auth, userData, $timeout, OAUTH, User) {
+	function AccountCtrl($scope, $auth, userData, $timeout, OAUTH, User, rsvpData) {
 		// controllerAs ViewModel
 		var account = this;
 
@@ -39,6 +39,10 @@
 				account.administrator = account.user.isAdmin;
 				account.linkedAccounts = User.getLinkedAccounts(account.user, 'account');
 				account.showAccount = true;
+
+				rsvpData.getRsvps(account.user._id).then(function(data) {
+					console.log('my rsvps:', data);
+				});
 			}
 
 			/**

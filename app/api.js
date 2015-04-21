@@ -571,7 +571,7 @@ module.exports = function(app, config) {
 	 |--------------------------------------------------------------------------
 	 */
 	app.get('/api/me/rsvp', ensureAuthenticated, function(req, res) {
-		Rsvp.find({userId: req.user._id}, function(err, rsvps) {
+		Rsvp.find({userId: req.user}, function(err, rsvps) {
 			if (err) { res.send(err); }
 
 			var rsvpArr = [];

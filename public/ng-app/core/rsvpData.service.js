@@ -31,7 +31,8 @@
 		 * @returns {promise}
 		 */
 		this.getRsvps = function() {
-			return $http('/api/me/rsvp')
+			return $http
+				.get('/api/me/rsvp')
 				.then(_getRes);
 		};
 
@@ -42,7 +43,8 @@
 		 * @returns {promise}
 		 */
 		this.getEventGuests = function(eventId) {
-			return $http('/api/event/' + eventId + '/guests')
+			return $http
+				.get('/api/event/' + eventId + '/guests')
 				.then(_getRes);
 		};
 

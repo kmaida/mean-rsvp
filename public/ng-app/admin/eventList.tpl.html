@@ -13,6 +13,7 @@
 				<th>Event</th>
 				<th>ID / URL</th>
 				<th class="eventTable-action-head">Edit</th>
+				<th>RSVPs</th>
 			</tr>
 		</thead>
 		<tr ng-repeat="evt in adminEventList.events" id="e{{$index}}">
@@ -32,6 +33,8 @@
 			<td class="eventTable-action edit">
 				<a ng-href="/event/{{evt._id}}/edit"><i class="fa fa-edit"></i></a>
 			</td>
+			<!--<td><a ng-href="/event/{{evt._id}}/guests">View Guests</a></td>-->
+			<td><a ng-click="admin.showGuests(evt._id)">View Guests</a></td>
 		</tr>
 	</table>
 
