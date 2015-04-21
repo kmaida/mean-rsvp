@@ -17,10 +17,16 @@
 			var _isCreate = ef.type === 'create',
 				_isEdit = ef.type === 'edit';
 
+			// TODO: fix date for form!!!
 			if (_isEdit) {
 				console.log('Date:', ef.formModel.date);
 			}
 
+			/**
+			 * Reset the state of the form Submit button
+			 *
+			 * @private
+			 */
 			function _btnSubmitReset() {
 				ef.btnSaved = false;
 				ef.btnSubmitText = _isCreate ? 'Submit' : 'Update';
@@ -28,9 +34,14 @@
 
 			_btnSubmitReset();
 
+			/**
+			 * Function for event API call succeeded
+			 *
+			 * @private
+			 */
 			function _eventSuccess() {
 				ef.btnSaved = true;
-				ef.btnSubmitText = 'Saved!';
+				ef.btnSubmitText = _isCreate ? 'Saved!' : 'Updated!';
 
 				if (_isCreate) {
 					ef.formModel = {};
@@ -39,9 +50,14 @@
 				$timeout(_btnSubmitReset, 3000);
 			}
 
+			/**
+			 * Function for event API call error
+			 *
+			 * @private
+			 */
 			function _eventError() {
 				ef.btnSaved = 'error';
-				ef.btnSubmitText = 'Error saving!';
+				ef.btnSubmitText = _isCreate ? 'Error saving!' : 'Error updating!';
 
 				$timeout(_btnSubmitReset, 3000);
 			}

@@ -12,8 +12,7 @@
 			<tr>
 				<th>Event</th>
 				<th>ID / URL</th>
-				<th class="eventTable-action-head">Update</th>
-				<th class="eventTable-action-head">Delete</th>
+				<th class="eventTable-action-head">Edit / Delete</th>
 			</tr>
 		</thead>
 		<tr ng-repeat="evt in adminEventList.events" id="e{{$index}}">
@@ -32,9 +31,6 @@
 			</td>
 			<td class="eventTable-action edit">
 				<a ng-href="/event/{{evt._id}}/edit"><i class="fa fa-edit"></i></a>
-			</td>
-			<td class="eventTable-action delete">
-				<a ng-click="admin.deleteEvent(evt._id)"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>
 	</table>

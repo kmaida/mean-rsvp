@@ -24,6 +24,12 @@
 				<p class="lead">
 					Permanently delete this event. This cannot be undone!
 				</p>
+
+				<button class="btn"
+						ng-class="{'btn-danger': !edit.btnDelete || edit.btnDelete === 'error', 'btn-success': edit.btnDelete}"
+						ng-click="edit.deleteEvent(edit.editEvent._id)">
+					<i class="fa" ng-class="{'fa-trash': !edit.btnDelete, 'fa-check': edit.btnDelete, 'fa-ban': edit.btnDelete === 'error'}"></i> {{edit.btnDeleteText}}
+				</button>
 			</section>
 		</div>
 
