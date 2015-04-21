@@ -17,11 +17,6 @@
 			var _isCreate = ef.type === 'create',
 				_isEdit = ef.type === 'edit';
 
-			// TODO: fix date for form!!!
-			if (_isEdit) {
-				console.log('Date:', ef.formModel.date);
-			}
-
 			/**
 			 * Reset the state of the form Submit button
 			 *

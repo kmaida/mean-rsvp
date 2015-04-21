@@ -1,6 +1,6 @@
 <section class="eventAdminListing" ng-controller="AdminEventListCtrl as adminEventList">
 	<h2>
-		<i class="fa fa-calendar"></i> All Events
+		<i class="fa fa-list"></i> All Events
 	</h2>
 
 	<p class="lead">
@@ -12,7 +12,7 @@
 			<tr>
 				<th>Event</th>
 				<th>ID / URL</th>
-				<th class="eventTable-action-head">Edit / Delete</th>
+				<th class="eventTable-action-head">Update / Delete</th>
 			</tr>
 		</thead>
 		<tr ng-repeat="evt in adminEventList.events" id="e{{$index}}">

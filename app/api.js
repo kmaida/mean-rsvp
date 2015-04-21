@@ -454,8 +454,10 @@ module.exports = function(app, config) {
 			event.date = req.body.date || event.date;
 			event.description = req.body.description || event.description;
 			event.location = req.body.location || event.location;
-			event.viewPublic = req.body.viewPublic || event.viewPublic;
-			event.rsvp = req.body.rsvp || event.rsvp;
+
+			// booleans should accept what's in the form regardless
+			event.viewPublic = req.body.viewPublic;
+			event.rsvp = req.body.rsvp;
 
 			event.save(function(err) {
 				res.status(200).end();

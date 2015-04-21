@@ -32,9 +32,16 @@
 		 * @returns {promise}
 		 */
 		this.getEvent = function(id) {
-			return $http
-				.get('/api/event/' + id)
-				.then(_getRes);
+			return $http({
+				method: 'GET',
+				url: '/api/event/' + id,
+				transformResponse: function(data) {
+					data = angular.fromJson(data);
+					data.date = new Date(data.date);
+
+					return data;
+				}
+			}).then(_getRes);
 		};
 
 		/**
