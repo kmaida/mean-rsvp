@@ -441,7 +441,7 @@ module.exports = function(app, config) {
 
 	/*
 	 |--------------------------------------------------------------------------
-	 | PUT /api/event/:id
+	 | PUT /api/event/:id (update events: admin only)
 	 |--------------------------------------------------------------------------
 	 */
 	app.put('/api/events/:id', ensureAdmin, function(req, res) {
@@ -484,11 +484,26 @@ module.exports = function(app, config) {
 
 	/*
 	 |--------------------------------------------------------------------------
-	 | POST /api/events
+	 | POST /api/events/new (create new event: admin only)
 	 |--------------------------------------------------------------------------
 	 */
-	app.post('/api/events', ensureAdmin, function(req, res) {
-		// CREATE NEW EVENT
+	app.post('/api/events/new', ensureAdmin, function(req, res) {
+		Event.findOne({ title: req.body.title }, function(err, existingEvent) {
+			if (existingEvent) {
+				return res.status(409).send({ message: 'That event already exists' });
+			}
+			var event = new Event({
+				title: req.body.title,
+				date: req.body.date,
+				description: req.body.description,
+				location: req.body.location,
+				viewPublic: req.body.viewPublic,
+				rsvp: req.body.rsvp
+			});
+			event.save(function() {
+				res.send(event);
+			});
+		});
 	});
 
 };

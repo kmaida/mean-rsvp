@@ -111,6 +111,8 @@
 			function _updateError() {
 				account.btnSaved = 'error';
 				account.btnSaveText = 'Error saving!';
+
+				$timeout(_btnSaveReset, 3000);
 			}
 
 			if (!!account.user.displayName) {

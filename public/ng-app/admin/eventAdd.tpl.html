@@ -7,28 +7,28 @@
 		Create a new event announcement and enable RSVP.
 	</p>
 
-	<form>
+	<form method="post" ng-submit="admin.submitNewEvent()">
 		<div class="form-group">
 			<label for="eventTitle">Title</label>
-			<input id="eventTitle" type="text" ng-model="newEvent.title" class="form-control"
-				   placeholder="Event Title">
+			<input id="eventTitle" type="text" ng-model="admin.newEvent.title" class="form-control"
+				   placeholder="Event Title" required>
 		</div>
 
 		<div class="form-group">
 			<label for="eventDate">Date</label>
-			<input id="eventDate" type="date" ng-model="newEvent.date" class="form-control"
-				   placeholder="mm/dd/yy">
+			<input id="eventDate" type="date" ng-model="admin.newEvent.date" class="form-control"
+				   placeholder="mm/dd/yy" required>
 		</div>
 
 		<div class="form-group">
 			<label for="eventLocation">Location</label>
-			<input id="eventLocation" ng-model="newEvent.location" class="form-control"
-				   placeholder="123 Some Street, City, State">
+			<input id="eventLocation" ng-model="admin.newEvent.location" class="form-control"
+				   placeholder="123 Some Street, City, State" required>
 		</div>
 
 		<div class="form-group">
 			<label for="eventDesc">Description</label>
-						<textarea id="eventDesc" ng-model="newEvent.description" class="form-control"
+						<textarea id="eventDesc" ng-model="admin.newEvent.description" class="form-control"
 								  rows="3"></textarea>
 		</div>
 
@@ -40,11 +40,12 @@
 
 			<div class="radio">
 				<label class="radio-inline">
-					<input type="radio" ng-value="true" ng-model="newEvent.viewPublic">Yes
+					<input type="radio" name="viewPublic" ng-value="true" ng-model="admin.newEvent.viewPublic"
+					required>Yes
 				</label>
 
 				<label class="radio-inline">
-					<input type="radio" ng-value="false" ng-model="newEvent.viewPublic">No
+					<input type="radio" name="viewPublic" ng-value="false" ng-model="admin.newEvent.viewPublic">No
 				</label>
 			</div>
 		</div>
@@ -54,14 +55,21 @@
 
 			<div class="radio">
 				<label class="radio-inline">
-					<input type="radio" ng-value="true" ng-model="newEvent.rsvp">Open
+					<input type="radio" name="rsvp" ng-value="true" ng-model="admin.newEvent.rsvp" required>Open
 				</label>
 
 				<label class="radio-inline">
-					<input type="radio" ng-value="false" ng-model="newEvent.rsvp">Closed
+					<input type="radio" name="rsvp" ng-value="false" ng-model="admin.newEvent.rsvp">Closed
 				</label>
 			</div>
 		</div>
+
+		<button type="submit"
+				class="btn-save btn"
+				ng-class="{'btn-primary': !admin.btnSaved, 'btn-success': admin.btnSaved === true, 'btn-danger': admin.btnSaved === 'error'}"
+				ng-disabled="">
+			<i class="fa" ng-class="{'fa-download': !admin.btnSaved, 'fa-check': admin.btnSaved, 'fa-ban': admin.btnSaved === 'error'}"></i> {{admin.btnSubmitText}}
+		</button>
 	</form>
 
 </section>

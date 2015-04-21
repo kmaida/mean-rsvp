@@ -38,14 +38,25 @@
 		};
 
 		/**
+		 * Get all events
+		 *
+		 * @returns {promise}
+		 */
+		this.getAllEvents = function() {
+			return $http
+				.get('/api/events')
+				.then(_getRes);
+		};
+
+		/**
 		 * Create a new event
 		 *
-		 * @param eventData {object}
+		 * @param eventData {object} new event data
 		 * @returns {promise}
 		 */
 		this.createEvent = function(eventData) {
 			return $http
-				.post('/api/events', eventData);
+				.post('/api/events/new', eventData);
 		};
 
 		/**
@@ -58,17 +69,6 @@
 		this.updateEvent = function(id, eventData) {
 			return $http
 				.put('/api/event/' + id, eventData);
-		};
-
-		/**
-		 * Get all events
-		 *
-		 * @returns {promise}
-		 */
-		this.getAllEvents = function() {
-			return $http
-				.get('/api/events')
-				.then(_getRes);
 		};
 	}
 })();
