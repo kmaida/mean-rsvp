@@ -1,0 +1,63 @@
+<form method="post" ng-submit="ef.submitEvent()">
+	<div class="form-group">
+		<label for="eventTitle">Title</label>
+		<input id="eventTitle" type="text" ng-model="ef.formModel.title" class="form-control"
+			   placeholder="Event Title" required>
+	</div>
+
+	<div class="form-group">
+		<label for="eventDate">Date</label>
+		<input id="eventDate" type="date" ng-model="ef.formModel.date" class="form-control"
+			   placeholder="mm/dd/yy" required>
+	</div>
+
+	<div class="form-group">
+		<label for="eventLocation">Location</label>
+		<input id="eventLocation" ng-model="ef.formModel.location" class="form-control"
+			   placeholder="123 Some Street, City, State" required>
+	</div>
+
+	<div class="form-group">
+		<label for="eventDesc">Description</label>
+		<textarea id="eventDesc" ng-model="ef.formModel.description" class="form-control" rows="3"></textarea>
+	</div>
+
+	<div class="form-group">
+		<label>Public</label>
+		<p class="help-block">
+			Event to appear on main Events listing:
+		</p>
+
+		<div class="radio">
+			<label class="radio-inline">
+				<input type="radio" name="viewPublic" ng-value="true" ng-model="ef.formModel.viewPublic"
+				required>Yes
+			</label>
+
+			<label class="radio-inline">
+				<input type="radio" name="viewPublic" ng-value="false" ng-model="ef.formModel.viewPublic">No
+			</label>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label>RSVP</label>
+
+		<div class="radio">
+			<label class="radio-inline">
+				<input type="radio" name="rsvp" ng-value="true" ng-model="ef.formModel.rsvp" required>Open
+			</label>
+
+			<label class="radio-inline">
+				<input type="radio" name="rsvp" ng-value="false" ng-model="ef.formModel.rsvp">Closed
+			</label>
+		</div>
+	</div>
+
+	<button type="submit"
+			class="btn-save btn"
+			ng-class="{'btn-primary': !ef.btnSaved, 'btn-success': ef.btnSaved === true, 'btn-danger': ef.btnSaved === 'error'}"
+			ng-disabled="">
+		<i class="fa" ng-class="{'fa-download': !ef.btnSaved, 'fa-check': ef.btnSaved, 'fa-ban': ef.btnSaved === 'error'}"></i> {{ef.btnSubmitText}}
+	</button>
+</form>

@@ -21,6 +21,10 @@
 				templateUrl: 'ng-app/event-detail/EventDetail.view.html',
 				secure: true
 			})
+			.when('/event/:eventId/edit', {
+				templateUrl: 'ng-app/admin/EditEvent.view.html',
+				secure: true
+			})
 			.when('/account', {
 				templateUrl: 'ng-app/account/Account.view.html',
 				secure: true

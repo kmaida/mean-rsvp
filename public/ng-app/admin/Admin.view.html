@@ -12,7 +12,21 @@
 			</ul>
 
 			<div ng-if="admin.currentTab === 0" class="content-section" ng-include="'/ng-app/admin/eventList.tpl.html'"></div>
-			<div ng-if="admin.currentTab === 1" class="content-section" ng-include="'/ng-app/admin/eventAdd.tpl.html'"></div>
+
+			<div ng-if="admin.currentTab === 1" class="content-section">
+				<section class="eventForm">
+					<h2>
+						<i class="fa fa-calendar"></i> Add Event
+					</h2>
+
+					<p class="lead">
+						Create a new event announcement and enable RSVP.
+					</p>
+
+					<event-form type="create" form-model="{}"></event-form>
+				</section>
+			</div>
+
 			<div ng-if="admin.currentTab === 2" class="content-section" ng-include="'/ng-app/admin/users.tpl.html'"></div>
 		</div>
 

@@ -30,8 +30,12 @@
 					   ng-value="adminEventList.evtUrl + evt._id"
 					   ng-blur="adminEventList.blurUrlInput()">
 			</td>
-			<td class="eventTable-action edit"><i class="fa fa-edit"></i></td>
-			<td class="eventTable-action delete"><i class="fa fa-trash"></i></td>
+			<td class="eventTable-action edit">
+				<a ng-href="/event/{{evt._id}}/edit"><i class="fa fa-edit"></i></a>
+			</td>
+			<td class="eventTable-action delete">
+				<a ng-click="admin.deleteEvent(evt._id)"><i class="fa fa-trash"></i></a>
+			</td>
 		</tr>
 	</table>
 

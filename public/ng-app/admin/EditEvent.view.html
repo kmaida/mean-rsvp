@@ -1,0 +1,35 @@
+<article id="content-wrapper" class="content-wrapper editEvent-wrapper" view-switch>
+	<section id="content-main" class="content-main editEvent-main clearfix" ng-controller="EditEventCtrl as edit" ng-cloak>
+
+		<h1 class="content-heading">Edit Event</h1>
+
+		<div ng-if="edit.isAuthenticated() && edit.showEdit">
+			<section ng-if="edit.showEditForm" class="eventForm content-section">
+				<h2 class="page-header">
+					<i class="fa fa-calendar"></i> Update Event Details
+				</h2>
+
+				<p class="lead">
+					Edit an existing event.
+				</p>
+
+				<event-form type="edit" form-model="edit.editEvent"></event-form>
+			</section>
+
+			<section class="eventDelete content-section">
+				<h2 class="page-header">
+					<i class="fa fa-trash"></i> Delete Event
+				</h2>
+
+				<p class="lead">
+					Permanently delete this event. This cannot be undone!
+				</p>
+			</section>
+		</div>
+
+		<div ng-if="!edit.showEdit" class="alert alert-danger">
+			<i class="fa fa-warning"></i> You are not authorized to view this page.
+		</div>
+
+	</section>
+</article>

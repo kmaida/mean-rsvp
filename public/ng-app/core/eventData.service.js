@@ -33,7 +33,7 @@
 		 */
 		this.getEvent = function(id) {
 			return $http
-				.get('/api/events/' + id)
+				.get('/api/event/' + id)
 				.then(_getRes);
 		};
 
@@ -56,7 +56,7 @@
 		 */
 		this.createEvent = function(eventData) {
 			return $http
-				.post('/api/events/new', eventData);
+				.post('/api/event/new', eventData);
 		};
 
 		/**
@@ -70,5 +70,16 @@
 			return $http
 				.put('/api/event/' + id, eventData);
 		};
+
+		/**
+		 * Delete an event
+		 *
+		 * @param id {string} event MongoDB _id
+		 * @returns {promise}
+		 */
+		this.deleteEvent = function(id) {
+			return $http
+				.delete('/api/event/' + id);
+		}
 	}
 })();
