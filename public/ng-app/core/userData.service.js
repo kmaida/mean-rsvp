@@ -39,7 +39,7 @@
 		/**
 		 * Update current user's profile data
 		 *
-		 * @param profileData {object}
+		 * @param profileData {object} updated profile data
 		 * @returns {promise}
 		 */
 		this.updateUser = function(profileData) {

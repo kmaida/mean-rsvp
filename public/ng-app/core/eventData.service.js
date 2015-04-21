@@ -28,6 +28,7 @@
 		/**
 		 * Get event by ID
 		 *
+		 * @param id {string} event MongoDB _id
 		 * @returns {promise}
 		 */
 		this.getEvent = function(id) {
@@ -39,12 +40,24 @@
 		/**
 		 * Create a new event
 		 *
-		 * @param eventData
+		 * @param eventData {object}
 		 * @returns {promise}
 		 */
 		this.createEvent = function(eventData) {
 			return $http
 				.post('/api/events', eventData);
+		};
+
+		/**
+		 * Update an event
+		 *
+		 * @param eventData {object} updated event data
+		 * @param id {string} event MongoDB _id
+		 * @returns {promise}
+		 */
+		this.updateEvent = function(id, eventData) {
+			return $http
+				.put('/api/event/' + id, eventData);
 		};
 
 		/**

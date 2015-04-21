@@ -441,6 +441,30 @@ module.exports = function(app, config) {
 
 	/*
 	 |--------------------------------------------------------------------------
+	 | PUT /api/event/:id
+	 |--------------------------------------------------------------------------
+	 */
+	app.put('/api/events/:id', ensureAdmin, function(req, res) {
+		Event.findById(req.params.id, function(err, event) {
+			if (!event) {
+				return res.status(400).send({ message: 'Event not found' });
+			}
+
+			event.title = req.body.title || event.title;
+			event.date = req.body.date || event.date;
+			event.description = req.body.description || event.description;
+			event.location = req.body.location || event.location;
+			event.viewPublic = req.body.viewPublic || event.viewPublic;
+			event.rsvp = req.body.rsvp || event.rsvp;
+
+			event.save(function(err) {
+				res.status(200).end();
+			});
+		});
+	});
+
+	/*
+	 |--------------------------------------------------------------------------
 	 | GET /api/events
 	 |--------------------------------------------------------------------------
 	 */
