@@ -14,11 +14,13 @@ MEAN stack RSVP application
 - [x] Set up third-party Oauth apps and configure
 - [x] Create admin user
 - [ ] Include FontAwesome locally (instead of CDN)
-- [ ] Create events API
-  - [ ] `POST` new events
-  - [ ] `PUT` update events
-  - [ ] `DELETE` events
-  - [ ] RSVP functionality (associate user responses with events)
+- [x] Create events API (`POST`, `GET`, `DELETE`)
+- [ ] RSVP form
+- [ ] Create RSVP API  
+  - [ ] `PUT` user info into RSVP object
+  - [ ] Admin view RSVPs
+- [ ] Style Events page
+- [ ] Style Event Detail page
  
 ## Changelog
  

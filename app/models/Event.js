@@ -15,7 +15,7 @@ var eventSchema = new mongoose.Schema({
 	location: String,
 	viewPublic: Boolean,
 	rsvp: Boolean,
-	guests: Object
+	guests: Array
 });
 
 eventSchema.plugin(encrypt, {
@@ -33,8 +33,7 @@ var Event = mongoose.model('Event', eventSchema);
 //	date: 'April 29, 2015',
 //	location: 'Home',
 //	viewPublic: true,
-//	rsvp: true,
-//	guests: {}
+//	rsvp: true
 //});
 
 module.exports = mongoose.model('Event', eventSchema);

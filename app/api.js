@@ -4,6 +4,7 @@ var moment = require('moment');
 var qs = require('querystring');
 var User = require('./models/User');
 var Event = require('./models/Event');
+var Rsvp = require('./models/Rsvp');
 
 module.exports = function(app, config) {
 
@@ -499,7 +500,7 @@ module.exports = function(app, config) {
 
 	/*
 	 |--------------------------------------------------------------------------
-	 | POST /api/events/new (create new event: admin only)
+	 | POST /api/event/new (create new event: admin only)
 	 |--------------------------------------------------------------------------
 	 */
 	app.post('/api/event/new', ensureAdmin, function(req, res) {
@@ -517,6 +518,90 @@ module.exports = function(app, config) {
 			});
 			event.save(function() {
 				res.send(event);
+			});
+		});
+	});
+
+	/*
+	 |--------------------------------------------------------------------------
+	 | GET /api/event/:eventId/guests (get all RSVPs for a specific event)
+	 |--------------------------------------------------------------------------
+	 */
+	app.get('/api/event/:eventId/guests', ensureAdmin, function(req, res) {
+		Rsvp.find({eventId: req.params.eventId}, function(err, guests) {
+			if (err) { res.send(err); }
+
+			var guestsArr = [];
+
+			guests.forEach(function(guest) {
+				guestsArr.push(guest);
+			});
+
+			res.send(guestsArr);
+		});
+	});
+
+	/*
+	 |--------------------------------------------------------------------------
+	 | POST /api/event/:id/rsvp (RSVP to an event)
+	 |--------------------------------------------------------------------------
+	 */
+	app.post('/api/event/:id/rsvp', ensureAuthenticated, function(req, res) {
+		Rsvp.findOne({ eventId: req.params.id }, function(err, existingRsvp) {
+			if (existingRsvp) {
+				return res.status(409).send({ message: 'You have already RSVPed to this event' });
+			}
+			var rsvp = new Rsvp({
+				userId: req.body.userId,
+				eventId: req.params.id,
+				name: req.body.name,
+				attending: req.body.attending,
+				guests: req.body.guests,
+				comments: req.body.comments
+			});
+			rsvp.save(function() {
+				res.send(rsvp);
+			});
+		});
+	});
+
+	/*
+	 |--------------------------------------------------------------------------
+	 | GET /api/me/rsvp (get all RSVPs for logged in user)
+	 |--------------------------------------------------------------------------
+	 */
+	app.get('/api/me/rsvp', ensureAuthenticated, function(req, res) {
+		Rsvp.find({userId: req.user._id}, function(err, rsvps) {
+			if (err) { res.send(err); }
+
+			var rsvpArr = [];
+
+			rsvps.forEach(function(rsvp) {
+				rsvpArr.push(rsvp);
+			});
+
+			res.send(rsvpArr);
+		});
+	});
+
+	/*
+	 |--------------------------------------------------------------------------
+	 | PUT /api/me/rsvp/:id (update RSVP response for a specific RSVP)
+	 |--------------------------------------------------------------------------
+	 */
+	app.put('/api/me/rsvp/:rsvpid', ensureAuthenticated, function(req, res) {
+		Rsvp.findById(req.params.rsvpid, function(err, rsvp) {
+			if (!rsvp) {
+				return res.status(400).send({ message: 'RSVP not found' });
+			}
+
+			rsvp.name = req.body.name || rsvp.name;
+			rsvp.attending = req.body.attending;
+			rsvp.guests = req.body.guests || rsvp.guests;
+			rsvp.comments = req.body.comments || rsvp.comments;
+
+			rsvp.save(function(err) {
+				res.status(200).end();
 			});
 		});
 	});
