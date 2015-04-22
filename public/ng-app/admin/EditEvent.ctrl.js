@@ -11,6 +11,7 @@
 		// controllerAs ViewModel
 		var edit = this;
 
+		// get the event ID
 		var _eventId = $routeParams.eventId;
 
 		// verify that user is admin
@@ -29,11 +30,24 @@
 			return $auth.isAuthenticated();
 		};
 
-		eventData.getEvent(_eventId).then(function(data) {
+		/**
+		 * Function returned on successful API call for this event
+		 *
+		 * @param data {object} event data
+		 * @private
+		 */
+		function _getEventSuccess(data) {
 			edit.editEvent = data;
 			edit.showEditForm = true;
-		});
+		}
 
+		eventData.getEvent(_eventId).then(_getEventSuccess);
+
+		/**
+		 * Reset the delete button to default state
+		 *
+		 * @private
+		 */
 		function _btnDeleteReset() {
 			edit.btnDelete = false;
 			edit.btnDeleteText = 'Delete Event';
@@ -41,6 +55,11 @@
 
 		_btnDeleteReset();
 
+		/**
+		 * Function returned on successful deletion of event
+		 *
+		 * @private
+		 */
 		function _deleteSuccess() {
 			edit.btnDeleteText = 'Deleted!';
 			edit.btnDelete = true;
@@ -48,15 +67,23 @@
 
 			$timeout(function() {
 				$location.path('/admin');
-			}, 2000);
+			}, 1500);
 		}
 
+		/**
+		 * Function returned on error deleting event
+		 *
+		 * @private
+		 */
 		function _deleteError() {
 			edit.btnDeleteText = 'Error deleting!';
 
 			$timeout(_btnDeleteReset, 3000);
 		}
 
+		/**
+		 * Delete the event
+		 */
 		edit.deleteEvent = function() {
 			edit.btnDeleteText = 'Deleting...';
 

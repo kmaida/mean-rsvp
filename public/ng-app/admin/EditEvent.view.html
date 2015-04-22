@@ -22,14 +22,25 @@
 				</h2>
 
 				<p class="lead">
-					Permanently delete this event. This cannot be undone!
+					Permanently delete this event and all associated guest RSVPs. This cannot be
+					undone!
 				</p>
 
-				<button class="btn"
-						ng-class="{'btn-danger': !edit.btnDelete || edit.btnDelete === 'error', 'btn-success': edit.btnDelete}"
-						ng-click="edit.deleteEvent(edit.editEvent._id)">
-					<i class="fa" ng-class="{'fa-trash': !edit.btnDelete, 'fa-check': edit.btnDelete, 'fa-ban': edit.btnDelete === 'error'}"></i> {{edit.btnDeleteText}}
-				</button>
+				<div class="eventDelete-action">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" ng-model="edit.confirmDelete">
+							Yes, I want to delete <em>{{edit.editEvent.title}}</em>.
+						</label>
+					</div>
+
+					<button class="btn"
+							ng-class="{'btn-danger': !edit.btnDelete || edit.btnDelete === 'error', 'btn-success': edit.btnDelete}"
+							ng-click="edit.deleteEvent(edit.editEvent._id)"
+							ng-disabled="!edit.confirmDelete">
+						<i class="fa" ng-class="{'fa-trash': !edit.btnDelete, 'fa-check': edit.btnDelete, 'fa-ban': edit.btnDelete === 'error'}"></i> {{edit.btnDeleteText}}
+					</button>
+				</div>
 			</section>
 		</div>
 
