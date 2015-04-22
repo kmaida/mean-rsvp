@@ -4,8 +4,15 @@
 		<h1 class="content-heading">Edit Event</h1>
 
 		<div ng-if="edit.isAuthenticated() && edit.showEdit">
-			<section ng-if="edit.showEditForm" class="eventForm content-section">
-				<h2 class="page-header">
+
+			<ul class="nav nav-tabs editTabs">
+				<li ng-repeat="tab in edit.tabs" role="presentation" ng-class="{active: edit.currentTab === $index}">
+					<a ng-click="edit.changeTab($index)">{{tab}}</a>
+				</li>
+			</ul>
+
+			<section ng-if="edit.showEditForm && edit.currentTab === 0" class="eventForm content-section">
+				<h2>
 					<i class="fa fa-calendar"></i> Update Details
 				</h2>
 
@@ -16,8 +23,8 @@
 				<event-form type="edit" form-model="edit.editEvent"></event-form>
 			</section>
 
-			<section class="eventDelete content-section">
-				<h2 class="page-header">
+			<section ng-if="edit.currentTab === 1" class="eventDelete content-section">
+				<h2>
 					<i class="fa fa-trash"></i> Delete Event
 				</h2>
 

@@ -14,6 +14,14 @@
 		// get the event ID
 		var _eventId = $routeParams.eventId;
 
+		// tabs
+		edit.tabs = ['Update Details', 'Delete Event'];
+		edit.currentTab = 0;
+
+		edit.changeTab = function(index) {
+			edit.currentTab = index;
+		};
+
 		// verify that user is admin
 		userData.getUser().then(function(data) {
 			if (data.isAdmin) {
