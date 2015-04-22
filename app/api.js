@@ -568,10 +568,10 @@ module.exports = function(app, config) {
 
 	/*
 	 |--------------------------------------------------------------------------
-	 | GET /api/event/:eventId/guests (get all RSVPs for a specific event)
+	 | GET /api/rsvps/event/:eventId (get all RSVPs for a specific event)
 	 |--------------------------------------------------------------------------
 	 */
-	app.get('/api/event/:eventId/guests', ensureAdmin, function(req, res) {
+	app.get('/api/rsvps/event/:eventId', ensureAdmin, function(req, res) {
 		Rsvp.find({eventId: req.params.eventId}, function(err, guests) {
 			if (err) { res.send(err); }
 
@@ -587,10 +587,10 @@ module.exports = function(app, config) {
 
 	/*
 	 |--------------------------------------------------------------------------
-	 | POST /api/event/:id/rsvp (RSVP to an event)
+	 | POST /api/rsvp/event/:id (RSVP to an event)
 	 |--------------------------------------------------------------------------
 	 */
-	app.post('/api/event/:id/rsvp', ensureAuthenticated, function(req, res) {
+	app.post('/api/rsvp/event/:id', ensureAuthenticated, function(req, res) {
 		Rsvp.findOne({ eventId: req.params.id }, function(err, existingRsvp) {
 			if (existingRsvp) {
 				return res.status(409).send({ message: 'You have already RSVPed to this event' });
@@ -612,10 +612,10 @@ module.exports = function(app, config) {
 
 	/*
 	 |--------------------------------------------------------------------------
-	 | PUT /api/me/rsvp/:id (update RSVP response for a specific RSVP)
+	 | PUT /api/rsvp/:id (update RSVP response for a specific RSVP)
 	 |--------------------------------------------------------------------------
 	 */
-	app.put('/api/me/rsvp/:rsvpid', ensureAuthenticated, function(req, res) {
+	app.put('/api/rsvp/:rsvpid', ensureAuthenticated, function(req, res) {
 		Rsvp.findById(req.params.rsvpid, function(err, rsvp) {
 			if (!rsvp) {
 				return res.status(400).send({ message: 'RSVP not found' });

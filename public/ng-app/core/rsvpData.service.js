@@ -33,7 +33,7 @@
 		 */
 		this.getEventGuests = function(eventId) {
 			return $http
-				.get('/api/event/' + eventId + '/guests')
+				.get('/api/rsvps/event/' + eventId)
 				.then(_getRes);
 		};
 
@@ -46,19 +46,19 @@
 		 */
 		this.createRsvp = function(eventId, rsvpData) {
 			return $http
-				.post('/api/event/' + eventId + '/rsvp', rsvpData);
+				.post('/api/rsvp/event/' + eventId, rsvpData);
 		};
 
 		/**
-		 * Update an RSVP
+		 * Update an RSVP by specific RSVP ID
 		 *
-		 * @param id {string} RSVP MongoDB _id
+		 * @param rsvpId {string} RSVP MongoDB _id
 		 * @param rsvpData {object} updated RSVP data
 		 * @returns {promise}
 		 */
-		this.updateRsvp = function(id, rsvpData) {
+		this.updateRsvp = function(rsvpId, rsvpData) {
 			return $http
-				.put('/api/me/rsvp/' + id, rsvpData);
+				.put('/api/rsvp/' + rsvpId, rsvpData);
 		};
 	}
 })();
