@@ -8,6 +8,20 @@
 			<p class="lead">
 				{{event.detail.description}}
 			</p>
+
+			<button ng-if="event.rsvpReady && event.detail.rsvp"
+					class="btn btn-primary"
+					ng-click="event.openRsvpModal()"><i class="fa fa-paper-plane"></i> {{event.rsvpBtnText}}</button>
+
+			<div ng-if="!event.detail.rsvp" class="alert alert-warning">
+				<i class="fa fa-warning"></i> RSVP is closed for this event.
+			</div>
+
+			<rsvp-form ng-if="event.rsvpReady"
+					   event="event.detail"
+					   form-model="event.rsvpObj"
+					   user-name="{{::event.user.displayName}}"
+					   show-modal="event.showModal"></rsvp-form>
 		</div>
 
 	</section>

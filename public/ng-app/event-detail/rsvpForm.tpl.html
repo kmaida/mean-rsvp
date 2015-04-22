@@ -1,0 +1,61 @@
+<div class="modal" ng-class="{'showModal': rf.showModal}" ng-if="rf.event.rsvp">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="rf.closeModal()"
+						aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">RSVP for {{rf.event.title}}</h4>
+			</div>
+			<form method="post" ng-submit="rf.submitRsvp()">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="rsvpName">Name</label>
+						<input id="rsvpName" type="text" ng-model="rf.formModel.name" class="form-control"
+							   placeholder="Name" required>
+					</div>
+
+					<div class="form-group">
+						<label>Attending</label>
+						<div class="radio">
+							<label class="radio-inline">
+								<input type="radio" name="rsvpAttending" ng-value="true" ng-model="rf.formModel.attending"
+									   required>Yes
+							</label>
+
+							<label class="radio-inline">
+								<input type="radio" name="rsvpAttending" ng-value="false" ng-model="rf.formModel.attending">No
+							</label>
+						</div>
+					</div>
+
+					<div ng-if="rf.formModel.attending" class="form-group form-inline">
+						<label for="rsvpGuests">Guests</label>
+						<input id="rsvpGuests"
+							   type="number"
+							   ng-pattern="/^\d+$/"
+							   min="1"
+							   max="10"
+							   step="1"
+							   ng-model="rf.formModel.guests"
+							   class="form-control">
+					</div>
+
+					<div class="form-group">
+						<label for="rsvpComments">Comments</label>
+						<textarea id="rsvpComments" ng-model="rf.formModel.comments" class="form-control" rows="3"></textarea>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default"  ng-click="rf.closeModal()">Close</button>
+					<button type="submit"
+							class="btn-save btn"
+							ng-class="{'btn-primary': !rf.btnSaved, 'btn-success': rf.btnSaved === true, 'btn-danger': rf.btnSaved === 'error'}"
+							ng-disabled="">
+						<i class="fa" ng-class="{'fa-download': !rf.btnSaved, 'fa-check': rf.btnSaved, 'fa-ban': rf.btnSaved === 'error'}"></i> {{rf.btnSubmitText}}
+					</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

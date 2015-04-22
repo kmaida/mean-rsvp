@@ -11,8 +11,7 @@ MEAN stack RSVP application
 ## To Do
 
 - [x] Set up new MongoDB
-- [x] Set up third-party Oauth apps and configure
-- [x] Create admin user
+- [ ] Authenticating... message while logging in
 - [ ] Include FontAwesome locally (instead of CDN)
 - [x] Create events API (`POST`, `GET`, `DELETE`)
 - [ ] RSVP form

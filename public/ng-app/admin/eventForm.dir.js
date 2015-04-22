@@ -14,8 +14,8 @@
 			var ef = this;
 
 			// check if form is create or edit
-			var _isCreate = ef.type === 'create',
-				_isEdit = ef.type === 'edit';
+			var _isCreate = !ef.formModel,
+				_isEdit = ef.formModel;
 
 			/**
 			 * Reset the state of the form Submit button
@@ -77,9 +77,7 @@
 		return {
 			restrict: 'EA',
 			scope: {
-				type: '@',
-				formModel: '=',
-				submit: '&'
+				formModel: '='
 			},
 			templateUrl: '/ng-app/admin/eventForm.tpl.html',
 			controller: eventFormCtrl,
