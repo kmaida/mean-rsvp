@@ -6,9 +6,23 @@
 	</div>
 
 	<div class="form-group">
-		<label for="eventDate">Date</label>
-		<input id="eventDate" type="date" ng-model="ef.formModel.date" class="form-control"
-			   placeholder="mm/dd/yy" required>
+		<label>Date / Time</label>
+
+		<div class="form-inline">
+			<div class="form-group">
+				<div class="input-group">
+					<label for="eventDate-start" class="input-group-addon">Start</label>
+					<input id="eventDate-start" type="datetime-local" ng-model="ef.formModel.datetimeStart" class="form-control" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="input-group">
+					<label for="eventDate-end" class="input-group-addon">End</label>
+					<input id="eventDate-end" type="datetime-local" ng-model="ef.formModel.datetimeEnd" class="form-control" required>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="form-group">

@@ -10,7 +10,8 @@ var config = require('../config');
 
 var eventSchema = new mongoose.Schema({
 	title: String,
-	date: String,
+	datetimeStart: String,
+	datetimeEnd: String,
 	description: String,
 	location: String,
 	viewPublic: Boolean,
@@ -24,16 +25,5 @@ eventSchema.plugin(encrypt, {
 });
 
 var Event = mongoose.model('Event', eventSchema);
-
-// To Add events without a form:
-
-//Event.create({
-//	title: 'Josh\'s Birthday',
-//	description: 'Come celebrate a great birthday with us!',
-//	date: 'April 29, 2015',
-//	location: 'Home',
-//	viewPublic: true,
-//	rsvp: true
-//});
 
 module.exports = mongoose.model('Event', eventSchema);

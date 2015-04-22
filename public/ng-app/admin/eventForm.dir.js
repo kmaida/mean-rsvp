@@ -14,7 +14,7 @@
 			var ef = this;
 
 			// check if form is create or edit
-			var _isCreate = !ef.formModel,
+			var _isCreate = jQuery.isEmptyObject(ef.formModel),
 				_isEdit = ef.formModel;
 
 			/**

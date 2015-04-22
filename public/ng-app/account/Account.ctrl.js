@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('AccountCtrl', AccountCtrl);
 
-	AccountCtrl.$inject = ['$scope', '$auth', 'userData', '$timeout', 'OAUTH', 'User', 'rsvpData'];
+	AccountCtrl.$inject = ['$scope', '$auth', 'userData', '$timeout', 'OAUTH', 'User'];
 
-	function AccountCtrl($scope, $auth, userData, $timeout, OAUTH, User, rsvpData) {
+	function AccountCtrl($scope, $auth, userData, $timeout, OAUTH, User) {
 		// controllerAs ViewModel
 		var account = this;
 
