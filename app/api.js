@@ -89,7 +89,21 @@ module.exports = function(app, config) {
 	 |--------------------------------------------------------------------------
 	 */
 	app.get('/api/me', ensureAuthenticated, function(req, res) {
+		var userRsvps = [];
+
+		Rsvp.find({userId: req.user}, function(err, rsvps) {
+			if (err) { res.send(err); }
+
+			rsvps.forEach(function(rsvp) {
+				userRsvps.push(rsvp);
+			});
+		});
+
 		User.findById(req.user, function(err, user) {
+			if (err) { res.send(err); }
+
+			user.rsvps = userRsvps;
+
 			res.send(user);
 		});
 	});
@@ -104,8 +118,9 @@ module.exports = function(app, config) {
 			if (!user) {
 				return res.status(400).send({ message: 'User not found' });
 			}
+
 			user.displayName = req.body.displayName || user.displayName;
-			// user.email = req.body.email || user.email;
+
 			user.save(function(err) {
 				res.status(200).end();
 			});
@@ -592,25 +607,6 @@ module.exports = function(app, config) {
 			rsvp.save(function() {
 				res.send(rsvp);
 			});
-		});
-	});
-
-	/*
-	 |--------------------------------------------------------------------------
-	 | GET /api/me/rsvp (get all RSVPs for logged in user)
-	 |--------------------------------------------------------------------------
-	 */
-	app.get('/api/me/rsvp', ensureAuthenticated, function(req, res) {
-		Rsvp.find({userId: req.user}, function(err, rsvps) {
-			if (err) { res.send(err); }
-
-			var rsvpArr = [];
-
-			rsvps.forEach(function(rsvp) {
-				rsvpArr.push(rsvp);
-			});
-
-			res.send(rsvpArr);
 		});
 	});
 

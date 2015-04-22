@@ -40,9 +40,7 @@
 				account.linkedAccounts = User.getLinkedAccounts(account.user, 'account');
 				account.showAccount = true;
 
-				rsvpData.getRsvps(account.user._id).then(function(data) {
-					console.log('my rsvps:', data);
-				});
+				console.log(account.user);
 			}
 
 			/**

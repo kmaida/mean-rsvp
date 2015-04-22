@@ -26,17 +26,6 @@
 
 	function rsvpData($http) {
 		/**
-		 * Get RSVPs for current user
-		 *
-		 * @returns {promise}
-		 */
-		this.getRsvps = function() {
-			return $http
-				.get('/api/me/rsvp')
-				.then(_getRes);
-		};
-
-		/**
 		 * Get all RSVPed guests for a specific event by event ID
 		 *
 		 * @param eventId {string} event MongoDB _id
