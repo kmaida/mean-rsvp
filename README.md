@@ -17,7 +17,7 @@ MEAN stack RSVP application
 - [x] Create events API (`POST`, `GET`, `DELETE`)
 - [ ] RSVP form
 - [ ] Create RSVP API  
-  - [ ] `PUT` user info into RSVP object
+  - [x] `PUT` user info into RSVP object
   - [ ] Admin view RSVPs
 - [ ] Style Events page
 - [ ] Style Event Detail page

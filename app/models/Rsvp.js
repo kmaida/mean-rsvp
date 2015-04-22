@@ -10,6 +10,7 @@ var config = require('../config');
 var rsvpSchema = new mongoose.Schema({
 	userId: String,
 	eventId: String,
+	eventName: String,
 	name: String,
 	attending: Boolean,
 	guests: Number,
@@ -22,7 +23,8 @@ var Rsvp = mongoose.model('Rsvp', rsvpSchema);
 
 //Rsvp.create({
 //  userId: '55352f0493ac666440b11c14',
-//  eventId: '55355486c977c5a46e5b248a',
+//  eventId: '553555093c2293306f2b0648',
+//  eventName: 'Josh\'s Birthday',
 //  name: 'Kim Maida',
 //  attending: true,
 //  guests: 1,

@@ -430,6 +430,30 @@ module.exports = function(app, config) {
 
 	/*
 	 |--------------------------------------------------------------------------
+	 | POST /api/event/new (create new event: admin only)
+	 |--------------------------------------------------------------------------
+	 */
+	app.post('/api/event/new', ensureAdmin, function(req, res) {
+		Event.findOne({ title: req.body.title }, function(err, existingEvent) {
+			if (existingEvent) {
+				return res.status(409).send({ message: 'That event already exists' });
+			}
+			var event = new Event({
+				title: req.body.title,
+				date: req.body.date,
+				description: req.body.description,
+				location: req.body.location,
+				viewPublic: req.body.viewPublic,
+				rsvp: req.body.rsvp
+			});
+			event.save(function() {
+				res.send(event);
+			});
+		});
+	});
+
+	/*
+	 |--------------------------------------------------------------------------
 	 | GET /api/event/:id
 	 |--------------------------------------------------------------------------
 	 */
@@ -442,21 +466,25 @@ module.exports = function(app, config) {
 
 	/*
 	 |--------------------------------------------------------------------------
-	 | PUT /api/event/:id (update events: admin only)
+	 | PUT /api/event/:id (update events and associated RSVPs: admin only)
 	 |--------------------------------------------------------------------------
 	 */
 	app.put('/api/event/:id', ensureAdmin, function(req, res) {
+		var eventName;
+
+		// update event
 		Event.findById(req.params.id, function(err, event) {
 			if (!event) {
 				return res.status(400).send({ message: 'Event not found' });
 			}
 
-			event.title = req.body.title || event.title;
+			eventName = req.body.title || event.title;
+
+			event.title = eventName;
 			event.date = req.body.date || event.date;
 			event.description = req.body.description || event.description;
 			event.location = req.body.location || event.location;
-
-			// booleans should accept what's in the form regardless
+			// booleans accept what's in the form because || won't work
 			event.viewPublic = req.body.viewPublic;
 			event.rsvp = req.body.rsvp;
 
@@ -464,17 +492,42 @@ module.exports = function(app, config) {
 				res.status(200).end();
 			});
 		});
+
+		// update event name for all associated RSVPs
+		Rsvp.find({eventId: req.params.id}, function(err, guests) {
+			if (err) { res.send(err); }
+
+			guests.forEach(function(guest) {
+				guest.eventName = eventName;
+
+				guest.save(function(err) {
+					res.status(200).end();
+				});
+			});
+		});
 	});
 
 	/*
 	 |--------------------------------------------------------------------------
-	 | DELETE /api/event/:id
+	 | DELETE /api/event/:id (delete event and associated RSVPs)
 	 |--------------------------------------------------------------------------
 	 */
 	app.delete('/api/event/:id', ensureAdmin, function(req, res) {
+		// delete event
 		Event.findById(req.params.id, function(err, event) {
 			event.remove(function(err) {
 				res.status(200).end();
+			});
+		});
+
+		// delete all RSVPs associated with this event
+		Rsvp.find({eventId: req.params.id}, function(err, guests) {
+			if (err) { res.send(err); }
+
+			guests.forEach(function(guest) {
+				guest.remove(function(err) {
+					res.status(200).end();
+				});
 			});
 		});
 	});
@@ -495,30 +548,6 @@ module.exports = function(app, config) {
 			});
 
 			res.send(eventArr);
-		});
-	});
-
-	/*
-	 |--------------------------------------------------------------------------
-	 | POST /api/event/new (create new event: admin only)
-	 |--------------------------------------------------------------------------
-	 */
-	app.post('/api/event/new', ensureAdmin, function(req, res) {
-		Event.findOne({ title: req.body.title }, function(err, existingEvent) {
-			if (existingEvent) {
-				return res.status(409).send({ message: 'That event already exists' });
-			}
-			var event = new Event({
-				title: req.body.title,
-				date: req.body.date,
-				description: req.body.description,
-				location: req.body.location,
-				viewPublic: req.body.viewPublic,
-				rsvp: req.body.rsvp
-			});
-			event.save(function() {
-				res.send(event);
-			});
 		});
 	});
 
@@ -554,6 +583,7 @@ module.exports = function(app, config) {
 			var rsvp = new Rsvp({
 				userId: req.body.userId,
 				eventId: req.params.id,
+				eventName: req.body.eventName,
 				name: req.body.name,
 				attending: req.body.attending,
 				guests: req.body.guests,
