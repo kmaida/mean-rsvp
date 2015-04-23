@@ -607,7 +607,7 @@ module.exports = function(app, config) {
 				eventName: req.body.eventName,
 				name: req.body.name,
 				attending: req.body.attending,
-				guests: req.body.guests,
+				guests: req.body.attending ? req.body.guests : 0,
 				comments: req.body.comments
 			});
 			rsvp.save(function() {
@@ -629,7 +629,7 @@ module.exports = function(app, config) {
 
 			rsvp.name = req.body.name || rsvp.name;
 			rsvp.attending = req.body.attending;
-			rsvp.guests = req.body.guests || rsvp.guests;
+			rsvp.guests = req.body.attending ? req.body.guests : 0;
 			rsvp.comments = req.body.comments || rsvp.comments;
 
 			rsvp.save(function(err) {

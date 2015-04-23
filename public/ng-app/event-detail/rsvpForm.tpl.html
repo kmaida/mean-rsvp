@@ -6,46 +6,78 @@
 						aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">RSVP for {{rf.event.title}}</h4>
 			</div>
-			<form method="post" ng-submit="rf.submitRsvp()">
+
+			<form method="post" ng-submit="rf.submitRsvp()" name="rsvpForm">
 				<div class="modal-body">
+					<p class="text-danger">
+						<strong>*</strong> <em class="small">required</em>
+					</p>
+
 					<div class="form-group">
-						<label for="rsvpName">Name</label>
-						<input id="rsvpName" type="text" ng-model="rf.formModel.name" class="form-control"
-							   placeholder="Name" required>
+						<label for="rsvpName">Name<span class="text-danger">*</span></label>
+						<input id="rsvpName"
+							   type="text"
+							   name="name"
+							   ng-model="rf.formModel.name"
+							   class="form-control"
+							   placeholder="Name"
+							   required>
+
+						<div ng-if="rsvpForm.name.$dirty && rsvpForm.name.$invalid" ng-messages="rsvpForm.name.$error" class="text-danger">
+							<span ng-message="required">Name is <strong>required</strong></span>
+						</div>
 					</div>
 
 					<div class="form-group">
-						<label>Attending</label>
+						<label>Attending<span class="text-danger">*</span></label>
 						<div class="radio">
 							<label class="radio-inline">
-								<input type="radio" name="rsvpAttending" ng-value="true" ng-model="rf.formModel.attending"
+								<input type="radio"
+									   name="attending"
+									   ng-value="true"
+									   ng-model="rf.formModel.attending"
 									   required>Yes
 							</label>
 
 							<label class="radio-inline">
-								<input type="radio" name="rsvpAttending" ng-value="false" ng-model="rf.formModel.attending">No
+								<input type="radio"
+									   name="attending"
+									   ng-value="false"
+									   ng-model="rf.formModel.attending">No
 							</label>
+						</div>
+
+						<div ng-if="rsvpForm.attending.$invalid" ng-messages="rsvpForm.attending.$error" class="text-danger">
+							<span ng-message="required">Attending is <strong>required</strong></span>
 						</div>
 					</div>
 
 					<div ng-if="rf.formModel.attending" class="form-group form-inline">
-						<label for="rsvpGuests">Guests</label>
+						<label for="rsvpGuests">Guests<span class="text-danger">*</span></label>
 						<input id="rsvpGuests"
 							   type="number"
-							   ng-pattern="/^\d+$/"
+							   ng-pattern="rf.numberRegex"
 							   min="1"
 							   max="10"
 							   step="1"
+							   name="guests"
 							   ng-model="rf.formModel.guests"
+							   ng-required="rf.formModel.attending"
 							   class="form-control">
-						<ng-messages="expression">
 
-						</ng-messages>
+						<div ng-if="rsvpForm.guests.$dirty && rsvpForm.guests.$invalid" ng-messages="rsvpForm.guests.$error" class="text-danger">
+							<span ng-message="pattern">Enter a number from 1-10</span>
+							<span ng-message="required">Number of guests is <strong>required</strong> if attending event</span>
+						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="rsvpComments">Comments</label>
-						<textarea id="rsvpComments" ng-model="rf.formModel.comments" class="form-control" rows="3"></textarea>
+						<textarea id="rsvpComments"
+								  name="comments"
+								  ng-model="rf.formModel.comments"
+								  class="form-control"
+								  rows="3"></textarea>
 					</div>
 
 				</div>
@@ -54,7 +86,7 @@
 					<button type="submit"
 							class="btn-save btn"
 							ng-class="{'btn-primary': !rf.btnSaved, 'btn-success': rf.btnSaved === true, 'btn-danger': rf.btnSaved === 'error'}"
-							ng-disabled="">
+							ng-disabled="rsvpForm.$invalid">
 						<i class="fa" ng-class="{'fa-download': !rf.btnSaved, 'fa-check': rf.btnSaved, 'fa-ban': rf.btnSaved === 'error'}"></i> {{rf.btnSubmitText}}
 					</button>
 				</div>

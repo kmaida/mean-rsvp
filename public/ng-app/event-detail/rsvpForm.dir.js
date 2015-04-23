@@ -19,6 +19,8 @@
 			var _isCreate = !rf.formModel,
 				_isEdit = rf.formModel;
 
+			rf.numberRegex = /^([1-9]|10)$/;
+
 			if (_isCreate && rf.userName) {
 				rf.formModel = {
 					userId: rf.userId,

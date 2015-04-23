@@ -24,6 +24,16 @@ a {
 	padding: 0 .5em;
 }
 
+/*-- Form validation classes --*/
+
+input.ng-dirty.ng-invalid {
+	border-color: $color-invalid-rgba;
+	box-shadow: 0 0 6px $color-invalid-rgba;
+}
+div[ng-messages] {
+	margin-top: 4px;
+}
+
 /*--------------------
 	    PRINT
 --------------------*/
