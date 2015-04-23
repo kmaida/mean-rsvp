@@ -5,11 +5,13 @@
 		.module('myApp')
 		.directive('rsvpForm', rsvpForm);
 
-	rsvpForm.$inject = ['rsvpData', '$timeout'];
+	rsvpForm.$inject = ['rsvpData', '$timeout', '$rootScope'];
 
-	function rsvpForm(rsvpData, $timeout) {
+	function rsvpForm(rsvpData, $timeout, $rootScope) {
 
-		function rsvpFormCtrl() {
+		rsvpFormCtrl.$inject = ['$scope'];
+
+		function rsvpFormCtrl($scope) {
 			// controllerAs syntax
 			var rf = this;
 
@@ -19,9 +21,26 @@
 
 			if (_isCreate && rf.userName) {
 				rf.formModel = {
+					userId: rf.userId,
+					eventName: rf.event.title,
 					name: rf.userName
 				};
 			}
+
+			/**
+			 * Watch user's attending input and if true, set default number of guests to 1
+			 *
+			 * @type {*|function()}
+			 * @private
+			 */
+			var _watchAttending = $scope.$watch('rf.formModel.attending', function(newVal, oldVal) {
+				if (newVal === true) {
+					rf.formModel.guests = 1;
+
+					// deregister $watch
+					_watchAttending();
+				}
+			});
 
 			/**
 			 * Reset the state of the form Submit button
@@ -48,10 +67,12 @@
 					rf.formModel = {};
 				}
 
+				$rootScope.$broadcast('rsvpSubmitted');
+
 				$timeout(function() {
 					_btnSubmitReset();
 					rf.showModal = false;
-				}, 3000);
+				}, 1000);
 			}
 
 			/**
@@ -75,7 +96,7 @@
 				rf.btnSubmitText = 'Sending...';
 
 				if (_isCreate) {
-					rsvpData.createRsvp(rf.formModel).then(_rsvpSuccess, _rsvpError);
+					rsvpData.createRsvp(rf.event._id, rf.formModel).then(_rsvpSuccess, _rsvpError);
 
 				} else if (_isEdit) {
 					rsvpData.updateRsvp(rf.formModel._id, rf.formModel).then(_rsvpSuccess, _rsvpError);
@@ -95,6 +116,7 @@
 			scope: {
 				event: '=',
 				userName: '@',
+				userId: '@',
 				formModel: '=',
 				showModal: '='
 			},

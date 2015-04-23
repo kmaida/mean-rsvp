@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('EventDetailCtrl', EventDetailCtrl);
 
-	EventDetailCtrl.$inject = ['$routeParams', '$auth', 'userData', 'eventData'];
+	EventDetailCtrl.$inject = ['$routeParams', '$auth', 'userData', 'eventData', '$rootScope'];
 
-	function EventDetailCtrl($routeParams, $auth, userData, eventData) {
+	function EventDetailCtrl($routeParams, $auth, userData, eventData, $rootScope) {
 		var event = this,
 			_eventId = $routeParams.eventId;
 
@@ -26,32 +26,38 @@
 			event.showModal = true;
 		};
 
-		/**
-		 * Function for successful API call retrieving user data
-		 * Then calls RSVP data and determines if user has RSVPed to this event
-		 *
-		 * @param data {object} promise provided by $http success
-		 * @private
-		 */
-		function _userSuccess(data) {
-			event.user = data;
+		function _getUserData() {
+			/**
+			 * Function for successful API call retrieving user data
+			 * Then calls RSVP data and determines if user has RSVPed to this event
+			 *
+			 * @param data {object} promise provided by $http success
+			 * @private
+			 */
+			function _userSuccess(data) {
+				event.user = data;
 
-			var _rsvps = event.user.rsvps;
+				var _rsvps = event.user.rsvps;
 
-			for (var i = 0; i < _rsvps.length; i++) {
-				var thisRsvp = _rsvps[i];
+				for (var i = 0; i < _rsvps.length; i++) {
+					var thisRsvp = _rsvps[i];
 
-				if (thisRsvp.eventId === _eventId) {
-					event.rsvpObj = thisRsvp;
-					break;
+					if (thisRsvp.eventId === _eventId) {
+						event.rsvpObj = thisRsvp;
+						break;
+					}
 				}
+
+				event.rsvpBtnText = !event.rsvpObj ? 'RSVP for event' : 'Update my RSVP';
+				event.rsvpReady = true;
 			}
 
-			event.rsvpBtnText = !event.rsvpObj ? 'RSVP for event' : 'Update my RSVP';
-			event.rsvpReady = true;
+			userData.getUser().then(_userSuccess);
 		}
 
-		userData.getUser().then(_userSuccess);
+		_getUserData();
+
+		$rootScope.$on('rsvpSubmitted', _getUserData);
 
 		/**
 		 * Function for successful API call getting single event detail

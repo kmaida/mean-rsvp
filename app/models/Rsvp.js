@@ -19,16 +19,4 @@ var rsvpSchema = new mongoose.Schema({
 
 var Rsvp = mongoose.model('Rsvp', rsvpSchema);
 
-// To Add RSVPs without a form:
-
-//Rsvp.create({
-//  userId: '55352f0493ac666440b11c14',
-//  eventId: '553555093c2293306f2b0648',
-//  eventName: 'Josh\'s Birthday',
-//  name: 'Kim Maida',
-//  attending: true,
-//  guests: 1,
-//  comments: 'Looking forward to it!'
-//});
-
 module.exports = mongoose.model('Rsvp', rsvpSchema);
