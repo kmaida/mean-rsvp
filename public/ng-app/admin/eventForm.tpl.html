@@ -1,8 +1,15 @@
-<form method="post" ng-submit="ef.submitEvent()">
+<form method="post" ng-submit="ef.submitEvent()" name="eventForm">
 	<div class="form-group">
 		<label for="eventTitle">Title</label>
-		<input id="eventTitle" type="text" ng-model="ef.formModel.title" class="form-control"
-			   placeholder="Event Title" required>
+		<input id="eventTitle"
+			   type="text"
+			   name="title"
+			   ng-model="ef.formModel.title"
+			   class="form-control"
+			   placeholder="Event Title"
+			   required>
+
+		<pre>evemtForm.title.$error = {{eventForm.title.$error | json}}</pre>
 	</div>
 
 	<div class="form-group">
@@ -12,14 +19,33 @@
 			<div class="form-group">
 				<div class="input-group">
 					<label for="eventDate-startDate" class="input-group-addon">Date</label>
-					<input id="eventDate-startDate" type="text" ng-model="ef.formModel.startDate" class="form-control" placeholder="mm/dd/yyyy" required>
+					<input id="eventDate-startDate"
+						   type="text"
+						   name="startDate"
+						   ng-model="ef.formModel.startDate"
+						   class="form-control"
+						   placeholder="mm/dd/yyyy"
+						   ng-pattern="ef.dateRegex"
+						   required>
+				</div>
+
+				<div ng-messages="ef.formModel.startDate.$error">
+					<span ng-message="pattern">Pattern is wrong</span>
+					<span ng-message="required">Required!</span>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<div class="input-group">
 					<label for="eventDate-startTime" class="input-group-addon">Time</label>
-					<input id="eventDate-startTime" type="text" ng-model="ef.formModel.startTime" class="form-control" placeholder="hh:mm AM/PM" required>
+					<input id="eventDate-startTime"
+						   type="text"
+						   name="startTime"
+						   ng-model="ef.formModel.startTime"
+						   class="form-control"
+						   placeholder="hh:mm AM/PM"
+						   ng-pattern="ef.timeRegex"
+						   required>
 				</div>
 			</div>
 		</div>
@@ -32,14 +58,28 @@
 			<div class="form-group">
 				<div class="input-group">
 					<label for="eventDate-endDate" class="input-group-addon">Date</label>
-					<input id="eventDate-endDate" type="text" ng-model="ef.formModel.endDate" class="form-control" placeholder="mm/dd/yyyy" required>
+					<input id="eventDate-endDate"
+						   type="text"
+						   name="endDate"
+						   ng-model="ef.formModel.endDate"
+						   class="form-control"
+						   placeholder="mm/dd/yyyy"
+						   ng-pattern="ef.dateRegex"
+						   required>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<div class="input-group">
 					<label for="eventDate-endTime" class="input-group-addon">Time</label>
-					<input id="eventDate-endTime" type="text" ng-model="ef.formModel.endTime" class="form-control" placeholder="hh:mm AM/PM" required>
+					<input id="eventDate-endTime"
+						   type="text"
+						   name="endTime"
+						   ng-model="ef.formModel.endTime"
+						   class="form-control"
+						   placeholder="hh:mm AM/PM"
+						   ng-pattern="ef.timeRegex"
+						   required>
 				</div>
 			</div>
 		</div>
@@ -47,13 +87,21 @@
 
 	<div class="form-group">
 		<label for="eventLocation">Location</label>
-		<input id="eventLocation" ng-model="ef.formModel.location" class="form-control"
-			   placeholder="123 Some Street, City, State" required>
+		<input id="eventLocation"
+			   name="location"
+			   ng-model="ef.formModel.location"
+			   class="form-control"
+			   placeholder="123 Some Street, City, State"
+			   required>
 	</div>
 
 	<div class="form-group">
 		<label for="eventDesc">Description</label>
-		<textarea id="eventDesc" ng-model="ef.formModel.description" class="form-control" rows="3"></textarea>
+		<textarea id="eventDesc"
+				  name="description"
+				  ng-model="ef.formModel.description"
+				  class="form-control"
+				  rows="3"></textarea>
 	</div>
 
 	<div class="form-group">
@@ -64,12 +112,18 @@
 
 		<div class="radio">
 			<label class="radio-inline">
-				<input type="radio" name="viewPublic" ng-value="true" ng-model="ef.formModel.viewPublic"
-				required>Yes
+				<input type="radio"
+					   name="viewPublic"
+					   ng-value="true"
+					   ng-model="ef.formModel.viewPublic"
+					   required>Yes
 			</label>
 
 			<label class="radio-inline">
-				<input type="radio" name="viewPublic" ng-value="false" ng-model="ef.formModel.viewPublic">No
+				<input type="radio"
+					   name="viewPublic"
+					   ng-value="false"
+					   ng-model="ef.formModel.viewPublic">No
 			</label>
 		</div>
 	</div>
@@ -79,11 +133,18 @@
 
 		<div class="radio">
 			<label class="radio-inline">
-				<input type="radio" name="rsvp" ng-value="true" ng-model="ef.formModel.rsvp" required>Open
+				<input type="radio"
+					   name="rsvp"
+					   ng-value="true"
+					   ng-model="ef.formModel.rsvp"
+					   required>Open
 			</label>
 
 			<label class="radio-inline">
-				<input type="radio" name="rsvp" ng-value="false" ng-model="ef.formModel.rsvp">Closed
+				<input type="radio"
+					   name="rsvp"
+					   ng-value="false"
+					   ng-model="ef.formModel.rsvp">Closed
 			</label>
 		</div>
 	</div>

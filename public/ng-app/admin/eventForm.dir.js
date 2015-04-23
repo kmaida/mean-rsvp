@@ -16,8 +16,15 @@
 			var ef = this;
 
 			// check if form is create or edit
-			var _isCreate = jQuery.isEmptyObject(ef.formModel),
-				_isEdit = ef.formModel;
+			var _isCreate = jQuery.isEmptyObject(ef.prefillModel),
+				_isEdit = ef.prefillModel;
+
+			ef.dateRegex = /^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$/;
+			ef.timeRegex = /^(([0-1]?[0-9])|([2][0-3])):([0-5]?[0-9])(:([0-5]?[0-9]))?$/;
+
+			if (_isEdit) {
+				ef.formModel = ef.prefillModel;
+			}
 
 			/**
 			 * Watch start date and when all characters are filled out, populate end date
@@ -93,7 +100,7 @@
 		return {
 			restrict: 'EA',
 			scope: {
-				formModel: '='
+				prefillModel: '='
 			},
 			templateUrl: '/ng-app/admin/eventForm.tpl.html',
 			controller: eventFormCtrl,
