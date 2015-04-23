@@ -5,6 +5,10 @@
 		<div ng-if="event.isAuthenticated() && event.eventReady && event.rsvpReady">
 			<h1 class="content-heading">{{event.detail.title}}</h1>
 
+			<p>
+				{{event.detail.prettyDate}}
+			</p>
+
 			<p class="lead">
 				{{event.detail.description}}
 			</p>

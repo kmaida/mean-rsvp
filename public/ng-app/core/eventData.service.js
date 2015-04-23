@@ -34,14 +34,7 @@
 		this.getEvent = function(id) {
 			return $http({
 				method: 'GET',
-				url: '/api/event/' + id,
-				transformResponse: function(data) {
-					data = angular.fromJson(data);
-					data.datetimeStart = new Date(data.datetimeStart);
-					data.datetimeEnd = new Date(data.datetimeEnd);
-
-					return data;
-				}
+				url: '/api/event/' + id
 			}).then(_getRes);
 		};
 

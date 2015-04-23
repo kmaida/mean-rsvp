@@ -10,8 +10,10 @@ var config = require('../config');
 
 var eventSchema = new mongoose.Schema({
 	title: String,
-	datetimeStart: String,
-	datetimeEnd: String,
+	startDate: String,
+	startTime: String,
+	endDate: String,
+	endTime: String,
 	description: String,
 	location: String,
 	viewPublic: Boolean,

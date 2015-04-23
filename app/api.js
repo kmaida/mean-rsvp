@@ -455,8 +455,10 @@ module.exports = function(app, config) {
 			}
 			var event = new Event({
 				title: req.body.title,
-				datetimeStart: req.body.datetimeStart,
-				datetimeEnd: req.body.datetimeEnd,
+				startDate: req.body.startDate,
+				startTime: req.body.startTime,
+				endDate: req.body.endDate,
+				endTime: req.body.endTime,
 				description: req.body.description,
 				location: req.body.location,
 				viewPublic: req.body.viewPublic,
@@ -497,8 +499,10 @@ module.exports = function(app, config) {
 			eventName = req.body.title || event.title;
 
 			event.title = eventName;
-			event.datetimeStart = req.body.datetimeStart || event.datetimeStart;
-			event.datetimeEnd = req.body.datetimeEnd || event.datetimeEnd;
+			event.startDate = req.body.startDate || event.startDate;
+			event.startTime = req.body.startTime || event.startTime;
+			event.endDate = req.body.endDate || event.endDate;
+			event.endTime = req.body.endTime || event.endTime;
 			event.description = req.body.description || event.description;
 			event.location = req.body.location || event.location;
 			// booleans accept what's in the form because || won't work
