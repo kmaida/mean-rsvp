@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('LoginCtrl', LoginCtrl);
 
-	LoginCtrl.$inject = ['$auth', 'OAUTH'];
+	LoginCtrl.$inject = ['$auth', 'OAUTH', '$rootScope', '$location'];
 
-	function LoginCtrl($auth, OAUTH) {
+	function LoginCtrl($auth, OAUTH, $rootScope, $location) {
 		// controllerAs ViewModel
 		var login = this;
 
@@ -19,10 +19,22 @@
 		 * @param {string} provider - (twitter, facebook, github, google)
 		 */
 		login.authenticate = function(provider) {
+
+			/**
+			 * Successfully authenticated
+			 * Go to initially intended authenticated path
+			 *
+			 * @param response {object} promise response
+			 * @private
+			 */
+			function _authSuccess(response) {
+				if ($rootScope.authPath) {
+					$location.path($rootScope.authPath);
+				}
+			}
+
 			$auth.authenticate(provider)
-				.then(function(response) {
-					// signed in
-				})
+				.then(_authSuccess)
 				.catch(function(response) {
 					console.log(response.data);
 				});
