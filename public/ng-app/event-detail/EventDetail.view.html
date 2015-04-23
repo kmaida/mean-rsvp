@@ -2,14 +2,14 @@
 	<section id="content-main" class="content-main eventDetail-content clearfix" ng-controller="EventDetailCtrl as event"
 			 ng-cloak>
 
-		<div ng-if="event.isAuthenticated()">
+		<div ng-if="event.isAuthenticated() && event.eventReady && event.rsvpReady">
 			<h1 class="content-heading">{{event.detail.title}}</h1>
 
 			<p class="lead">
 				{{event.detail.description}}
 			</p>
 
-			<button ng-if="event.rsvpReady && event.detail.rsvp"
+			<button ng-if="event.detail.rsvp"
 					class="btn btn-primary"
 					ng-click="event.openRsvpModal()"><i class="fa fa-paper-plane"></i> {{event.rsvpBtnText}}</button>
 
@@ -17,8 +17,7 @@
 				<i class="fa fa-warning"></i> RSVP is closed for this event.
 			</div>
 
-			<rsvp-form ng-if="event.rsvpReady"
-					   event="event.detail"
+			<rsvp-form event="event.detail"
 					   form-model="event.rsvpObj"
 					   user-name="{{::event.user.displayName}}"
 					   user-id="{{::event.user._id}}"

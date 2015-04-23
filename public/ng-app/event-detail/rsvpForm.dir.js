@@ -63,10 +63,6 @@
 				rf.btnSaved = true;
 				rf.btnSubmitText = _isCreate ? 'Submitted!' : 'Updated!';
 
-				if (_isCreate) {
-					rf.formModel = {};
-				}
-
 				$rootScope.$broadcast('rsvpSubmitted');
 
 				$timeout(function() {

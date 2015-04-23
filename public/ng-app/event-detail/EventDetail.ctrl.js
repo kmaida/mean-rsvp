@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('EventDetailCtrl', EventDetailCtrl);
 
-	EventDetailCtrl.$inject = ['$routeParams', '$auth', 'userData', 'eventData', '$rootScope'];
+	EventDetailCtrl.$inject = ['$routeParams', '$auth', 'userData', 'eventData', '$rootScope', 'Event'];
 
-	function EventDetailCtrl($routeParams, $auth, userData, eventData, $rootScope) {
+	function EventDetailCtrl($routeParams, $auth, userData, eventData, $rootScope, Event) {
 		var event = this,
 			_eventId = $routeParams.eventId;
 
@@ -26,6 +26,11 @@
 			event.showModal = true;
 		};
 
+		/**
+		 * Fetch the user's data and process RSVP information
+		 *
+		 * @private
+		 */
 		function _getUserData() {
 			/**
 			 * Function for successful API call retrieving user data
@@ -57,6 +62,7 @@
 
 		_getUserData();
 
+		// when RSVP has been submitted, update user data
 		$rootScope.$on('rsvpSubmitted', _getUserData);
 
 		/**
@@ -67,6 +73,8 @@
 		 */
 		function _eventSuccess(data) {
 			event.detail = data;
+			event.detail.prettyDate = Event.getPrettyDatetime(event.detail);
+			event.eventReady = true;
 		}
 
 		eventData.getEvent(_eventId).then(_eventSuccess);
