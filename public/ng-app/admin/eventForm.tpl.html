@@ -46,7 +46,7 @@
 						   name="startTime"
 						   ng-model="ef.formModel.startTime"
 						   class="form-control"
-						   placeholder="hh:mm AM/PM"
+						   placeholder="h:mm AM/PM"
 						   ng-pattern="ef.timeRegex"
 						   required>
 				</div>
@@ -59,7 +59,7 @@
 		</div>
 
 		<div ng-if="eventForm.startTime.$dirty && eventForm.startTime.$invalid" ng-messages="eventForm.startTime.$error" class="text-danger">
-			<span ng-message="pattern">Start time 12-hour format <strong>hh:mm AM/PM</strong></span>
+			<span ng-message="pattern">Start time 12-hour format <strong>h:mm AM/PM</strong></span>
 			<span ng-message="required">Start time is <strong>required</strong></span>
 		</div>
 	</div>
@@ -90,7 +90,7 @@
 						   name="endTime"
 						   ng-model="ef.formModel.endTime"
 						   class="form-control"
-						   placeholder="hh:mm AM/PM"
+						   placeholder="h:mm AM/PM"
 						   ng-pattern="ef.timeRegex"
 						   required>
 				</div>
@@ -103,7 +103,7 @@
 		</div>
 
 		<div ng-if="eventForm.endTime.$dirty && eventForm.endTime.$invalid" ng-messages="eventForm.endTime.$error" class="text-danger">
-			<span ng-message="pattern">End time 12-hour format <strong>hh:mm AM/PM</strong></span>
+			<span ng-message="pattern">End time 12-hour format <strong>h:mm AM/PM</strong></span>
 			<span ng-message="required">End time is <strong>required</strong></span>
 		</div>
 	</div>
@@ -115,9 +115,11 @@
 			   ng-model="ef.formModel.location"
 			   class="form-control"
 			   placeholder="123 Some Street, City, State"
+			   ng-pattern="ef.addressRegex"
 			   required>
 
 		<div ng-if="eventForm.location.$dirty && eventForm.location.$invalid" ng-messages="eventForm.location.$error" class="text-danger">
+			<span ng-message="pattern">Location contains invalid characters</span>
 			<span ng-message="required">Location is <strong>required</strong></span>
 		</div>
 	</div>

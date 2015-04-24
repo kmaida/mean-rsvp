@@ -11,7 +11,7 @@
 	function Event(Utils) {
 
 		/**
-		 * Get pretty (longer form) date from mm/dd/yyyy string
+		 * Get pretty (longer form) date from a date string
 		 *
 		 * @param dateStr {string} the date string to prettify
 		 * @returns {string} longer form date: mon [d]d yyyy

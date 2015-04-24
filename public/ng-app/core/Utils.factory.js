@@ -7,7 +7,6 @@
 		.factory('Utils', Utils);
 
 	function Utils() {
-
 		/**
 		 * Get ordinal value
 		 *

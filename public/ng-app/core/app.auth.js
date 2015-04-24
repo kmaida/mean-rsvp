@@ -32,21 +32,13 @@
 
 	function authRun($rootScope, $location, $auth) {
 		$rootScope.$on('$routeChangeStart', function(event, next, current) {
-			if (next && next.$$route && next.$$route.secure) {
-				var _nextPath = next.$$route.originalPath;
+			if (next && next.$$route && next.$$route.secure && !$auth.isAuthenticated()) {
+				$rootScope.authPath = $location.path();
 
-				// if user is not authenticated
-				if (!$auth.isAuthenticated()) {
-					$rootScope.$evalAsync(function() {
-						// send user to login
-						$location.path('/login');
-
-						if (_nextPath !== '/login') {
-							// store intended path
-							$rootScope.authPath = _nextPath;
-						}
-					});
-				}
+				$rootScope.$evalAsync(function() {
+					// send user to login
+					$location.path('/login');
+				});
 			}
 		});
 	}
