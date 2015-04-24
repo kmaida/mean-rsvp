@@ -597,10 +597,11 @@ module.exports = function(app, config) {
 	 |--------------------------------------------------------------------------
 	 */
 	app.post('/api/rsvp/event/:id', ensureAuthenticated, function(req, res) {
-		Rsvp.findOne({ eventId: req.params.id }, function(err, existingRsvp) {
+		Rsvp.findOne({ eventId: req.params.id, userId: req.body.userId }, function(err, existingRsvp) {
 			if (existingRsvp) {
 				return res.status(409).send({ message: 'You have already RSVPed to this event' });
 			}
+			
 			var rsvp = new Rsvp({
 				userId: req.body.userId,
 				eventId: req.params.id,
