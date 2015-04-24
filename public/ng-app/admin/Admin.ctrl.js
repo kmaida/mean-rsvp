@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('AdminCtrl', AdminCtrl);
 
-	AdminCtrl.$inject = ['$auth', 'userData', 'User', 'rsvpData'];
+	AdminCtrl.$inject = ['$scope', '$location', '$auth', 'userData', 'User', 'rsvpData'];
 
-	function AdminCtrl($auth, userData, User, rsvpData) {
+	function AdminCtrl($scope, $location, $auth, userData, User, rsvpData) {
 		// controllerAs ViewModel
 		var admin = this;
 
@@ -27,17 +27,31 @@
 			return $auth.isAuthenticated();
 		};
 
-		admin.tabs = ['Events', 'Add Event', 'Users'];
-		admin.currentTab = 0;
+		var _tab = $location.search().view;
+
+		admin.tabs = [
+			{
+				name: 'Events',
+				query: 'events'
+			},
+			{
+				name: 'Add Event',
+				query: 'add-event'
+			},
+			{
+				name: 'Users',
+				query: 'users'
+			}
+		];
+
+		admin.currentTab = _tab ? _tab : 'events';
 
 		/**
-		 * Switch tabs
-		 *
-		 * @param tabIndex
+		 * Change tabs by watching for route update
 		 */
-		admin.changeTab = function(tabIndex) {
-			admin.currentTab = tabIndex;
-		};
+		$scope.$on('$routeUpdate', function(event, next) {
+			admin.currentTab = next.params.view;
+		});
 
 		/**
 		 * Function for successful API call getting user list
@@ -56,7 +70,6 @@
 		}
 
 		userData.getAllUsers().then(_getAllUsersSuccess);
-
 
 
 

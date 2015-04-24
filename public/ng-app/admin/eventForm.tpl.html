@@ -115,11 +115,9 @@
 			   ng-model="ef.formModel.location"
 			   class="form-control"
 			   placeholder="123 Some Street, City, State"
-			   ng-pattern="ef.addressRegex"
 			   required>
 
 		<div ng-if="eventForm.location.$dirty && eventForm.location.$invalid" ng-messages="eventForm.location.$error" class="text-danger">
-			<span ng-message="pattern">Location contains invalid characters</span>
 			<span ng-message="required">Location is <strong>required</strong></span>
 		</div>
 	</div>

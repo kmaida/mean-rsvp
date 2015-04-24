@@ -6,14 +6,14 @@
 		<div ng-if="admin.isAuthenticated() && admin.showAdmin">
 
 			<ul class="nav nav-tabs adminTabs">
-				<li ng-repeat="tab in admin.tabs" role="presentation" ng-class="{active: admin.currentTab === $index}">
-					<a ng-click="admin.changeTab($index)">{{tab}}</a>
+				<li ng-repeat="tab in admin.tabs" role="presentation" ng-class="{active: admin.currentTab === tab.query}">
+					<a ng-href="admin?view={{tab.query}}">{{tab.name}}</a>
 				</li>
 			</ul>
 
-			<div ng-if="admin.currentTab === 0" class="content-section" ng-include="'/ng-app/admin/eventList.tpl.html'"></div>
+			<div ng-if="admin.currentTab === 'events'" class="content-section" ng-include="'/ng-app/admin/eventList.tpl.html'"></div>
 
-			<div ng-if="admin.currentTab === 1" class="content-section">
+			<div ng-if="admin.currentTab === 'add-event'" class="content-section">
 				<section class="eventForm">
 					<h2>
 						<i class="fa fa-calendar"></i> Add Event
@@ -27,7 +27,7 @@
 				</section>
 			</div>
 
-			<div ng-if="admin.currentTab === 2" class="content-section" ng-include="'/ng-app/admin/users.tpl.html'"></div>
+			<div ng-if="admin.currentTab === 'users'" class="content-section" ng-include="'/ng-app/admin/users.tpl.html'"></div>
 		</div>
 
 		<div ng-if="!admin.showAdmin" class="alert alert-danger">

@@ -31,7 +31,8 @@
 			})
 			.when('/admin', {
 				templateUrl: 'ng-app/admin/Admin.view.html',
-				secure: true
+				secure: true,
+				reloadOnSearch: false
 			})
 			.otherwise({
 				redirectTo: '/'
