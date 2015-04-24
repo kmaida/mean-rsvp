@@ -33,9 +33,10 @@
 			<td class="eventTable-action edit">
 				<a ng-href="/event/{{evt._id}}/edit"><i class="fa fa-edit"></i></a>
 			</td>
-			<!--<td><a ng-href="/event/{{evt._id}}/guests">View Guests</a></td>-->
 			<td><a ng-click="admin.showGuests(evt._id)">View Guests</a></td>
 		</tr>
 	</table>
+
+	<view-event-guests event-id="admin.showGuestsEventId" ng-if="admin.showGuestsEventId"></view-event-guests>
 
 </section>

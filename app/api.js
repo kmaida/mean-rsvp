@@ -601,7 +601,7 @@ module.exports = function(app, config) {
 			if (existingRsvp) {
 				return res.status(409).send({ message: 'You have already RSVPed to this event' });
 			}
-			
+
 			var rsvp = new Rsvp({
 				userId: req.body.userId,
 				eventId: req.params.id,

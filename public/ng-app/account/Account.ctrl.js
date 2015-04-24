@@ -46,7 +46,7 @@
 		 * Change tabs by watching for route update
 		 */
 		$scope.$on('$routeUpdate', function(event, next) {
-			account.currentTab = next.params.view;
+			account.currentTab = next.params.view || 'user-info';
 		});
 
 		/**

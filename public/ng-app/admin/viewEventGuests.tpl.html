@@ -1,0 +1,18 @@
+<table class="table table-responsive">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Attending</th>
+			<th>Guests</th>
+			<th>Comments</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="rsvp in g.guests">
+			<td>{{rsvp.name}}</td>
+			<td>{{rsvp.attending}}</td>
+			<td>{{rsvp.guests}}</td>
+			<td>{{rsvp.comments}}</td>
+		</tr>
+	</tbody>
+</table>

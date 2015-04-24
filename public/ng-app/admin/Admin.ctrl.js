@@ -50,7 +50,7 @@
 		 * Change tabs by watching for route update
 		 */
 		$scope.$on('$routeUpdate', function(event, next) {
-			admin.currentTab = next.params.view;
+			admin.currentTab = next.params.view || 'events';
 		});
 
 		/**
@@ -71,14 +71,9 @@
 
 		userData.getAllUsers().then(_getAllUsersSuccess);
 
-
-
-
-
 		admin.showGuests = function(eventId) {
-			rsvpData.getEventGuests(eventId).then(function(data) {
-				console.log(data);
-			});
+			console.log('show guests', eventId);
+			admin.showGuestsEventId = eventId;
 		};
 	}
 })();
