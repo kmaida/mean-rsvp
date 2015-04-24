@@ -97,14 +97,14 @@ module.exports = function(app, config) {
 			rsvps.forEach(function(rsvp) {
 				userRsvps.push(rsvp);
 			});
-		});
 
-		User.findById(req.user, function(err, user) {
-			if (err) { res.send(err); }
+			User.findById(req.user, function(err, user) {
+				if (err) { res.send(err); }
 
-			user.rsvps = userRsvps;
+				user.rsvps = userRsvps;
 
-			res.send(user);
+				res.send(user);
+			});
 		});
 	});
 

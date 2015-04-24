@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('AccountCtrl', AccountCtrl);
 
-	AccountCtrl.$inject = ['$scope', '$auth', 'userData', '$timeout', 'OAUTH', 'User'];
+	AccountCtrl.$inject = ['$scope', '$location', '$auth', 'userData', '$timeout', 'OAUTH', 'User'];
 
-	function AccountCtrl($scope, $auth, userData, $timeout, OAUTH, User) {
+	function AccountCtrl($scope, $location, $auth, userData, $timeout, OAUTH, User) {
 		// controllerAs ViewModel
 		var account = this;
 
@@ -22,6 +22,32 @@
 		account.isAuthenticated = function() {
 			return $auth.isAuthenticated();
 		};
+
+		var _tab = $location.search().view;
+
+		account.tabs = [
+			{
+				name: 'User Info',
+				query: 'user-info'
+			},
+			{
+				name: 'Manage Logins',
+				query: 'manage-logins'
+			},
+			{
+				name: 'RSVPs',
+				query: 'rsvps'
+			}
+		];
+
+		account.currentTab = _tab ? _tab : 'user-info';
+
+		/**
+		 * Change tabs by watching for route update
+		 */
+		$scope.$on('$routeUpdate', function(event, next) {
+			account.currentTab = next.params.view;
+		});
 
 		/**
 		 * Get user's profile information
@@ -39,8 +65,7 @@
 				account.administrator = account.user.isAdmin;
 				account.linkedAccounts = User.getLinkedAccounts(account.user, 'account');
 				account.showAccount = true;
-
-				console.log(account.user);
+				account.rsvps = account.user.rsvps;
 			}
 
 			/**

@@ -10,93 +10,15 @@
 
 		<div ng-if="account.isAuthenticated() && account.showAccount">
 
-			<div ng-if="account.administrator" class="alert alert-info">
-				<i class="fa fa-wrench"></i> <strong>Administrator:</strong> <a ng-href="/admin">Add events / view
-				users</a>
-			</div>
+			<ul class="nav nav-tabs adminTabs">
+				<li ng-repeat="tab in account.tabs" role="presentation" ng-class="{active: account.currentTab === tab.query}">
+					<a ng-href="account?view={{tab.query}}">{{tab.name}}</a>
+				</li>
+			</ul>
 
-			<section class="updateInfo content-section">
-				<h2 class="page-header">
-					<i class="fa fa-pencil-square-o"></i> User Info
-				</h2>
-
-				<p class="lead">
-					Update your display name.
-				</p>
-
-				<form method="post" ng-submit="account.updateProfile()" class="form-inline">
-
-					<div class="form-group">
-						<label class="sr-only" for="displayName">Name</label>
-						<input id="displayName" type="text" class="form-control" ng-model="account.user.displayName"
-							   placeholder="Name" ng-required />
-					</div>
-
-					<button type="submit"
-							class="btn-save btn"
-							ng-class="{'btn-primary': !account.btnSaved, 'btn-success': account.btnSaved === true, 'btn-danger': account.btnSaved === 'error' || account.user.displayName === '' || account.user.displayName === null}"
-							ng-disabled="account.user.displayName === '' || account.user.displayName === null">
-						<i class="fa" ng-class="{'fa-download': !account.btnSaved, 'fa-check': account.btnSaved, 'fa-asterisk': account.user.displayName === '' || account.user.displayName === null, 'fa-ban': account.btnSaved === 'error'}"></i> {{account.btnSaveText}}
-					</button>
-				</form>
-
-			</section>
-
-			<section class="linkAccounts content-section">
-				<h2 class="page-header">
-					<i class="fa fa-link"></i> Manage Logins
-				</h2>
-
-				<p class="lead">
-					Manage your login options by authorizing and linking third-party accounts. Once linked, you may use
-					that service to login.
-				</p>
-
-				<detect-adblock></detect-adblock>
-
-				<div class="linkAccounts-content">
-
-					<div class="linkAccounts-account" ng-repeat="login in account.logins">
-						<div class="panel" ng-class="{'panel-success': account.user[login.account], 'panel-default': !account.user[login.account]}">
-
-							<div class="panel-heading">
-								<h3 class="panel-title">
-									<i class="fa fa-{{::login.account}}"></i> {{::login.name}}
-								</h3>
-							</div>
-
-							<div class="panel-body">
-								<p ng-if="!account.user[login.account]">
-									Visit <a href="{{::login.url}}">{{::login.url}}</a> to view your account or sign&nbsp;up.
-								</p>
-
-								<p ng-if="account.user[login.account]">
-									Your account is linked! You may use {{::login.name}} to&nbsp;login.
-								</p>
-
-								<div ng-if="account.user[login.account] && account.linkedAccounts.length === 1" class="alert alert-warning" role="alert">
-									<i class="fa fa-info-circle"></i> {{login.name}} is currently your only login.
-								</div>
-
-								<!-- Link/Unlink buttons -->
-
-								<button class="btn btn-sm btn-danger" ng-if="account.user[login.account] && account.linkedAccounts.length > 1" ng-click="account.unlink(login.account)">
-									<i class="fa fa-unlink"></i> Unlink {{::login.name}}
-								</button>
-
-								<button class="btn btn-sm btn-primary" ng-if="!account.user[login.account]"
-										ng-click="account.link(login.account)">
-									<i class="fa fa-link"></i> Link {{::login.name}}
-								</button>
-							</div>
-
-						</div>
-					</div> <!-- /.linkAccounts-account -->
-
-				</div>
-
-			</section>
-
+			<section ng-if="account.currentTab === 'user-info'" class="updateInfo content-section" ng-include="'ng-app/account/UserInfo.tpl.html'"></section>
+			<section ng-if="account.currentTab === 'manage-logins'" class="linkAccounts content-section" ng-include="'ng-app/account/ManageLogins.tpl.html'"></section>
+			<section ng-if="account.currentTab === 'rsvps'" class="rsvps content-section" ng-include="'ng-app/account/Rsvps.tpl.html'"></section>
 		</div>
 
 	</section>

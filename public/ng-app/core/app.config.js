@@ -27,7 +27,8 @@
 			})
 			.when('/account', {
 				templateUrl: 'ng-app/account/Account.view.html',
-				secure: true
+				secure: true,
+				reloadOnSearch: false
 			})
 			.when('/admin', {
 				templateUrl: 'ng-app/admin/Admin.view.html',
