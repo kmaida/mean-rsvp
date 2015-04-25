@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('EventsCtrl', EventsCtrl);
 
-	EventsCtrl.$inject = ['$auth', 'eventData'];
+	EventsCtrl.$inject = ['$auth', 'eventData', 'Event'];
 
-	function EventsCtrl($auth, eventData) {
+	function EventsCtrl($auth, eventData, Event) {
 		var events = this;
 
 		/**
@@ -27,8 +27,27 @@
 		 */
 		function _eventsSuccess(data) {
 			events.allEvents = data;
+
+			for (var i = 0; i < events.allEvents.length; i++) {
+				var _thisEvt = events.allEvents[i];
+
+				_thisEvt.startDateJS = Event.getJSDatetime(_thisEvt.startDate, _thisEvt.startTime);
+			}
+
+			events.showEvents = true;
 		}
 
 		eventData.getAllEvents().then(_eventsSuccess);
+
+		/**
+		 * Custom sort function
+		 * Get event start date and change to real date to sort by
+		 *
+		 * @param evt {object} event object
+		 * @returns {Date}
+		 */
+		events.sortStartDate = function(evt) {
+			return new Date(evt.startDate);
+		};
 	}
 })();

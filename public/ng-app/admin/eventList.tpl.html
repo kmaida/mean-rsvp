@@ -1,4 +1,4 @@
-<section class="eventAdminListing" ng-controller="AdminEventListCtrl as adminEventList">
+<section class="eventAdminListing" ng-controller="AdminEventListCtrl as aEvt">
 	<h2>
 		<i class="fa fa-list"></i> All Events
 	</h2>
@@ -7,30 +7,30 @@
 		View all events and access detail links, update, or delete.
 	</p>
 
-	<table ng-if="adminEventList.showEvents" class="eventTable table">
+	<table ng-if="aEvt.showEvents" class="eventTable table">
 		<thead>
 			<tr>
 				<th>Event</th>
 				<th>ID / URL</th>
-				<th class="eventTable-action-head">Edit</th>
+				<th class="text-center">Edit</th>
 				<th>RSVPs</th>
 			</tr>
 		</thead>
-		<tr ng-repeat="evt in adminEventList.events" id="e{{$index}}">
+		<tr ng-repeat="evt in aEvt.events | orderBy:aEvt.sortStartDate" id="e{{$index}}">
 			<td><a ng-href="/event/{{evt._id}}">{{evt.title}}</a></td>
 
 			<td>
-				<a ng-show="adminEventList.copyInput !== $index"
+				<a ng-show="aEvt.copyInput !== $index"
 				   class="eventTable-link-copy"
-				   ng-click="adminEventList.showUrlInput($index)">{{evt._id}}</a>
+				   ng-click="aEvt.showUrlInput($index)">{{evt._id}}</a>
 
-				<input ng-show="adminEventList.copyInput === $index"
+				<input ng-show="aEvt.copyInput === $index"
 					   type="text"
 					   class="form-control eventTable-link-input"
-					   ng-value="adminEventList.evtUrl + evt._id"
-					   ng-blur="adminEventList.blurUrlInput()">
+					   ng-value="aEvt.evtUrl + evt._id"
+					   ng-blur="aEvt.blurUrlInput()">
 			</td>
-			<td class="eventTable-action edit">
+			<td class="eventTable-action text-center">
 				<a ng-href="/event/{{evt._id}}/edit"><i class="fa fa-edit"></i></a>
 			</td>
 			<td><a ng-click="admin.showGuests(evt._id, evt.title)">View List</a></td>

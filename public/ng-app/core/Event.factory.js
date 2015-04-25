@@ -6,29 +6,9 @@
 		.module('myApp')
 		.factory('Event', Event);
 
-	Event.$inject = ['Utils'];
+	Event.$inject = ['Utils', 'prettyDateFilter'];
 
-	function Event(Utils) {
-
-		/**
-		 * Get pretty (longer form) date from a date string
-		 *
-		 * @param dateStr {string} the date string to prettify
-		 * @returns {string} longer form date: mon [d]d yyyy
-		 */
-		function getPrettyDate(dateStr) {
-			var d = new Date(dateStr),
-				monthsArr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-				month = monthsArr[d.getMonth()],
-				day = d.getDate(),
-				year = d.getFullYear(),
-				prettyDate;
-
-			prettyDate = month + ' ' + day + ' ' + year;
-
-			return prettyDate;
-		}
-
+	function Event(Utils, prettyDateFilter) {
 		/**
 		 * Generate a pretty date for UI display from the start and end datetimes
 		 *
@@ -40,8 +20,8 @@
 				startTime = eventObj.startTime,
 				endDate = eventObj.endDate,
 				endTime = eventObj.endTime,
-				prettyStartDate = getPrettyDate(startDate),
-				prettyEndDate = getPrettyDate(endDate),
+				prettyStartDate = prettyDateFilter(startDate),
+				prettyEndDate = prettyDateFilter(endDate),
 				prettyDatetime;
 
 			if (startDate === endDate) {
@@ -57,9 +37,36 @@
 			return prettyDatetime;
 		}
 
+		/**
+		 * Get JavaScript Date from event date and time strings
+		 *
+		 * @param dateStr {string} mm/dd/yyy
+		 * @param timeStr {string} hh:mm AM/PM
+		 * @returns {Date}
+		 */
+		function getJSDatetime(dateStr, timeStr) {
+			var d = new Date(dateStr),
+				timeArr = timeStr.split(' '),
+				time = timeArr[0].split(':'),
+				hours = time[0] * 1,
+				minutes = time[1],
+				ampm = timeArr[1],
+				fulldate;
+
+			if (ampm == 'PM') {
+				if (hours !== 12) {
+					hours = hours + 12;
+				}
+			}
+
+			fulldate = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hours, minutes);
+
+			return fulldate;
+		}
+
 		return {
-			getPrettyDate: getPrettyDate,
-			getPrettyDatetime: getPrettyDatetime
+			getPrettyDatetime: getPrettyDatetime,
+			getJSDatetime: getJSDatetime
 		};
 	}
 })();

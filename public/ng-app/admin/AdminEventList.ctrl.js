@@ -48,5 +48,16 @@
 		}
 
 		eventData.getAllEvents().then(_getAllEventsSuccess);
+
+		/**
+		 * Custom sort function
+		 * Get event start date and change to real date to sort by
+		 *
+		 * @param evt {object} event object
+		 * @returns {Date}
+		 */
+		aEvt.sortStartDate = function(evt) {
+			return new Date(evt.startDate);
+		};
 	}
 })();

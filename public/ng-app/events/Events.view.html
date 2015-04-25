@@ -4,11 +4,23 @@
 		<div ng-if="events.isAuthenticated()">
 			<h1 class="content-heading">Events</h1>
 
-			<ul class="publicEventList">
-				<li ng-repeat="evt in events.allEvents">
-					<a ng-href="/event/{{evt._id}}">{{evt.title}}</a>
-				</li>
-			</ul>
+			<table class="table table-responsive">
+				<thead>
+					<tr>
+						<th>Event</th>
+						<th>Date(s)</th>
+						<th>RSVP</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="evt in events.allEvents | filter:{viewPublic: true} | orderBy:events.sortStartDate">
+						<td><a ng-href="/event/{{evt._id}}">{{evt.title}}</a></td>
+						<td>{{evt.startDate | prettyDate}}{{evt.endDate !== evt.startDate ? ' - ' + (evt.endDate | prettyDate) :
+							''}}</td>
+						<td ng-class="{'text-danger': !evt.rsvp}">{{evt.rsvp ? 'Open' : 'Closed'}}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 	</section>
