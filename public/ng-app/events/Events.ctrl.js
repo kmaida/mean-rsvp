@@ -50,5 +50,12 @@
 		events.sortStartDate = function(evt) {
 			return Event.getJSDatetime(evt.startDate, evt.startTime);
 		};
+
+		/**
+		 * Clear search query
+		 */
+		//events.clearQuery = function() {
+		//	events.query = '';
+		//};
 	}
 })();

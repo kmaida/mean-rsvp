@@ -1,5 +1,7 @@
 .modal {
 	background: rgba(0,0,0,.5);
+	overflow: scroll;
+	position: absolute;
 }
 .showModal {
 	display: block !important;
