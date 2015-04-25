@@ -13,6 +13,8 @@
 
 		// verify that user is admin
 		userData.getUser().then(function(data) {
+			admin.adminReady = true;
+
 			if (data.isAdmin) {
 				admin.showAdmin = true;
 			}
@@ -71,9 +73,10 @@
 
 		userData.getAllUsers().then(_getAllUsersSuccess);
 
-		admin.showGuests = function(eventId) {
-			console.log('show guests', eventId);
+		admin.showGuests = function(eventId, eventName) {
 			admin.showGuestsEventId = eventId;
+			admin.showGuestsEventName = eventName;
+			admin.showModal = true;
 		};
 	}
 })();

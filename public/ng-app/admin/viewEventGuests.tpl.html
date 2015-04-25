@@ -1,18 +1,40 @@
-<table class="table table-responsive">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Attending</th>
-			<th>Guests</th>
-			<th>Comments</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="rsvp in g.guests">
-			<td>{{rsvp.name}}</td>
-			<td>{{rsvp.attending}}</td>
-			<td>{{rsvp.guests}}</td>
-			<td>{{rsvp.comments}}</td>
-		</tr>
-	</tbody>
-</table>
+<div class="modal" ng-class="{showModal: g.showModal}">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="g.closeModal()"
+						aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">RSVPs for <a ng-href="/event/{{g.eventId}}">{{g.eventName}}</a></h4>
+				<span ng-if="g.guestsReady"><strong>Attending:</strong> {{g.totalGuests}}</span>
+			</div>
+			<div class="modal-body" ng-show="g.guestsReady">
+				<table class="table table-responsive" ng-if="g.guests.length">
+					<thead>
+					<tr>
+						<th>Name</th>
+						<th>Attending</th>
+						<th>Guests</th>
+						<th>Comments</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="rsvp in g.guests">
+						<td>{{rsvp.name}}</td>
+						<td>{{rsvp.attending ? 'Yes' : 'No'}}</td>
+						<td>{{rsvp.attending ? rsvp.guests : ''}}</td>
+						<td>{{rsvp.comments}}</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<div ng-if="g.guests.length === 0" class="alert alert-warning">
+					No guests have RSVPed to this event.
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" ng-click="g.closeModal()">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
