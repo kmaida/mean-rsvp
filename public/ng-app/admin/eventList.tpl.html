@@ -7,7 +7,7 @@
 		View all events and access detail links, update, or delete.
 	</p>
 
-	<table ng-if="aEvt.showEvents" class="eventTable table">
+	<table ng-if="aEvt.eventsReady" class="eventTable table table-responsive table-condensed">
 		<thead>
 			<tr>
 				<th>Event</th>
@@ -33,7 +33,7 @@
 			<td class="eventTable-action text-center">
 				<a ng-href="/event/{{evt._id}}/edit"><i class="fa fa-edit"></i></a>
 			</td>
-			<td><a ng-click="admin.showGuests(evt._id, evt.title)">View List</a></td>
+			<td><a ng-click="admin.showGuests(evt._id, evt.title)">View</a></td>
 		</tr>
 	</table>
 

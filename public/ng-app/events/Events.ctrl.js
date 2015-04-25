@@ -29,12 +29,13 @@
 			events.allEvents = data;
 
 			for (var i = 0; i < events.allEvents.length; i++) {
-				var _thisEvt = events.allEvents[i];
+				var thisEvt = events.allEvents[i];
 
-				_thisEvt.startDateJS = Event.getJSDatetime(_thisEvt.startDate, _thisEvt.startTime);
+				thisEvt.startDateJS = Event.getJSDatetime(thisEvt.startDate, thisEvt.startTime);
+				thisEvt.expired = Event.expired(thisEvt);
 			}
 
-			events.showEvents = true;
+			events.eventsReady = true;
 		}
 
 		eventData.getAllEvents().then(_eventsSuccess);
@@ -47,7 +48,7 @@
 		 * @returns {Date}
 		 */
 		events.sortStartDate = function(evt) {
-			return new Date(evt.startDate);
+			return Event.getJSDatetime(evt.startDate, evt.startTime);
 		};
 	}
 })();

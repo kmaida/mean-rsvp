@@ -18,7 +18,14 @@
 		cursor: copy;
 		display: inline-block;
 		height: 34px;
+		max-width: 100px;
+		overflow: hidden;
 		padding: 10px 0;
+		text-overflow: ellipsis;
+
+		@include mq($mq-large) {
+			max-width: 100%;
+		}
 	}
 	&-link-input {
 		width: 90%;

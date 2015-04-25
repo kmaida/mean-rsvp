@@ -73,6 +73,12 @@
 
 		userData.getAllUsers().then(_getAllUsersSuccess);
 
+		/**
+		 * Show RSVPed guest modal
+		 *
+		 * @param eventId {string} event ID to get RSVPs for
+		 * @param eventName {string} event name to get RSVPs for
+		 */
 		admin.showGuests = function(eventId, eventName) {
 			admin.showGuestsEventId = eventId;
 			admin.showGuestsEventName = eventName;

@@ -4,23 +4,51 @@
 		<div ng-if="events.isAuthenticated()">
 			<h1 class="content-heading">Events</h1>
 
-			<table class="table table-responsive">
-				<thead>
+			<section class="events-upcoming" ng-if="events.eventsReady && (events.allEvents | filter:{expired: false} | filter:{viewPublic: true}).length">
+				<h3><i class="fa fa-calendar"></i> Upcoming Events</h3>
+				<p class="lead">View / RSVP for upcoming events.</p>
+
+				<table class="table table-responsive">
+					<thead>
+						<tr>
+							<th>Event</th>
+							<th>Date(s)</th>
+							<th>RSVP</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="evt in events.allEvents | filter:{expired: false} | filter:{viewPublic: true} | orderBy:events.sortStartDate">
+							<td><a ng-href="/event/{{evt._id}}">{{evt.title}}</a></td>
+							<td>{{evt.startDate | prettyDate}}{{evt.endDate !== evt.startDate ? ' - ' + (evt.endDate | prettyDate) :
+								''}}</td>
+							<td ng-class="{'text-danger': !evt.rsvp, 'text-success': evt.rsvp}">{{evt.rsvp ? 'Open' : 'Closed'}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="events-past" ng-if="events.eventsReady && (events.allEvents | filter:{expired: true} | filter:{viewPublic: true}).length">
+				<h3><i class="fa fa-book"></i> Past Events</h3>
+				<p class="lead">These events have come and gone, but their details are still available to view.</p>
+
+				<table class="table table-responsive text-muted">
+					<thead>
 					<tr>
 						<th>Event</th>
 						<th>Date(s)</th>
 						<th>RSVP</th>
 					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="evt in events.allEvents | filter:{viewPublic: true} | orderBy:events.sortStartDate">
+					</thead>
+					<tbody>
+					<tr ng-repeat="evt in events.allEvents | filter:{expired: true} | filter:{viewPublic: true} | orderBy:events.sortStartDate">
 						<td><a ng-href="/event/{{evt._id}}">{{evt.title}}</a></td>
 						<td>{{evt.startDate | prettyDate}}{{evt.endDate !== evt.startDate ? ' - ' + (evt.endDate | prettyDate) :
 							''}}</td>
-						<td ng-class="{'text-danger': !evt.rsvp}">{{evt.rsvp ? 'Open' : 'Closed'}}</td>
+						<td class="text-danger">Closed</td>
 					</tr>
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			</section>
 		</div>
 
 	</section>

@@ -13,11 +13,11 @@
 				{{event.detail.description}}
 			</p>
 
-			<button ng-if="event.detail.rsvp"
+			<button ng-if="event.detail.rsvp && !event.detail.expired"
 					class="btn btn-primary"
 					ng-click="event.openRsvpModal()"><i class="fa fa-paper-plane"></i> {{event.rsvpBtnText}}</button>
 
-			<div ng-if="!event.detail.rsvp" class="alert alert-warning">
+			<div ng-if="!event.detail.rsvp || event.detail.expired" class="alert alert-warning">
 				<i class="fa fa-warning"></i> RSVP is closed for this event.
 			</div>
 

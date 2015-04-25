@@ -64,9 +64,24 @@
 			return fulldate;
 		}
 
+		/**
+		 * Determine if event is expired
+		 * (end date/time has passed current date/time)
+		 *
+		 * @param evt {object} event object
+		 * @returns {boolean}
+		 */
+		function expired(evt) {
+			var jsStartDate = getJSDatetime(evt.endDate, evt.endTime),
+				now = new Date();
+
+			return jsStartDate < now;
+		}
+
 		return {
 			getPrettyDatetime: getPrettyDatetime,
-			getJSDatetime: getJSDatetime
+			getJSDatetime: getJSDatetime,
+			expired: expired
 		};
 	}
 })();

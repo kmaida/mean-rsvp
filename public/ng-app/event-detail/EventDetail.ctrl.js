@@ -74,6 +74,7 @@
 		function _eventSuccess(data) {
 			event.detail = data;
 			event.detail.prettyDate = Event.getPrettyDatetime(event.detail);
+			event.detail.expired = Event.expired(event.detail);
 			event.eventReady = true;
 		}
 

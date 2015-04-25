@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('AdminEventListCtrl', AdminEventListCtrl);
 
-	AdminEventListCtrl.$inject = ['eventData', '$location', '$timeout'];
+	AdminEventListCtrl.$inject = ['eventData', '$location', '$timeout', 'Event'];
 
-	function AdminEventListCtrl(eventData, $location, $timeout) {
+	function AdminEventListCtrl(eventData, $location, $timeout, Event) {
 		// controllerAs ViewModel
 		var aEvt = this;
 
@@ -43,8 +43,7 @@
 		 */
 		function _getAllEventsSuccess(data) {
 			aEvt.events = data;
-
-			aEvt.showEvents = true;
+			aEvt.eventsReady = true;
 		}
 
 		eventData.getAllEvents().then(_getAllEventsSuccess);
@@ -57,7 +56,7 @@
 		 * @returns {Date}
 		 */
 		aEvt.sortStartDate = function(evt) {
-			return new Date(evt.startDate);
+			return Event.getJSDatetime(evt.startDate, evt.startTime);
 		};
 	}
 })();
