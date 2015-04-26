@@ -6,12 +6,20 @@
 		<div class="jumbotron">
 			<h1><i class="fa fa-sign-in"></i> Login</h1>
 
-			<p>Please login with one of the following services.</p>
+			<p ng-if="!login.loggingIn || login.loggingIn === 'error'">Please login with one of the following services.</p>
+
+			<p ng-if="login.loggingIn"><i class="fa fa-cog fa-spin"></i> Logging in...</p>
+
+			<div ng-if="login.loggingIn === 'error'" class="alert alert-danger">
+				<i class="fa fa-warning"></i> Login failed!
+			</div>
 
 			<detect-adblock></detect-adblock>
 
-			<button ng-repeat="l in login.logins" class="btn btn-block btn-auth btn-{{::l.account}}"
-					ng-click="login.authenticate(l.account)">
+			<button ng-repeat="l in login.logins"
+					class="btn btn-block btn-auth btn-{{::l.account}}"
+					ng-click="login.authenticate(l.account)"
+					ng-disabled="login.loggingIn">
 				<i class="fa fa-{{::l.account}}"></i> Login with {{::l.name}}
 			</button>
 		</div>

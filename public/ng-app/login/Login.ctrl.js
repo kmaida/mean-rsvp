@@ -19,6 +19,7 @@
 		 * @param {string} provider - (twitter, facebook, github, google)
 		 */
 		login.authenticate = function(provider) {
+			login.loggingIn = true;
 
 			/**
 			 * Successfully authenticated
@@ -28,6 +29,8 @@
 			 * @private
 			 */
 			function _authSuccess(response) {
+				login.loggingIn = false;
+
 				if ($rootScope.authPath) {
 					$location.path($rootScope.authPath);
 				}
@@ -37,6 +40,8 @@
 				.then(_authSuccess)
 				.catch(function(response) {
 					console.log(response.data);
+					login.loggingIn = 'error';
+					login.loginMsg = ''
 				});
 		}
 	}

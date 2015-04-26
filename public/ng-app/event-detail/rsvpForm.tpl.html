@@ -4,8 +4,8 @@
 			<div class="modal-header">
 				<button type="button" class="close" ng-click="rf.closeModal()"
 						aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">RSVP for {{rf.event.title}}</h4>
-				<h5>{{rf.event.prettyDate}}</h5>
+				<h4 class="modal-title">RSVP for {{::rf.event.title}}</h4>
+				<h5>{{::rf.event.prettyDate}}</h5>
 			</div>
 
 			<form method="post" ng-submit="rf.submitRsvp()" name="rsvpForm">

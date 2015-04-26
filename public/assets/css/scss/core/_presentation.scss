@@ -50,6 +50,7 @@ body {
 /*------------------------------------------------------------------------- Content --*/
 
 .content-wrapper {
+	min-height: 550px;
 	padding: $padding-screen-small;
 
 	@include mq($mq-large) {
