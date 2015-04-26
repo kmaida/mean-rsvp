@@ -66,6 +66,7 @@
 				ef.btnSubmitText = _isCreate ? 'Saved!' : 'Updated!';
 
 				if (_isCreate) {
+					ef.showRedirectMsg = true;
 					$timeout(_goToEvents, 2500);
 				}
 
