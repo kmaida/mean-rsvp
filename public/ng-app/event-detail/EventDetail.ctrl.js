@@ -32,8 +32,10 @@
 		 * @private
 		 */
 		function _getUserData() {
+
 			/**
 			 * Function for successful API call retrieving user data
+			 * Check if user is admin
 			 * Then calls RSVP data and determines if user has RSVPed to this event
 			 *
 			 * @param data {object} promise provided by $http success
@@ -41,6 +43,7 @@
 			 */
 			function _userSuccess(data) {
 				event.user = data;
+				event.isAdmin = data.isAdmin;
 
 				var _rsvps = event.user.rsvps;
 
