@@ -16,7 +16,9 @@
 
 			<div class="eventDetail-location">
 				<i class="fa fa-map-marker"></i> <strong>Location</strong><br>
-				<address>{{::event.detail.location}}</address>
+				<address>{{::event.detail.location}} [<a
+						ng-href="http://maps.google.com/maps?saddr=&daddr={{::event.detail.location}}">get
+					directions</a>]</address>
 			</div>
 
 			<div class="eventDetail-rsvp">
