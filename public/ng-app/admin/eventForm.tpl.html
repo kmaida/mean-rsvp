@@ -134,7 +134,8 @@
 	<div class="form-group">
 		<label>Public<span class="text-danger">*</span></label>
 		<p class="help-block">
-			Event to appear on main Events listing:
+			<small>If marked public, event appears on <a ng-href="/events">Events</a> listing. If not public, users
+				need a direct link to view event details and RSVP.</small>
 		</p>
 
 		<div class="radio">
@@ -162,7 +163,7 @@
 	<div class="form-group">
 		<label>RSVP<span class="text-danger">*</span></label>
 		<p class="help-block">
-			Regardless of selected RSVP status, users cannot submit / update RSVPs after the event has ended.
+			<small>If an event has ended, users cannot submit / update RSVPs regardless of Open/Closed status below.</small>
 		</p>
 
 		<div class="radio">
