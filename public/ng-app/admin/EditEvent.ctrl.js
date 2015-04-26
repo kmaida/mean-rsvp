@@ -24,7 +24,7 @@
 
 		// verify that user is admin
 		userData.getUser().then(function(data) {
-			edit.showEdit = data.isAdmin;
+			edit.showEdit = data.isAdmin ? true : false;
 		});
 
 		/**
