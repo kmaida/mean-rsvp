@@ -26,19 +26,23 @@
 				ef.formModel = ef.prefillModel;
 			}
 
-			/**
-			 * Watch start date and when all characters are filled out, populate end date
-			 * Deregister watch
-			 *
-			 * @type {*|function()}
-			 * @private
-			 */
-			var _watchStartdate = $scope.$watch('ef.formModel.startDate', function(newVal, oldVal) {
-				if (newVal && newVal.length === 10) {
-					ef.formModel.endDate = newVal;
-					_watchStartdate();
-				}
-			});
+			if (_isCreate) {
+				/**
+				 * Watch start date and when all characters are filled out, populate end date
+				 * Deregister watch
+				 *
+				 * @type {*|function()}
+				 * @private
+				 */
+				var _watchStartdate = $scope.$watch('ef.formModel.startDate', function (newVal, oldVal) {
+					if (newVal && newVal.length === 10) {
+						console.log(newVal, oldVal);
+
+						ef.formModel.endDate = newVal;
+						_watchStartdate();
+					}
+				});
+			}
 
 			/**
 			 * Reset the state of the form Submit button

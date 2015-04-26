@@ -188,6 +188,15 @@
 		</div>
 	</div>
 
+	<div ng-if="ef.formModel.rsvp" class="form-group">
+		<label for="eventRsvpInstructions">Special Instructions for RSVP</label>
+		<textarea id="eventRsvpInstructions"
+				  name="rsvpInstructions"
+				  ng-model="ef.formModel.rsvpInstructions"
+				  class="form-control"
+				  rows="2"></textarea>
+	</div>
+
 	<button type="submit"
 			class="btn-save btn"
 			ng-class="{'btn-primary': !ef.btnSaved, 'btn-success': ef.btnSaved === true, 'btn-danger': ef.btnSaved === 'error'}"

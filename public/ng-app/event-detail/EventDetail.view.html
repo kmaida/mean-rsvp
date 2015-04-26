@@ -5,32 +5,45 @@
 		<div ng-if="event.isAuthenticated() && event.eventReady && event.rsvpReady">
 			<h1 class="content-heading">{{::event.detail.title}}</h1>
 
-			<p>
-				{{::event.detail.prettyDate}}
-			</p>
-
 			<p class="lead">
 				{{::event.detail.description}}
 			</p>
 
-			<button ng-if="event.detail.rsvp && !event.detail.expired"
-					class="btn btn-primary"
-					ng-click="event.openRsvpModal()"><i class="fa fa-paper-plane"></i> {{event.rsvpBtnText}}</button>
+			<p class="eventDetail-datetime">
+				<i class="fa fa-calendar"></i> <strong>Date / Time</strong><br>
+				{{::event.detail.prettyDate}}
+			</p>
 
-			<div ng-if="!event.detail.rsvp" class="alert alert-warning">
-				<i class="fa fa-warning"></i> RSVP is closed for this event.
+			<div class="eventDetail-location">
+				<i class="fa fa-map-marker"></i> <strong>Location</strong><br>
+				<address>{{::event.detail.location}}</address>
 			</div>
 
-			<div ng-if="event.detail.expired" class="alert alert-danger">
-				<i class="fa fa-ban"></i> RSVP is closed because the event has ended.
+			<div class="eventDetail-rsvp">
+				<div ng-if="event.detail.rsvp && !event.detail.expired">
+					<p ng-if="event.rsvpObj">You have RSVPed to this event. You may <a
+							ng-click="event.downloadIcs()">download .ics</a> to add this event to your calendar.</p>
+
+					<button class="btn btn-primary"
+							ng-click="event.openRsvpModal()"><i class="fa fa-paper-plane"></i> {{event.rsvpBtnText}}</button>
+				</div>
+
+				<div ng-if="!event.detail.rsvp" class="alert alert-warning">
+					<i class="fa fa-warning"></i> RSVP is closed for this event.
+				</div>
+
+				<div ng-if="event.detail.expired" class="alert alert-danger">
+					<i class="fa fa-ban"></i> RSVP is closed because the event has ended.
+				</div>
+
+				<rsvp-form ng-if="!event.detail.expired && event.detail.rsvp"
+						   event="event.detail"
+						   form-model="event.rsvpObj"
+						   user-name="{{::event.user.displayName}}"
+						   user-id="{{::event.user._id}}"
+						   show-modal="event.showModal"></rsvp-form>
 			</div>
 
-			<rsvp-form ng-if="!event.detail.expired && event.detail.rsvp"
-					   event="event.detail"
-					   form-model="event.rsvpObj"
-					   user-name="{{::event.user.displayName}}"
-					   user-id="{{::event.user._id}}"
-					   show-modal="event.showModal"></rsvp-form>
 		</div>
 
 	</section>

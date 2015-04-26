@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('EventDetailCtrl', EventDetailCtrl);
 
-	EventDetailCtrl.$inject = ['$routeParams', '$auth', 'userData', 'eventData', '$rootScope', 'Event'];
+	EventDetailCtrl.$inject = ['$scope', '$routeParams', '$auth', 'userData', 'eventData', '$rootScope', 'Event'];
 
-	function EventDetailCtrl($routeParams, $auth, userData, eventData, $rootScope, Event) {
+	function EventDetailCtrl($scope, $routeParams, $auth, userData, eventData, $rootScope, Event) {
 		var event = this,
 			_eventId = $routeParams.eventId;
 
@@ -65,6 +65,19 @@
 		// when RSVP has been submitted, update user data
 		$rootScope.$on('rsvpSubmitted', _getUserData);
 
+		function _generateIcal() {
+			event.cal = ics();
+
+			var _startD = Event.getJSDatetime(event.detail.startDate, event.detail.startTime),
+				_endD = Event.getJSDatetime(event.detail.endDate, event.detail.endTime);
+
+			event.cal.addEvent(event.detail.title, event.detail.description, event.detail.location, _startD, _endD);
+		}
+
+		event.downloadIcs = function() {
+			event.cal.download();
+		};
+
 		/**
 		 * Function for successful API call getting single event detail
 		 *
@@ -79,5 +92,11 @@
 		}
 
 		eventData.getEvent(_eventId).then(_eventSuccess);
+
+		var _watchRsvpReady = $scope.$watch('event.rsvpReady', function(newVal, oldVal) {
+			if (newVal && event.detail.rsvp && event.rsvpObj) {
+				_generateIcal();
+			}
+		});
 	}
 })();

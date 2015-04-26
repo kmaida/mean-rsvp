@@ -18,6 +18,7 @@ var eventSchema = new mongoose.Schema({
 	location: String,
 	viewPublic: Boolean,
 	rsvp: Boolean,
+	rsvpInstructions: String,
 	guests: Array
 });
 

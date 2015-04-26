@@ -26,9 +26,11 @@
 @import 'modules/user';
 @import 'modules/modal';
 @import 'modules/eventGuests';
+@import 'modules/rsvp';
 
 /*-- Pages --*/
 @import 'pages/login';
 @import 'pages/events';
+@import 'pages/eventDetail';
 @import 'pages/account';
 @import 'pages/admin';

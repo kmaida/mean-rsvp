@@ -462,7 +462,8 @@ module.exports = function(app, config) {
 				description: req.body.description,
 				location: req.body.location,
 				viewPublic: req.body.viewPublic,
-				rsvp: req.body.rsvp
+				rsvp: req.body.rsvp,
+				rsvpInstructions: req.body.rsvp ? req.body.rsvpInstructions : ''
 			});
 			event.save(function() {
 				res.send(event);
@@ -508,6 +509,7 @@ module.exports = function(app, config) {
 			// booleans accept what's in the form because || won't work
 			event.viewPublic = req.body.viewPublic;
 			event.rsvp = req.body.rsvp;
+			event.rsvpInstructions = req.body.rsvp ? req.body.rsvpInstructions || event.rsvpInstructions : '';
 
 			event.save(function(err) {
 				res.status(200).end();
