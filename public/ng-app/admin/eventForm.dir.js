@@ -5,9 +5,9 @@
 		.module('myApp')
 		.directive('eventForm', eventForm);
 
-	eventForm.$inject = ['eventData', '$timeout'];
+	eventForm.$inject = ['eventData', '$timeout', '$location'];
 
-	function eventForm(eventData, $timeout) {
+	function eventForm(eventData, $timeout, $location) {
 
 		eventFormCtrl.$inject = ['$scope'];
 
@@ -45,6 +45,15 @@
 				ef.btnSubmitText = _isCreate ? 'Submit' : 'Update';
 			}
 
+			/**
+			 * Go to Events tab
+			 *
+			 * @private
+			 */
+			function _goToEvents() {
+				$location.search('view', 'events');
+			}
+
 			_btnSubmitReset();
 
 			/**
@@ -57,14 +66,13 @@
 				ef.btnSubmitText = _isCreate ? 'Saved!' : 'Updated!';
 
 				if (_isCreate) {
-					ef.formModel = {};
+					$timeout(_goToEvents, 2500);
 				}
 
 				if (_isEdit) {
 					ef.showUpdateDetailLink = true;
+					$timeout(_btnSubmitReset, 2500);
 				}
-
-				$timeout(_btnSubmitReset, 3000);
 			}
 
 			/**
