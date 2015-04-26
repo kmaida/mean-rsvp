@@ -5,14 +5,14 @@
 				<button type="button" class="close" ng-click="rf.closeModal()"
 						aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">RSVP for {{::rf.event.title}}</h4>
-				<h5>{{::rf.event.prettyDate}}</h5>
-				<p ng-if="rf.event.rsvpInstructions" class="rsvpInstructions text-info">
-					<i class="fa fa-info-circle"></i> <em>{{::rf.event.rsvpInstructions}}</em>
-				</p>
+				<h5><i class="fa fa-calendar"></i> {{::rf.event.prettyDate}}</h5>
 			</div>
 
 			<form method="post" ng-submit="rf.submitRsvp()" name="rsvpForm">
 				<div class="modal-body">
+					<div ng-if="rf.event.rsvpInstructions"
+						 class="rsvpInstructions" ng-bind-html="rf.event.rsvpInstructions"></div>
+
 					<p class="text-danger">
 						<strong>*</strong> <em class="small">required</em>
 					</p>

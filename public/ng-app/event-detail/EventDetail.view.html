@@ -5,9 +5,7 @@
 		<div ng-if="event.isAuthenticated() && event.eventReady && event.rsvpReady">
 			<h1 class="content-heading">{{::event.detail.title}}</h1>
 
-			<p class="lead">
-				{{::event.detail.description}}
-			</p>
+			<div class="lead" ng-bind-html="event.detail.description"></div>
 
 			<p class="eventDetail-datetime">
 				<i class="fa fa-calendar"></i> <strong>Date / Time</strong><br>
@@ -25,15 +23,17 @@
 				<div ng-if="event.detail.rsvp && !event.detail.expired">
 					<i class="fa fa-paper-plane"></i> <strong>RSVP</strong>
 
-					<p ng-if="event.detail.rsvpInstructions"><em>{{::event.detail.rsvpInstructions}}</em></p>
+					<div ng-if="event.detail.rsvpInstructions"
+						 ng-bind-html="event.detail.rsvpInstructions"
+						 class="eventDetail-rsvp-instructions"></div>
 
-					<p ng-if="event.noRsvp">You may RSVP to this event.</p>
-					<p ng-if="!event.noRsvp">You have RSVPed to this event.</p>
+					<p ng-if="event.noRsvp"><em>You may RSVP to this event.</em></p>
+					<p ng-if="!event.noRsvp"><em>You have RSVPed to this event.</em></p>
 
 					<div class="eventDetail-rsvp-buttons">
-						<button ng-if="!event.noRsvp" class="btn btn-info" ng-click="event.downloadIcs()"><i
-								class="fa fa-download"></i>
-							Download to Calendar
+						<button ng-if="!event.noRsvp"
+								class="btn btn-info"
+								ng-click="event.downloadIcs()"><i class="fa fa-download"></i> Download to Calendar
 						</button>
 
 						<button class="btn btn-primary"

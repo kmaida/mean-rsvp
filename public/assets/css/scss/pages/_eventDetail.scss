@@ -7,8 +7,13 @@
 		margin-bottom: 10px;
 	}
 }
-.eventDetail-rsvp-buttons {
-	.btn {
+.eventDetail-rsvp {
+	&-instructions {
 		margin-bottom: 10px;
+	}
+	&-buttons {
+		.btn {
+			margin-bottom: 10px;
+		}
 	}
 }

@@ -4,9 +4,10 @@ MEAN stack RSVP application
 
 * MongoDB / Express / AngularJS / Node (with [reStart-mean](https://github.com/kmaida/reStart-mean))
 * Token-based authentication (with Oauth via [Satellizer](https://github.com/sahat/satellizer))
-* Event iCal download (with [ics.js](https://github.com/nwcell/ics.js)
+* Event iCal download (with [ics.js](https://github.com/nwcell/ics.js))
 * FontAwesome
 * Bootstrap 3
+* jQuery
 * Gulp
  
 ## Changelog
