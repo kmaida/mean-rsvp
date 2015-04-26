@@ -35,7 +35,7 @@
 
 				<div class="eventDelete-action">
 					<div class="checkbox">
-						<label>
+						<label ng-if="!edit.btnDelete || edit.btnDelete === 'error'">
 							<input type="checkbox" ng-model="edit.confirmDelete">
 							Yes, I want to delete <em>{{edit.editEvent.title}}</em>.
 						</label>

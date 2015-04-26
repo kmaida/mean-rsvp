@@ -10,11 +10,11 @@
 				<!--<a ng-if="events.query" class="events-search-clearQuery" ng-click="events.clearQuery()">&times;</a>-->
 			<!--</div>-->
 
-			<section class="events-upcoming" ng-if="events.eventsReady && (events.allEvents | filter:{expired: false} | filter:{viewPublic: true} | filter:events.query).length">
+			<section class="events-upcoming" ng-if="events.eventsReady">
 				<h3><i class="fa fa-calendar"></i> Upcoming Events</h3>
 				<p class="lead">View / RSVP for upcoming events.</p>
 
-				<table class="table table-responsive">
+				<table class="table table-responsive" ng-if="(events.allEvents | filter:{expired: false} | filter:{viewPublic: true} | filter:events.query).length">
 					<thead>
 						<tr>
 							<th>Event</th>
@@ -32,6 +32,10 @@
 						</tr>
 					</tbody>
 				</table>
+
+				<div ng-if="!(events.allEvents | filter:{expired: false} | filter:{viewPublic: true} | filter:events.query).length" class="alert alert-warning">
+					<i class="fa fa-warning"></i> There are no upcoming events.
+				</div>
 			</section>
 
 			<section class="events-past" ng-if="events.eventsReady && (events.allEvents | filter:{expired: true} | filter:{viewPublic: true} | filter:events.query).length">
