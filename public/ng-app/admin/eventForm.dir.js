@@ -26,21 +26,14 @@
 				ef.formModel = ef.prefillModel;
 			}
 
-			if (_isCreate) {
-				/**
-				 * Watch start date and when all characters are filled out, populate end date
-				 * Deregister watch
-				 *
-				 * @type {*|function()}
-				 * @private
-				 */
-				var _watchStartdate = $scope.$watch('ef.formModel.startDate', function (newVal, oldVal) {
-					if (newVal && newVal.length === 10) {
-						ef.formModel.endDate = newVal;
-						_watchStartdate();
-					}
-				});
-			}
+			/**
+			 * On start date valid blur, update end date if empty
+			 */
+			ef.startDateBlur = function() {
+				if (!ef.formModel.endDate) {
+					ef.formModel.endDate = ef.formModel.startDate;
+				}
+			};
 
 			/**
 			 * Reset the state of the form Submit button
