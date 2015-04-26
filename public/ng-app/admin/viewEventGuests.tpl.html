@@ -4,12 +4,12 @@
 			<div class="modal-header">
 				<button type="button" class="close" ng-click="g.closeModal()"
 						aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">RSVPs for <a ng-href="/event/{{::g.eventId}}">{{::g.eventName}}</a></h4>
+				<h4 class="modal-title">RSVPs for <a ng-href="/event/{{g.eventId}}">{{g.eventName}}</a></h4>
 			</div>
 			<div class="modal-body" ng-show="g.guestsReady">
 
 				<section ng-if="(g.guests | filter:{attending: true}).length" class="guests-attending">
-					<h4 class="text-success">Attending ({{::g.totalGuests}})</h4>
+					<h4 class="text-success">Attending ({{g.totalGuests}})</h4>
 
 					<table class="table table-responsive table-condensed" ng-if="g.guests.length">
 						<thead>
