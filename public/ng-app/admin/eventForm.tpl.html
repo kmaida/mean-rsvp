@@ -203,4 +203,7 @@
 			ng-disabled="eventForm.$invalid">
 		<i class="fa" ng-class="{'fa-download': !ef.btnSaved, 'fa-check': ef.btnSaved, 'fa-ban': ef.btnSaved === 'error'}"></i> {{ef.btnSubmitText}}
 	</button>
+
+	<span ng-if="ef.showUpdateDetailLink" class="eventForm-updated"> [<a ng-href="/event/{{ef.formModel._id}}">view
+		event details</a>]</span>
 </form>
