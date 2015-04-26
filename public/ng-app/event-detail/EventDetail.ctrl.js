@@ -53,7 +53,8 @@
 					}
 				}
 
-				event.rsvpBtnText = !event.rsvpObj ? 'RSVP for event' : 'Update my RSVP';
+				event.noRsvp = !event.rsvpObj;
+				event.rsvpBtnText = event.noRsvp ? 'RSVP' : 'Update my RSVP';
 				event.rsvpReady = true;
 			}
 
@@ -94,7 +95,7 @@
 		eventData.getEvent(_eventId).then(_eventSuccess);
 
 		var _watchRsvpReady = $scope.$watch('event.rsvpReady', function(newVal, oldVal) {
-			if (newVal && event.detail.rsvp && event.rsvpObj) {
+			if (newVal && event.detail && event.detail.rsvp && event.rsvpObj) {
 				_generateIcal();
 			}
 		});

@@ -36,8 +36,6 @@
 				 */
 				var _watchStartdate = $scope.$watch('ef.formModel.startDate', function (newVal, oldVal) {
 					if (newVal && newVal.length === 10) {
-						console.log(newVal, oldVal);
-
 						ef.formModel.endDate = newVal;
 						_watchStartdate();
 					}
