@@ -35,7 +35,7 @@ body {
 
 /*-- Header --*/
 
-.toggle-offcanvas {
+.header-mobile-page {
 	@include mq($mq-large) {
 		display: none;
 	}

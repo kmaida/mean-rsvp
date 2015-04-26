@@ -2,15 +2,39 @@
 	 NAVIGATION
 --------------------*/
 
-/*------------------------------------------------------------------------- Header menu toggle --*/
+/*------------------------------------------------------------------------- Mobile header --*/
+
+.header-mobile-page {
+	background: $color-black-light;
+	color: $color-white;
+	height: 50px;
+	margin-bottom: 10px;
+	position: relative;
+
+	&-siteTitle {
+		font-size: 30px;
+		line-height: 50px;
+		margin: 0;
+		padding: 0 0 0 50px;
+		position: absolute;
+			top: 0;
+		text-align: center;
+		width: 100%;
+	}
+}
+
+/*-- Hamburger menu toggle --*/
 
 .toggle-offcanvas {
 	background: $color-black-light;
+	border-right: 1px solid $color-gray-rgba;
+	display: inline-block;
 	height: 50px;
 	padding: 23.5px 13px;
-	position: absolute;
+	position: relative;
 	text-align: center;
 	width: 50px;
+	z-index: 100;
 
 	span,
 	span:before,
@@ -62,8 +86,12 @@
 		padding: $padding-screen-large;
 	}
 
-	.active {
+	.active .nav-list-item-text {
 		font-weight: bold;
+
+		@include mq($mq-large) {
+			border-bottom: 1px solid $color-gray-rgba;
+		}
 	}
 	&-list {
 		list-style: none;
@@ -96,6 +124,12 @@
 			}
 			li {
 				padding: 0 20px;
+			}
+		}
+
+		&-subnav {
+			@include mq($mq-large) {
+				display: none;
 			}
 		}
 	}
