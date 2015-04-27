@@ -6,9 +6,9 @@
 		.module('myApp')
 		.factory('Event', Event);
 
-	Event.$inject = ['Utils', 'prettyDateFilter'];
+	Event.$inject = ['Utils', '$filter'];
 
-	function Event(Utils, prettyDateFilter) {
+	function Event(Utils, $filter) {
 		/**
 		 * Generate a pretty date for UI display from the start and end datetimes
 		 *
@@ -17,11 +17,14 @@
 		 */
 		function getPrettyDatetime(eventObj) {
 			var startDate = eventObj.startDate,
+				startD = new Date(startDate),
 				startTime = eventObj.startTime,
 				endDate = eventObj.endDate,
+				endD = new Date(endDate),
 				endTime = eventObj.endTime,
-				prettyStartDate = prettyDateFilter(startDate),
-				prettyEndDate = prettyDateFilter(endDate),
+				dateFormatStr = 'MMM d yyyy',
+				prettyStartDate = $filter('date')(startD, dateFormatStr),
+				prettyEndDate = $filter('date')(endD, dateFormatStr),
 				prettyDatetime;
 
 			if (startDate === endDate) {
@@ -49,7 +52,7 @@
 				timeArr = timeStr.split(' '),
 				time = timeArr[0].split(':'),
 				hours = time[0] * 1,
-				minutes = time[1],
+				minutes = time[1] * 1,
 				ampm = timeArr[1],
 				fulldate;
 
