@@ -34,7 +34,7 @@
 					<p ng-if="!event.noRsvp"><em>You have RSVPed to this event.</em></p>
 
 					<div class="eventDetail-rsvp-buttons">
-						<button ng-if="!event.noRsvp"
+						<button ng-if="!event.noRsvp && event.rsvpObj.attending"
 								class="btn btn-info"
 								ng-click="event.downloadIcs()"><i class="fa fa-download"></i> Download to Calendar
 						</button>

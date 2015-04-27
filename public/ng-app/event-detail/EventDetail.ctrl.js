@@ -69,6 +69,11 @@
 		// when RSVP has been submitted, update user data
 		$rootScope.$on('rsvpSubmitted', _getUserData);
 
+		/**
+		 * Generate .ics file for this event
+		 *
+		 * @private
+		 */
 		function _generateIcal() {
 			event.cal = ics();
 
@@ -78,6 +83,9 @@
 			event.cal.addEvent(event.detail.title, event.detail.description, event.detail.location, _startD, _endD);
 		}
 
+		/**
+		 * Download .ics file
+		 */
 		event.downloadIcs = function() {
 			event.cal.download();
 		};
@@ -98,8 +106,9 @@
 		eventData.getEvent(_eventId).then(_eventSuccess);
 
 		var _watchRsvpReady = $scope.$watch('event.rsvpReady', function(newVal, oldVal) {
-			if (newVal && event.detail && event.detail.rsvp && event.rsvpObj) {
+			if (newVal && event.detail && event.detail.rsvp) {
 				_generateIcal();
+				_watchRsvpReady();
 			}
 		});
 	}
