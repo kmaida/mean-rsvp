@@ -30,13 +30,14 @@
 					<input id="eventDate-startDate"
 						   type="text"
 						   class="form-control"
+						   name="startDate"
 						   datepicker-popup="MM/dd/yyyy"
 						   ng-model="ef.formModel.startDate"
 						   is-open="ef.startDateOpen"
 						   min-date="ef.minDate"
 						   datepicker-options="ef.dateOptions"
 						   close-text="Close"
-						   ng-blur="ef.startDateBlur()"
+						   ng-blur="ef.startDateBlur(); ef.validateDaterange()"
 						   required />
 					<span class="input-group-btn">
 						<button type="button" class="btn btn-default" ng-click="ef.toggleDatepicker($event, 'startDate')"><i class="fa fa-calendar"></i></button>
@@ -54,13 +55,14 @@
 						   class="form-control"
 						   placeholder="h:mm AM/PM"
 						   ng-pattern="ef.timeRegex"
+						   ng-blur="ef.validateDaterange()"
 						   required>
 				</div>
 			</div>
 		</div>
 
 		<div ng-if="eventForm.startDate.$dirty && eventForm.startDate.$invalid" ng-messages="eventForm.startDate.$error" class="text-danger">
-			<span ng-message="pattern">Start date format <strong>mm/dd/yyyy</strong></span>
+			<span ng-message="parse">Please enter a valid date, e.g. <strong>mm/dd/yyyy</strong></span>
 			<span ng-message="required">Start date is <strong>required</strong></span>
 		</div>
 
@@ -80,12 +82,14 @@
 					<input id="eventDate-endDate"
 						   type="text"
 						   class="form-control"
+						   name="endDate"
 						   datepicker-popup="MM/dd/yyyy"
 						   ng-model="ef.formModel.endDate"
 						   is-open="ef.endDateOpen"
 						   min-date="ef.minDate"
 						   datepicker-options="ef.dateOptions"
 						   close-text="Close"
+						   ng-blur="ef.validateDaterange()"
 						   required />
 					<span class="input-group-btn">
 						<button type="button" class="btn btn-default" ng-click="ef.toggleDatepicker($event, 'endDate')"><i class="fa fa-calendar"></i></button>
@@ -103,13 +107,14 @@
 						   class="form-control"
 						   placeholder="h:mm AM/PM"
 						   ng-pattern="ef.timeRegex"
+						   ng-blur="ef.validateDaterange()"
 						   required>
 				</div>
 			</div>
 		</div>
 
 		<div ng-if="eventForm.endDate.$dirty && eventForm.endDate.$invalid" ng-messages="eventForm.endDate.$error" class="text-danger">
-			<span ng-message="pattern">End date format <strong>mm/dd/yyyy</strong></span>
+			<span ng-message="parse">Please enter a valid date, e.g. <strong>mm/dd/yyyy</strong></span>
 			<span ng-message="required">End date is <strong>required</strong></span>
 		</div>
 
@@ -117,6 +122,11 @@
 			<span ng-message="pattern">End time 12-hour format <strong>h:mm AM/PM</strong></span>
 			<span ng-message="required">End time is <strong>required</strong></span>
 		</div>
+
+		<div ng-if="eventForm.startDate.$valid && eventForm.startTime.$valid && eventForm.endDate.$valid && eventForm.endTime.$valid && !ef.validDaterange" class="message-invalid text-danger">
+			<strong>Event date/time range is invalid</strong>: event ends before it begins.
+		</div>
+
 	</div>
 
 	<div class="form-group">
@@ -211,7 +221,7 @@
 	<button type="submit"
 			class="btn-save btn"
 			ng-class="{'btn-primary': !ef.btnSaved, 'btn-success': ef.btnSaved === true, 'btn-danger': ef.btnSaved === 'error'}"
-			ng-disabled="eventForm.$invalid">
+			ng-disabled="eventForm.$invalid || !ef.validDaterange">
 		<i class="fa" ng-class="{'fa-download': !ef.btnSaved, 'fa-check': ef.btnSaved, 'fa-ban': ef.btnSaved === 'error'}"></i> {{ef.btnSubmitText}}
 	</button>
 

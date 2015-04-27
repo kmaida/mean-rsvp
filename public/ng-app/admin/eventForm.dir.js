@@ -5,9 +5,9 @@
 		.module('myApp')
 		.directive('eventForm', eventForm);
 
-	eventForm.$inject = ['eventData', '$timeout', '$location', '$filter'];
+	eventForm.$inject = ['eventData', '$timeout', '$location', '$filter', 'Event'];
 
-	function eventForm(eventData, $timeout, $location, $filter) {
+	function eventForm(eventData, $timeout, $location, $filter, Event) {
 
 		eventFormCtrl.$inject = ['$scope'];
 
@@ -53,7 +53,7 @@
 			 * On start date valid blur, update end date if empty
 			 */
 			ef.startDateBlur = function() {
-				if (!ef.formModel.endDate) {
+				if (ef.formModel && ef.formModel.startDate && !ef.formModel.endDate) {
 					ef.formModel.endDate = $filter('date')(ef.formModel.startDate, 'MM/dd/yyyy');
 				}
 			};
@@ -112,13 +112,26 @@
 			}
 
 			/**
+			 * Check if event start and end datetimes are a valid range
+			 * Runs on blur of event dates/times
+			 *
+			 * @returns {boolean}
+			 */
+			ef.validateDaterange = function() {
+				if (ef.formModel && ef.formModel.startDate && ef.formModel.startTime && ef.formModel.endDate && ef.formModel.endTime) {
+					var startDatetime = Event.getJSDatetime(ef.formModel.startDate, ef.formModel.startTime),
+						endDatetime = Event.getJSDatetime(ef.formModel.endDate, ef.formModel.endTime);
+
+					ef.validDaterange = (startDatetime - endDatetime) < 0;
+				}
+			};
+
+			/**
 			 * Click submit button
 			 * Submit new event to API
 			 * Form @ eventForm.tpl.html
 			 */
 			ef.submitEvent = function() {
-				ef.btnSubmitText = 'Saving...';
-
 				if (_isCreate) {
 					eventData.createEvent(ef.formModel).then(_eventSuccess, _eventError);
 
