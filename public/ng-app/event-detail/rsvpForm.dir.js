@@ -36,7 +36,7 @@
 			 * @private
 			 */
 			var _watchAttending = $scope.$watch('rf.formModel.attending', function(newVal, oldVal) {
-				if (newVal === true) {
+				if (newVal === true && !oldVal && !rf.formModel.guests) {
 					rf.formModel.guests = 1;
 
 					// deregister $watch

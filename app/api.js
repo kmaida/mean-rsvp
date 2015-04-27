@@ -504,12 +504,11 @@ module.exports = function(app, config) {
 			event.startTime = req.body.startTime || event.startTime;
 			event.endDate = req.body.endDate || event.endDate;
 			event.endTime = req.body.endTime || event.endTime;
-			event.description = req.body.description || event.description;
+			event.description = req.body.description;
 			event.location = req.body.location || event.location;
-			// booleans accept what's in the form because || won't work
 			event.viewPublic = req.body.viewPublic;
 			event.rsvp = req.body.rsvp;
-			event.rsvpInstructions = req.body.rsvp ? req.body.rsvpInstructions || event.rsvpInstructions : '';
+			event.rsvpInstructions = req.body.rsvp ? req.body.rsvpInstructions : '';
 
 			event.save(function(err) {
 				res.status(200).end();
@@ -633,7 +632,7 @@ module.exports = function(app, config) {
 			rsvp.name = req.body.name || rsvp.name;
 			rsvp.attending = req.body.attending;
 			rsvp.guests = req.body.attending ? req.body.guests : 0;
-			rsvp.comments = req.body.comments || rsvp.comments;
+			rsvp.comments = req.body.comments;
 
 			rsvp.save(function(err) {
 				res.status(200).end();
