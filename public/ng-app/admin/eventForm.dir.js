@@ -5,9 +5,9 @@
 		.module('myApp')
 		.directive('eventForm', eventForm);
 
-	eventForm.$inject = ['eventData', '$timeout', '$location'];
+	eventForm.$inject = ['eventData', '$timeout', '$location', '$filter'];
 
-	function eventForm(eventData, $timeout, $location) {
+	function eventForm(eventData, $timeout, $location, $filter) {
 
 		eventFormCtrl.$inject = ['$scope'];
 
@@ -54,7 +54,7 @@
 			 */
 			ef.startDateBlur = function() {
 				if (!ef.formModel.endDate) {
-					//ef.formModel.endDate = $filter('date')(ef.formModel.startDate, '';
+					ef.formModel.endDate = $filter('date')(ef.formModel.startDate, 'MM/dd/yyyy');
 				}
 			};
 
