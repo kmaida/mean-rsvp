@@ -1,7 +1,8 @@
 <div ng-controller="HeaderCtrl as header" nav-control>
 	<div class="header-mobile-page">
-		<a ng-if="header.isAuthenticated()" class="toggle-offcanvas" ng-click="nav.toggleNav()"><span></span></a>
-		<h1 class="header-mobile-page-siteTitle"><i class="fa fa-paper-plane-o"></i> RSVP</h1>
+		<a class="toggle-offcanvas" ng-click="header.isAuthenticated() ? nav.toggleNav() : null" ng-class="{'disabled': !header.isAuthenticated()}">
+		<span></span></a>
+		<h1 class="header-mobile-page-siteTitle"><i class="fa fa-paper-plane-o"></i> {{::header.localData.title}}</h1>
 	</div>
 
 	<!-- only show navigation if user is logged in -->

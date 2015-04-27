@@ -1,10 +1,4 @@
 {
   "title": "RSVP",
-  "summary": "RSVP to events",
-  "sampleContent": [
-    { "fruit": "apples", "color": "red" },
-    { "fruit": "bananas", "color": "yellow" },
-    { "fruit": "kiwi fruits", "color": "green" },
-    { "fruit": "peaches", "color": "pink" }
-  ]
+  "summary": "kmaida.io - RSVP to events"
 }

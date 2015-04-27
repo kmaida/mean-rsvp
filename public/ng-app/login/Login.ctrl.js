@@ -5,11 +5,17 @@
 		.module('myApp')
 		.controller('LoginCtrl', LoginCtrl);
 
-	LoginCtrl.$inject = ['$auth', 'OAUTH', '$rootScope', '$location'];
+	LoginCtrl.$inject = ['$auth', 'OAUTH', '$rootScope', '$location', 'localData'];
 
-	function LoginCtrl($auth, OAUTH, $rootScope, $location) {
+	function LoginCtrl($auth, OAUTH, $rootScope, $location, localData) {
 		// controllerAs ViewModel
 		var login = this;
+
+		function _localDataSuccess(data) {
+			login.localData = data;
+		}
+
+		localData.getJSON().then(_localDataSuccess);
 
 		login.logins = OAUTH.LOGINS;
 

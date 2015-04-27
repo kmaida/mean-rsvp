@@ -11,6 +11,12 @@
 		// controllerAs ViewModel
 		var header = this;
 
+		function _localDataSuccess(data) {
+			header.localData = data;
+		}
+
+		localData.getJSON().then(_localDataSuccess);
+
 		/**
 		 * Log the user out of whatever authentication they've signed in with
 		 */

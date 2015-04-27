@@ -8,8 +8,6 @@
 				<small ng-if="event.isAdmin">[<a ng-href="event/{{event.detail._id}}/edit">edit</a>]</small>
 			</h1>
 
-			<div class="lead" ng-bind-html="event.detail.description"></div>
-
 			<p class="eventDetail-datetime">
 				<i class="fa fa-calendar"></i> <strong>Date / Time</strong><br>
 				<span ng-class="{'text-danger': event.detail.expired}">{{::event.detail.prettyDate}}</span>
@@ -21,6 +19,8 @@
 						ng-href="http://maps.google.com/maps?saddr=&daddr={{::event.detail.location}}">get
 					directions</a>]</address>
 			</div>
+
+			<div class="lead" ng-bind-html="event.detail.description"></div>
 
 			<div class="eventDetail-rsvp">
 				<div ng-if="event.detail.rsvp && !event.detail.expired">
