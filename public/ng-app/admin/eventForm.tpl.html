@@ -1,4 +1,4 @@
-<form method="post" ng-submit="ef.submitEvent()" name="eventForm">
+<form method="post" ng-submit="ef.submitEvent()" name="eventForm" class="eventForm">
 
 	<p class="text-danger">
 		<strong>*</strong> <em class="small">required</em>
@@ -26,38 +26,21 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<div class="input-group">
-					<!--<label for="eventDate-startDate" class="input-group-addon">Date</label>-->
-					<!--<input id="eventDate-startDate"-->
-						   <!--type="text"-->
-						   <!--name="startDate"-->
-						   <!--ng-model="ef.formModel.startDate"-->
-						   <!--ng-blur="eventForm.startDate.$valid ? ef.startDateBlur() : null"-->
-						   <!--class="form-control"-->
-						   <!--placeholder="mm/dd/yyyy"-->
-						   <!--ng-pattern="ef.dateRegex"-->
-						   <!--required>-->
-
-					<p class="input-group">
-						<label for="eventDate-startDate" class="input-group-addon">Date</label>
-						<input id="eventDate-startDate"
-							   type="text"
-							   class="form-control"
-							   datepicker-popup="mm/dd/yyyy"
-							   ng-model="ef.formModel.startDate"
-							   is-open="opened"
-							   min-date="minDate"
-							   max-date="'2015-06-22'"
-							   datepicker-options="dateOptions"
-							   date-disabled="disabled(date, mode)"
-							   close-text="Close"
-							   required />
-
-						  <span class="input-group-btn">
-							<button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
-						  </span>
-					</p>
-
-
+					<label for="eventDate-startDate" class="input-group-addon">Date</label>
+					<input id="eventDate-startDate"
+						   type="text"
+						   class="form-control"
+						   datepicker-popup="MM/dd/yyyy"
+						   ng-model="ef.formModel.startDate"
+						   is-open="ef.startDateOpen"
+						   min-date="ef.minDate"
+						   datepicker-options="ef.dateOptions"
+						   close-text="Close"
+						   ng-blur="ef.startDateBlur()"
+						   required />
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="ef.toggleDatepicker($event, 'startDate')"><i class="fa fa-calendar"></i></button>
+					</span>
 				</div>
 			</div>
 
@@ -96,12 +79,17 @@
 					<label for="eventDate-endDate" class="input-group-addon">Date</label>
 					<input id="eventDate-endDate"
 						   type="text"
-						   name="endDate"
-						   ng-model="ef.formModel.endDate"
 						   class="form-control"
-						   placeholder="mm/dd/yyyy"
-						   ng-pattern="ef.dateRegex"
-						   required>
+						   datepicker-popup="MM/dd/yyyy"
+						   ng-model="ef.formModel.endDate"
+						   is-open="ef.endDateOpen"
+						   min-date="ef.minDate"
+						   datepicker-options="ef.dateOptions"
+						   close-text="Close"
+						   required />
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="ef.toggleDatepicker($event, 'endDate')"><i class="fa fa-calendar"></i></button>
+					</span>
 				</div>
 			</div>
 

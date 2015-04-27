@@ -19,19 +19,42 @@
 			var _isCreate = jQuery.isEmptyObject(ef.prefillModel),
 				_isEdit = !jQuery.isEmptyObject(ef.prefillModel);
 
-			ef.dateRegex = /^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$/;
 			ef.timeRegex = /^(0?[1-9]|1[012])(:[0-5]\d) [APap][mM]$/i;
 
 			if (_isEdit) {
 				ef.formModel = ef.prefillModel;
 			}
 
+			// prevent selecting dates in the past
+			ef.minDate = new Date();
+
+			ef.dateOptions = {
+				showWeeks: false,
+				startingDay: 1
+			};
+
+			ef.startDateOpen = false;
+			ef.endDateOpen = false;
+
+			/**
+			 * Toggle the datepicker open/closed
+			 *
+			 * @param $event {object}
+			 * @param dateName {string} startDate / endDate
+			 */
+			ef.toggleDatepicker = function($event, dateName) {
+				$event.preventDefault();
+				$event.stopPropagation();
+
+				ef[dateName + 'Open'] = !ef[dateName + 'Open'];
+			};
+
 			/**
 			 * On start date valid blur, update end date if empty
 			 */
 			ef.startDateBlur = function() {
 				if (!ef.formModel.endDate) {
-					ef.formModel.endDate = ef.formModel.startDate;
+					//ef.formModel.endDate = $filter('date')(ef.formModel.startDate, '';
 				}
 			};
 
