@@ -26,16 +26,38 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<div class="input-group">
-					<label for="eventDate-startDate" class="input-group-addon">Date</label>
-					<input id="eventDate-startDate"
-						   type="text"
-						   name="startDate"
-						   ng-model="ef.formModel.startDate"
-						   ng-blur="eventForm.startDate.$valid ? ef.startDateBlur() : null"
-						   class="form-control"
-						   placeholder="mm/dd/yyyy"
-						   ng-pattern="ef.dateRegex"
-						   required>
+					<!--<label for="eventDate-startDate" class="input-group-addon">Date</label>-->
+					<!--<input id="eventDate-startDate"-->
+						   <!--type="text"-->
+						   <!--name="startDate"-->
+						   <!--ng-model="ef.formModel.startDate"-->
+						   <!--ng-blur="eventForm.startDate.$valid ? ef.startDateBlur() : null"-->
+						   <!--class="form-control"-->
+						   <!--placeholder="mm/dd/yyyy"-->
+						   <!--ng-pattern="ef.dateRegex"-->
+						   <!--required>-->
+
+					<p class="input-group">
+						<label for="eventDate-startDate" class="input-group-addon">Date</label>
+						<input id="eventDate-startDate"
+							   type="text"
+							   class="form-control"
+							   datepicker-popup="mm/dd/yyyy"
+							   ng-model="ef.formModel.startDate"
+							   is-open="opened"
+							   min-date="minDate"
+							   max-date="'2015-06-22'"
+							   datepicker-options="dateOptions"
+							   date-disabled="disabled(date, mode)"
+							   close-text="Close"
+							   required />
+
+						  <span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+						  </span>
+					</p>
+
+
 				</div>
 			</div>
 
