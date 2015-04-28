@@ -7,14 +7,16 @@
 var mongoose = require('mongoose');
 var config = require('../config');
 
+var _alphanum = /^[a-z0-9]+$/i;
+
 var rsvpSchema = new mongoose.Schema({
-	userId: String,
-	eventId: String,
-	eventName: String,
-	name: String,
-	attending: Boolean,
-	guests: Number,
-	comments: String
+	userId: {type: String, required: true, match: _alphanum },
+	eventId: {type: String, required: true, match: _alphanum },
+	eventName: {type: String, required: true },
+	name: {type: String, required: true },
+	attending: { type: Boolean, required: true },
+	guests: { type: Number, min: 0, max: 10 },
+	comments: { type: String }
 });
 
 var Rsvp = mongoose.model('Rsvp', rsvpSchema);

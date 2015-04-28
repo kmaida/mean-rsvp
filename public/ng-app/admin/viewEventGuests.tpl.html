@@ -23,7 +23,7 @@
 						<tr ng-repeat="rsvp in g.guests | filter:{attending: true}">
 							<td>{{::rsvp.name}}</td>
 							<td class="text-center">{{::rsvp.guests}}</td>
-							<td>{{::rsvp.comments}}</td>
+							<td ng-bind-html="rsvp.comments"></td>
 						</tr>
 						</tbody>
 					</table>
@@ -42,7 +42,7 @@
 						<tbody>
 						<tr ng-repeat="rsvp in g.guests | filter:{attending: false}">
 							<td><em>{{::rsvp.name}}</em></td>
-							<td><em>{{::rsvp.comments}}</em></td>
+							<td ng-bind-html="rsvp.comments"></td>
 						</tr>
 						</tbody>
 					</table>

@@ -9,15 +9,15 @@ var encrypt = require('mongoose-encryption');
 var config = require('../config');
 
 var eventSchema = new mongoose.Schema({
-	title: String,
-	startDate: String,
-	startTime: String,
-	endDate: String,
-	endTime: String,
+	title: {type: String, required: true },
+	startDate: {type: String, required: true },
+	startTime: {type: String, required: true },
+	endDate: {type: String, required: true },
+	endTime: {type: String, required: true },
 	description: String,
-	location: String,
-	viewPublic: Boolean,
-	rsvp: Boolean,
+	location: {type: String, required: true },
+	viewPublic: {type: Boolean, required: true },
+	rsvp: {type: Boolean, required: true },
 	rsvpInstructions: String,
 	guests: Array
 });
