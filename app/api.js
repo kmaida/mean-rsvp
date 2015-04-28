@@ -453,6 +453,7 @@ module.exports = function(app, config) {
 			if (existingEvent) {
 				return res.status(409).send({ message: 'That event already exists' });
 			}
+
 			var event = new Event({
 				title: req.body.title,
 				startDate: req.body.startDate,
@@ -465,6 +466,7 @@ module.exports = function(app, config) {
 				rsvp: req.body.rsvp,
 				rsvpInstructions: req.body.rsvp ? req.body.rsvpInstructions : ''
 			});
+
 			event.save(function() {
 				res.send(event);
 			});
@@ -603,6 +605,10 @@ module.exports = function(app, config) {
 				return res.status(409).send({ message: 'You have already RSVPed to this event' });
 			}
 
+			if (req.body.attending === undefined) {
+				return res.status(400).send({ message: 'Request does not contain sufficient data' });
+			}
+
 			var rsvp = new Rsvp({
 				userId: req.body.userId,
 				eventId: req.params.id,
@@ -627,6 +633,10 @@ module.exports = function(app, config) {
 		Rsvp.findById(req.params.rsvpid, function(err, rsvp) {
 			if (!rsvp) {
 				return res.status(400).send({ message: 'RSVP not found' });
+			}
+
+			if (req.body.attending === undefined) {
+				return res.status(400).send({ message: 'Request does not contain sufficient data' });
 			}
 
 			rsvp.name = req.body.name || rsvp.name;
