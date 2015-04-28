@@ -64,14 +64,13 @@
 		</div>
 
 		<div ng-if="eventForm.startDate.$dirty && eventForm.startDate.$invalid" ng-messages="eventForm.startDate.$error" class="text-danger">
-			<span ng-message="date">Please enter a valid date, e.g. <strong>mm/dd/yyyy</strong></span>
-			<span ng-message="pastDate" ng-if="!eventForm.startDate.$error.date">Start date is <strong>required
-				</strong> and must be a <strong>future date</strong></span>
+			<span ng-message="date">Enter a valid date, e.g. <strong>mm/dd/yyyy</strong></span>
+			<span ng-message="pastDate" ng-if="!eventForm.startDate.$error.date">Please enter a date in the future</span>
 			<span ng-message="required">Start date is <strong>required</strong></span>
 		</div>
 
 		<div ng-if="eventForm.startTime.$dirty && eventForm.startTime.$invalid" ng-messages="eventForm.startTime.$error" class="text-danger">
-			<span ng-message="pattern">Start time 12-hour format <strong>h:mm AM/PM</strong></span>
+			<span ng-message="pattern">Enter a time in 12-hour format <strong>h:mm AM/PM</strong></span>
 			<span ng-message="required">Start time is <strong>required</strong></span>
 		</div>
 	</div>
@@ -120,14 +119,13 @@
 		</div>
 
 		<div ng-if="eventForm.endDate.$dirty && eventForm.endDate.$invalid" ng-messages="eventForm.endDate.$error" class="text-danger">
-			<span ng-message="date">Please enter a valid date, e.g. <strong>mm/dd/yyyy</strong></span>
-			<span ng-message="pastDate" ng-if="!eventForm.endDate.$error.date">End date is <strong>required
-			</strong> and must be a <strong>future date</strong></span>
+			<span ng-message="date">Enter a valid date, e.g. <strong>mm/dd/yyyy</strong></span>
+			<span ng-message="pastDate" ng-if="!eventForm.endDate.$error.date">Please enter a date in the future</span>
 			<span ng-message="required">End date is <strong>required</strong></span>
 		</div>
 
 		<div ng-if="eventForm.endTime.$dirty && eventForm.endTime.$invalid" ng-messages="eventForm.endTime.$error" class="text-danger">
-			<span ng-message="pattern">End time 12-hour format <strong>h:mm AM/PM</strong></span>
+			<span ng-message="pattern">Enter a time in 12-hour format <strong>h:mm AM/PM</strong></span>
 			<span ng-message="required">End time is <strong>required</strong></span>
 		</div>
 
@@ -157,7 +155,7 @@
 				  name="description"
 				  ng-model="ef.formModel.description"
 				  class="form-control"
-				  rows="3"></textarea>
+				  rows="4"></textarea>
 	</div>
 
 	<div class="form-group">
@@ -192,7 +190,7 @@
 	<div class="form-group">
 		<label>RSVP<span class="text-danger">*</span></label>
 		<p class="help-block">
-			<small>If an event has ended, users cannot submit / update RSVPs regardless of Open/Closed status below.</small>
+			<small>NOTE: If the event has ended, users cannot submit / update RSVPs regardless of Open/Closed status below.</small>
 		</p>
 
 		<div class="radio">
@@ -223,7 +221,7 @@
 				  name="rsvpInstructions"
 				  ng-model="ef.formModel.rsvpInstructions"
 				  class="form-control"
-				  rows="2"></textarea>
+				  rows="3"></textarea>
 	</div>
 
 	<button type="submit"

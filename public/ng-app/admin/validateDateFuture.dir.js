@@ -13,7 +13,7 @@
 
 		function validateDateFutureLink($scope, $elem, $attrs, ngModel) {
 			var _now = new Date(),
-				_yesterday = _now.setDate(_now.getDate() - 1);;
+				_yesterday = _now.setDate(_now.getDate() - 1);
 
 			ngModel.$parsers.unshift(function(value) {
 				var _d = Date.parse(value),
