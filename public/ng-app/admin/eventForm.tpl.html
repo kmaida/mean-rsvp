@@ -64,7 +64,8 @@
 
 		<div ng-if="eventForm.startDate.$dirty && eventForm.startDate.$invalid" ng-messages="eventForm.startDate.$error" class="text-danger">
 			<span ng-message="date">Please enter a valid date, e.g. <strong>mm/dd/yyyy</strong></span>
-			<span ng-message="pastDate">Start date is in the past</span>
+			<span ng-message="pastDate" ng-if="!eventForm.startDate.$error.date">Start date is <strong>required
+				</strong> and must be a <strong>future date</strong></span>
 			<span ng-message="required">Start date is <strong>required</strong></span>
 		</div>
 
@@ -118,7 +119,8 @@
 
 		<div ng-if="eventForm.endDate.$dirty && eventForm.endDate.$invalid" ng-messages="eventForm.endDate.$error" class="text-danger">
 			<span ng-message="date">Please enter a valid date, e.g. <strong>mm/dd/yyyy</strong></span>
-			<span ng-message="pastDate">End date is in the past</span>
+			<span ng-message="pastDate" ng-if="!eventForm.endDate.$error.date">End date is <strong>required
+			</strong> and must be a <strong>future date</strong></span>
 			<span ng-message="required">End date is <strong>required</strong></span>
 		</div>
 
