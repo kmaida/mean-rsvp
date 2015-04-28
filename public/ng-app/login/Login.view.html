@@ -11,7 +11,7 @@
 
 			<p ng-if="!login.loggingIn || login.loggingIn === 'error'">Please login with one of the following services.</p>
 
-			<p ng-if="login.loggingIn"><i class="fa fa-cog fa-spin"></i> Logging in...</p>
+			<p ng-if="login.loggingIn === true"><i class="fa fa-cog fa-spin"></i> Logging in...</p>
 
 			<div ng-if="login.loggingIn === 'error'" class="alert alert-danger">
 				<i class="fa fa-warning"></i> Login failed!
