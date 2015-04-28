@@ -19,7 +19,7 @@
 				var _d = Date.parse(value),
 					_valid = _yesterday - _d < 0;
 
-				ngModel.$setValidity('future', _valid);
+				ngModel.$setValidity('pastDate', _valid);
 
 				return _valid ? value : undefined;
 			});
@@ -28,7 +28,7 @@
 				var _d = Date.parse(value),
 					_valid = _yesterday - _d < 0;
 
-				ngModel.$setValidity('future', _valid);
+				ngModel.$setValidity('pastDate', _valid);
 				return value;
 			});
 		}
