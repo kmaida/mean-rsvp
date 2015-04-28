@@ -27,7 +27,7 @@
 				prettyEndDate = $filter('date')(endD, dateFormatStr),
 				prettyDatetime;
 
-			if (startDate === endDate) {
+			if (prettyStartDate === prettyEndDate) {
 				// event starts and ends on the same day
 				// Apr 29 2015, 12:00 PM - 5:00 PM
 				prettyDatetime = prettyStartDate + ', ' + startTime + ' - ' + endTime;

@@ -29,8 +29,7 @@
 			ef.minDate = new Date();
 
 			ef.dateOptions = {
-				showWeeks: false,
-				startingDay: 1
+				showWeeks: false
 			};
 
 			ef.startDateOpen = false;

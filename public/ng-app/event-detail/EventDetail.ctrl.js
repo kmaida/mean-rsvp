@@ -57,9 +57,19 @@
 				}
 
 				event.noRsvp = !event.rsvpObj;
+
+				var guests = event.rsvpObj.guests;
+
+				if (!!guests === false || guests == 1) {
+					event.guestText = 'you are';
+				} else if (guests && guests > 1) {
+					event.guestText = guests + ' people are ';
+				}
+
+				event.attendingText = event.rsvpObj && event.rsvpObj.attending ? 'attending' : 'not attending';
 				event.rsvpBtnText = event.noRsvp ? 'RSVP' : 'Update my RSVP';
-				event.rsvpReady = true;
 				event.showEventDownload = event.rsvpObj && event.rsvpObj.attending;
+				event.rsvpReady = true;
 			}
 
 			userData.getUser().then(_userSuccess);

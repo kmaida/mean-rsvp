@@ -25,7 +25,7 @@
 					<tbody>
 						<tr ng-repeat="evt in events.allEvents | filter:{expired: false} | filter:{viewPublic: true} | filter:events.query | orderBy:events.sortStartDate">
 							<td><a ng-href="/event/{{::evt._id}}">{{::evt.title}}</a></td>
-							<td>{{::evt.startDate | prettyDate}}{{::evt.endDate !== evt.startDate ? ' - ' +
+							<td>{{::evt.startDate | prettyDate}}{{(evt.endDate | prettyDate) !== (evt.startDate | prettyDate) ? ' - ' +
 								(evt.endDate | prettyDate) :
 								''}}</td>
 							<td ng-class="{'text-danger': !evt.rsvp, 'text-success': evt.rsvp}">{{::evt.rsvp ? 'Open' : 'Closed'}}</td>
@@ -53,8 +53,8 @@
 					<tbody>
 					<tr ng-repeat="evt in events.allEvents | filter:{expired: true} | filter:{viewPublic: true} | filter:events.query | orderBy:events.sortStartDate">
 						<td><a ng-href="/event/{{::evt._id}}">{{::evt.title}}</a></td>
-						<td>{{::evt.startDate | prettyDate}}{{::evt.endDate !== evt.startDate ? ' - ' + (evt.endDate |
-							prettyDate) :
+						<td>{{::evt.startDate | prettyDate}}{{(evt.endDate | prettyDate) !== (evt.startDate | prettyDate) ? ' - ' +
+							(evt.endDate | prettyDate) :
 							''}}</td>
 						<td class="text-danger">Closed</td>
 					</tr>
