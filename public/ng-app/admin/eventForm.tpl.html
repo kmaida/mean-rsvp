@@ -131,7 +131,7 @@
 			<span ng-message="required">End time is <strong>required</strong></span>
 		</div>
 
-		<div ng-if="eventForm.startDate.$valid && eventForm.startTime.$valid && eventForm.endDate.$valid && eventForm.endTime.$valid && !ef.validDaterange" class="message-invalid text-danger">
+		<div ng-if="eventForm.startDate.$valid && eventForm.startTime.$valid && eventForm.endDate.$valid && eventForm.endTime.$valid && ef.validDaterange === false" class="message-invalid text-danger">
 			<strong>Event date/time range is invalid</strong>: event ends before it begins
 		</div>
 
@@ -229,7 +229,7 @@
 	<button type="submit"
 			class="btn-save btn"
 			ng-class="{'btn-primary': !ef.btnSaved, 'btn-success': ef.btnSaved === true, 'btn-danger': ef.btnSaved === 'error'}"
-			ng-disabled="eventForm.$invalid || !ef.validDaterange">
+			ng-disabled="eventForm.$invalid || ef.validDaterange === false">
 		<i class="fa" ng-class="{'fa-download': !ef.btnSaved, 'fa-check': ef.btnSaved, 'fa-ban': ef.btnSaved === 'error'}"></i> {{ef.btnSubmitText}}
 	</button>
 
