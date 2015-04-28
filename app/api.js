@@ -165,8 +165,6 @@ module.exports = function(app, config) {
 			var accessToken = token.access_token;
 			var headers = { Authorization: 'Bearer ' + accessToken };
 
-			console.log(accessToken, headers, peopleApiUrl);
-
 			// Step 2. Retrieve profile information about the current user.
 			request.get({ url: peopleApiUrl, headers: headers, json: true }, function(err, response, profile) {
 
