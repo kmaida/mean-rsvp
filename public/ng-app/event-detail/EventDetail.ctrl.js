@@ -61,9 +61,9 @@
 				var guests = event.rsvpObj.guests;
 
 				if (!!guests === false || guests == 1) {
-					event.guestText = 'you are';
+					event.guestText = event.rsvpObj.name + ' is';
 				} else if (guests && guests > 1) {
-					event.guestText = guests + ' people are ';
+					event.guestText = event.rsvpObj.name + ' + ' + (guests - 1) + ' are ';
 				}
 
 				event.attendingText = event.rsvpObj && event.rsvpObj.attending ? 'attending' : 'not attending';
