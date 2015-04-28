@@ -17,7 +17,7 @@
 
 			// check if form is create or edit (does the model already exist or not)
 			var _isCreate = !rf.formModel,
-				_isEdit = rf.formModel;
+				_isEdit = !!rf.formModel;
 
 			rf.numberRegex = /^([1-9]|10)$/;
 
@@ -30,19 +30,27 @@
 			}
 
 			/**
-			 * Watch user's attending input and if true, set default number of guests to 1
-			 *
-			 * @type {*|function()}
-			 * @private
+			 * Wrap $watch in a function so that it can be re-initialized after it's been deregistered
 			 */
-			var _watchAttending = $scope.$watch('rf.formModel.attending', function(newVal, oldVal) {
-				if (newVal === true && !oldVal && !rf.formModel.guests) {
-					rf.formModel.guests = 1;
+			function _startWatchAttending() {
+				/**
+				 * Watch user's attending input and if true, set default number of guests to 1
+				 *
+				 * @type {*|function()}
+				 * @private
+				 */
+				var _watchAttending = $scope.$watch('rf.formModel.attending', function (newVal, oldVal) {
+					if (newVal === true && !oldVal && !rf.formModel.guests) {
+						rf.formModel.guests = 1;
 
-					// deregister $watch
-					_watchAttending();
-				}
-			});
+						// deregister $watch
+						_watchAttending();
+					}
+				});
+			}
+
+			// start watching rf.formModel.attending
+			_startWatchAttending();
 
 			/**
 			 * Reset the state of the form Submit button
@@ -66,6 +74,13 @@
 				rf.btnSubmitText = _isCreate ? 'Submitted!' : 'Updated!';
 
 				$rootScope.$broadcast('rsvpSubmitted');
+
+				// user has submitted an RSVP; update create/edit status in case they edit without refreshing
+				_isCreate = false;
+				_isEdit = true;
+
+				// restart $watch on rf.formModel.attending
+				_startWatchAttending();
 
 				$timeout(function() {
 					_btnSubmitReset();
