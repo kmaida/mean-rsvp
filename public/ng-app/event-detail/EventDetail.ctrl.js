@@ -59,6 +59,7 @@
 				event.noRsvp = !event.rsvpObj;
 				event.rsvpBtnText = event.noRsvp ? 'RSVP' : 'Update my RSVP';
 				event.rsvpReady = true;
+				event.showEventDownload = event.rsvpObj && event.rsvpObj.attending;
 			}
 
 			userData.getUser().then(_userSuccess);
