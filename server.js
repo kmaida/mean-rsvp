@@ -59,7 +59,7 @@ var Rsvp = require('./app/models/Rsvp.js');
 
 var app = express();
 
-app.set('port', process.env.PORT || 8081);
+app.set('port', process.env.PORT || 8080);
 
 app.use(logger('dev'));
 
