@@ -16,59 +16,63 @@
 				</li>
 			</ul>
 
-			<!--<section ng-if="account.currentTab === 'user-info'" class="updateInfo content-section" ng-include="'ng-app/account/userInfo.tpl.html'"></section>-->
+			<!-- User Info -->
+			<section ng-if="account.currentTab === 'user-info'" class="updateInfo content-section" ng-include="'ng-app/account/userInfo.tpl.html'"></section>
 
-			<section ng-if="account.currentTab === 'user-info'" class="updateInfo content-section">
-				<h2>
-					<i class="fa fa-pencil-square-o"></i> User Info
-				</h2>
+			<!--<section ng-if="account.currentTab === 'user-info'" class="updateInfo content-section">-->
+				<!--<h2>-->
+					<!--<i class="fa fa-pencil-square-o"></i> User Info-->
+				<!--</h2>-->
 
-				<p class="lead">
-					Update your display name.
-				</p>
+				<!--<p class="lead">-->
+					<!--Update your display name.-->
+				<!--</p>-->
 
-				<form method="post" name="userInfo" ng-submit="account.updateProfile()" class="form-inline">
-					<div class="form-group">
-						<label class="sr-only" for="displayName">Name</label>
-						<input id="displayName" type="text" class="form-control" name="displayName" ng-model="account.user.displayName"
-							   placeholder="Name" ng-required />
-					</div>
+				<!--<form method="post" name="userInfo" ng-submit="account.updateProfile()" class="form-inline">-->
+					<!--<div class="form-group">-->
+						<!--<label class="sr-only" for="displayName">Name</label>-->
+						<!--<input id="displayName" type="text" class="form-control" name="displayName" ng-model="account.user.displayName"-->
+							   <!--placeholder="Name" ng-required />-->
+					<!--</div>-->
 
-					<button type="submit"
-							class="btn-save btn"
-							ng-class="{'btn-primary': !account.btnSaved, 'btn-success': account.btnSaved === true, 'btn-danger': account.btnSaved === 'error' || account.user.displayName === '' || account.user.displayName === null}"
-							ng-disabled="account.user.displayName === '' || account.user.displayName === null">
-						<i class="fa" ng-class="{'fa-download': !account.btnSaved, 'fa-check': account.btnSaved, 'fa-asterisk': account.user.displayName === '' || account.user.displayName === null, 'fa-ban': account.btnSaved === 'error'}"></i> {{account.btnSaveText}}
-					</button>
-				</form>
+					<!--<button type="submit"-->
+							<!--class="btn-save btn"-->
+							<!--ng-class="{'btn-primary': !account.btnSaved, 'btn-success': account.btnSaved === true, 'btn-danger': account.btnSaved === 'error' || account.user.displayName === '' || account.user.displayName === null}"-->
+							<!--ng-disabled="account.user.displayName === '' || account.user.displayName === null">-->
+						<!--<i class="fa" ng-class="{'fa-download': !account.btnSaved, 'fa-check': account.btnSaved, 'fa-asterisk': account.user.displayName === '' || account.user.displayName === null, 'fa-ban': account.btnSaved === 'error'}"></i> {{account.btnSaveText}}-->
+					<!--</button>-->
+				<!--</form>-->
 
-				<div ng-if="account.administrator" class="alert alert-info">
-					<i class="fa fa-wrench"></i> <strong>Administrator:</strong> <a ng-href="/admin">Add events / view
-					users</a>
-				</div>
-			</section>
+				<!--<div ng-if="account.administrator" class="alert alert-info">-->
+					<!--<i class="fa fa-wrench"></i> <strong>Administrator:</strong> <a ng-href="/admin">Add events / view-->
+					<!--users</a>-->
+				<!--</div>-->
+			<!--</section>-->
 
+			<!-- Manage Logins -->
 			<section ng-if="account.currentTab === 'manage-logins'" class="linkAccounts content-section" ng-include="'ng-app/account/manageLogins.tpl.html'"></section>
 
-			<section ng-if="account.currentTab === 'rsvps'" class="rsvps content-section">
-				<h2>
-					<i class="fa fa-paper-plane"></i> RSVPs
-				</h2>
+			<!-- RSVPs -->
+			<section ng-if="account.currentTab === 'rsvps'" class="rsvps content-section"><div ng-include="'ng-app/account/rsvps.tpl.html'"></div></section>
+			<!--<section ng-if="account.currentTab === 'rsvps'" class="rsvps content-section">-->
+				<!--<h2>-->
+					<!--<i class="fa fa-paper-plane"></i> RSVPs-->
+				<!--</h2>-->
 
-				<p class="lead">
-					View events that you have RSVPed to. Click on an event to view details or update your RSVP.
-				</p>
+				<!--<p class="lead">-->
+					<!--View events that you have RSVPed to. Click on an event to view details or update your RSVP.-->
+				<!--</p>-->
 
-				<div class="rsvps" ng-if="account.rsvps.length">
-					<ul>
-						<li ng-repeat="rsvp in account.rsvps">
-							<a ng-href="/event/{{rsvp.eventId}}">{{rsvp.eventName}}</a>
-						</li>
-					</ul>
-				</div>
+				<!--<div class="rsvps" ng-if="account.rsvps.length">-->
+					<!--<ul>-->
+						<!--<li ng-repeat="rsvp in account.rsvps">-->
+							<!--<a ng-href="/event/{{rsvp.eventId}}">{{rsvp.eventName}}</a>-->
+						<!--</li>-->
+					<!--</ul>-->
+				<!--</div>-->
 
-				<div ng-if="!account.rsvps.length" class="alert alert-warning">You have not RSVPed to any currently available <a ng-href="events">events</a>.</div>
-			</section>
+				<!--<div ng-if="!account.rsvps.length" class="alert alert-warning">You have not RSVPed to any currently available <a ng-href="events">events</a>.</div>-->
+			<!--</section>-->
 		</div>
 
 	</section>
