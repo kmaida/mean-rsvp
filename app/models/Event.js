@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var encrypt = require('mongoose-encryption');
 var config = require('../config');
 
+mongoose.set('debug', true);
+
 var eventSchema = new mongoose.Schema({
 	title: {type: String, required: true },
 	startDate: {type: String, required: true },

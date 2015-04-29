@@ -95,7 +95,8 @@ module.exports = function(app, config) {
 			// TODO: what if there are no RSVPs for this user? Then the following fails
 
 			Rsvp.find({userId: req.user}, function(err, rsvps) {
-				if (err) {
+				if (err || !!rsvps) {
+					console.log('send user, no rsvps');
 					res.send(user);
 				}
 
