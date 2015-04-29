@@ -103,7 +103,9 @@ module.exports = function(app, config) {
 			User.findById(req.user, function(err, user) {
 				if (err) { res.send(err); }
 
-				user.rsvps = userRsvps;
+				if (user) {
+					user.rsvps = userRsvps;
+				}
 
 				res.send(user);
 			});
