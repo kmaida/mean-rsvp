@@ -119,14 +119,18 @@ module.exports = function(app, config) {
 			Rsvp.find({userId: req.user}, function(err, rsvps) {
 				console.log('rsvps:', rsvps);
 
+				var userRsvps = [];
+
 				if (rsvps && user) {
 					rsvps.forEach(function (rsvp) {
-						user.rsvps.push(rsvp);
+						userRsvps.push(rsvp);
 					});
 				}
+
+				user.rsvps = userRsvps;
 			});
 
-			console.log(req.user, user);
+			console.log('User.findById, api/me:', req.user, user);
 
 			res.send(user);
 		});
@@ -167,6 +171,8 @@ module.exports = function(app, config) {
 	app.get('/api/users', ensureAdmin, function(req, res) {
 		User.find({}, function(err, users) {
 			var userArr = [];
+
+			console.log('User.find({}', '/api/users', users);
 
 			users.forEach(function(user) {
 				userArr.push(user);
