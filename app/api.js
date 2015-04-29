@@ -115,16 +115,8 @@ module.exports = function(app, config) {
 		//	});
 		//});
 
-		User.findOne({_id: ObjectId(req.user)}, function(err, user) {
-			if (err) { res.send(err); }
-
-			console.log('req.user:', req.user, 'user:', user);
-
+		User.findById(req.user, function(err, user) {
 			Rsvp.find({userId: req.user}, function(err, rsvps) {
-				if (err) {
-					res.send(err);
-				}
-
 				console.log('rsvps:', rsvps);
 
 				if (rsvps && user) {
@@ -134,7 +126,7 @@ module.exports = function(app, config) {
 				}
 			});
 
-			console.log('about to send user:', req.user, user);
+			console.log(req.user, user);
 
 			res.send(user);
 		});
