@@ -97,10 +97,10 @@ module.exports = function(app, config) {
 			rsvps.forEach(function(rsvp) {
 				userRsvps.push(rsvp);
 			});
-			
-			console.log(res);
 
-			res.send(userRsvps);
+			console.log(userRsvps);
+
+			res.set('userRsvps', userRsvps);
 
 			next();
 		});
