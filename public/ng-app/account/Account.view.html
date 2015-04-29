@@ -18,7 +18,7 @@
 
 			<!--<section ng-if="account.currentTab === 'user-info'" class="updateInfo content-section" ng-include="'ng-app/account/userInfo.tpl.html'"></section>-->
 
-			<section class="updateInfo content-section">
+			<section ng-if="account.currentTab === 'user-info'" class="updateInfo content-section">
 				<h2>
 					<i class="fa fa-pencil-square-o"></i> User Info
 				</h2>
@@ -49,7 +49,26 @@
 			</section>
 
 			<section ng-if="account.currentTab === 'manage-logins'" class="linkAccounts content-section" ng-include="'ng-app/account/manageLogins.tpl.html'"></section>
-			<section ng-if="account.currentTab === 'rsvps'" class="rsvps content-section" ng-include="'ng-app/account/rsvps.tpl.html'"></section>
+
+			<section ng-if="account.currentTab === 'rsvps'" class="rsvps content-section">
+				<h2>
+					<i class="fa fa-paper-plane"></i> RSVPs
+				</h2>
+
+				<p class="lead">
+					View events that you have RSVPed to. Click on an event to view details or update your RSVP.
+				</p>
+
+				<div class="rsvps" ng-if="account.rsvps.length">
+					<ul>
+						<li ng-repeat="rsvp in account.rsvps">
+							<a ng-href="/event/{{rsvp.eventId}}">{{rsvp.eventName}}</a>
+						</li>
+					</ul>
+				</div>
+
+				<div ng-if="!account.rsvps.length" class="alert alert-warning">You have not RSVPed to any currently available <a ng-href="events">events</a>.</div>
+			</section>
 		</div>
 
 	</section>
