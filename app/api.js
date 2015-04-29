@@ -91,24 +91,34 @@ module.exports = function(app, config) {
 	app.get('/api/me', ensureAuthenticated, function(req, res) {
 		var userRsvps = [];
 
-		Rsvp.find({userId: req.user}, function(err, rsvps) {
+		//Rsvp.find({userId: req.user}, function(err, rsvps) {
+		//	if (err) { res.send(err); }
+		//
+		//	rsvps.forEach(function(rsvp) {
+		//		userRsvps.push(rsvp);
+		//	});
+		//
+		//	// TODO: fix callback hell
+		//
+		//	User.findById(req.user, function(err, user) {
+		//		if (err) { res.send(err); }
+		//
+		//		if (user) {
+		//			user.rsvps = userRsvps;
+		//		}
+		//
+		//		res.send(user);
+		//	});
+		//});
+
+		User.findById(req.user, function(err, user) {
 			if (err) { res.send(err); }
 
-			rsvps.forEach(function(rsvp) {
-				userRsvps.push(rsvp);
-			});
+			//if (user) {
+			//	user.rsvps = userRsvps;
+			//}
 
-			// TODO: fix callback hell
-
-			User.findById(req.user, function(err, user) {
-				if (err) { res.send(err); }
-
-				if (user) {
-					user.rsvps = userRsvps;
-				}
-
-				res.send(user);
-			});
+			res.send(user);
 		});
 	});
 
