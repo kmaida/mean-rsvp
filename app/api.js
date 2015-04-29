@@ -91,34 +91,24 @@ module.exports = function(app, config) {
 	app.get('/api/me', ensureAuthenticated, function(req, res) {
 		var userRsvps = [];
 
-		//Rsvp.find({userId: req.user}, function(err, rsvps) {
-		//	if (err) { res.send(err); }
-		//
-		//	rsvps.forEach(function(rsvp) {
-		//		userRsvps.push(rsvp);
-		//	});
-		//
-		//	// TODO: fix callback hell
-		//
-		//	User.findById(req.user, function(err, user) {
-		//		if (err) { res.send(err); }
-		//
-		//		if (user) {
-		//			user.rsvps = userRsvps;
-		//		}
-		//
-		//		res.send(user);
-		//	});
-		//});
-
-		User.findById(req.user, function(err, user) {
+		Rsvp.find({userId: req.user}, function(err, rsvps) {
 			if (err) { res.send(err); }
 
-			//if (user) {
-			//	user.rsvps = userRsvps;
-			//}
+			rsvps.forEach(function(rsvp) {
+				userRsvps.push(rsvp);
+			});
 
-			res.send(user);
+			User.findById(req.user, function(err, user) {
+				if (err) { res.send(err); }
+
+				if (user) {
+					user.rsvps = userRsvps;
+				}
+
+				console.log(user);
+
+				res.send(user);
+			});
 		});
 	});
 
