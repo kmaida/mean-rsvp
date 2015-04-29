@@ -16,9 +16,9 @@
 				</li>
 			</ul>
 
-			<section class="updateInfo content-section" ng-include="'ng-app/account/userInfo.tpl.html'"></section>
-			<section class="linkAccounts content-section" ng-include="'ng-app/account/manageLogins.tpl.html'"></section>
-			<section class="rsvps content-section" ng-include="'ng-app/account/rsvps.tpl.html'"></section>
+			<section ng-if="account.currentTab === 'user-info'" class="updateInfo content-section" ng-include="'ng-app/account/userInfo.tpl.html'"></section>
+			<section ng-if="account.currentTab === 'manage-logins'" class="linkAccounts content-section" ng-include="'ng-app/account/manageLogins.tpl.html'"></section>
+			<section ng-if="account.currentTab === 'rsvps'" class="rsvps content-section" ng-include="'ng-app/account/rsvps.tpl.html'"></section>
 		</div>
 
 	</section>

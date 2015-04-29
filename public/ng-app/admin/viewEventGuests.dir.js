@@ -16,8 +16,6 @@
 			var g = this;
 
 			$scope.$watch('g.eventId', function(newVal, oldVal) {
-				g.guestsReady = false;
-
 				/**
 				 * Function for successful API call getting RSVPs for this event
 				 *
@@ -30,14 +28,18 @@
 					g.guests = data;
 
 					for (var i = 0; i < g.guests.length; i++) {
-						_totalGuests+=g.guests[i].guests;
+						_totalGuests += g.guests[i].guests;
 					}
 
 					g.totalGuests = _totalGuests;
 					g.guestsReady = true;
 				}
 
-				rsvpData.getEventGuests(newVal).then(_getGuestsSuccess);
+				if (newVal) {
+					g.guestsReady = false;
+
+					rsvpData.getEventGuests(newVal).then(_getGuestsSuccess);
+				}
 			});
 
 			/**
