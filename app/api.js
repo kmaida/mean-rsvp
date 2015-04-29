@@ -128,11 +128,11 @@ module.exports = function(app, config) {
 				}
 
 				user.rsvps = userRsvps;
+
+				console.log('User.findById, api/me:', req.user, user);
+
+				res.send(user);
 			});
-
-			console.log('User.findById, api/me:', req.user, user);
-
-			res.send(user);
 		});
 
 		//User.findById(req.user, function(err, user) {
