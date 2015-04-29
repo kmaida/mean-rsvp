@@ -22,7 +22,7 @@
 			<button ng-repeat="l in login.logins"
 					class="btn btn-block btn-auth btn-{{::l.account}}"
 					ng-click="login.authenticate(l.account)"
-					ng-disabled="login.loggingIn">
+					ng-disabled="login.loggingIn === true">
 				<i class="fa fa-{{::l.account}}"></i> Login with {{::l.name}}
 			</button>
 		</div>
