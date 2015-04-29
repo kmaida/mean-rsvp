@@ -98,7 +98,7 @@ module.exports = function(app, config) {
 				userRsvps.push(rsvp);
 			});
 
-			User.findById(req.user, function(err, user) {
+			User.findOne({_id: req.user}, function(err, user) {
 				if (err) { res.send(err); }
 
 				if (user) {
