@@ -115,7 +115,7 @@ module.exports = function(app, config) {
 		//	});
 		//});
 
-		User.findById(req.user, function(err, user) {
+		User.findOne({_id: ObjectId(req.user)}, function(err, user) {
 			if (err) { res.send(err); }
 
 			console.log('req.user:', req.user, 'user:', user);
@@ -127,9 +127,7 @@ module.exports = function(app, config) {
 
 				console.log('rsvps:', rsvps);
 
-				user.rsvps = [];
-
-				if (rsvps) {
+				if (rsvps && user) {
 					rsvps.forEach(function (rsvp) {
 						user.rsvps.push(rsvp);
 					});
