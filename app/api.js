@@ -88,7 +88,7 @@ module.exports = function(app, config) {
 	 | GET /api/me
 	 |--------------------------------------------------------------------------
 	 */
-	function getRsvps(req, res, next) {
+	app.get('/api/me', ensureAuthenticated, function(req, res) {
 		var userRsvps = [];
 
 		Rsvp.find({userId: req.user}, function(err, rsvps) {
@@ -98,22 +98,16 @@ module.exports = function(app, config) {
 				userRsvps.push(rsvp);
 			});
 
-			res.set('userRsvps', userRsvps);
+			// TODO: fix callback hell
 
-			next();
+			User.findById(req.user, function(err, user) {
+				if (err) { res.send(err); }
+
+				user.rsvps = userRsvps;
+
+				res.send(user);
+			});
 		});
-	}
-
-	app.get('/api/me', ensureAuthenticated, function(req, res) {
-		User.findById(req.user, function (err, user) {
-			if (err) {
-				res.send(err);
-			}
-
-			// user.rsvps = req.userRsvps;
-
-			res.send(user);
-		})
 	});
 
 	/*
