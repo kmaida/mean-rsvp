@@ -88,27 +88,57 @@ module.exports = function(app, config) {
 	 | GET /api/me
 	 |--------------------------------------------------------------------------
 	 */
-	app.get('/api/me', ensureAuthenticated, function(req, res) {
-		var userRsvps = [];
 
-		Rsvp.find({userId: req.user}, function(err, rsvps) {
+	// TODO: use async to do this instead of nesting callback hell
+	app.get('/api/me', ensureAuthenticated, function(req, res) {
+		//Rsvp.find({userId: req.user}, function(err, rsvps) {
+		//	if (err) { res.send(err); }
+		//
+		//	var userRsvps = [];
+		//
+		//	if (rsvps) {
+		//		rsvps.forEach(function (rsvp) {
+		//			userRsvps.push(rsvp);
+		//		});
+		//	}
+		//
+		//	User.find({_id: req.user}, function(err, user) {
+		//		if (err) { res.send(err); }
+		//
+		//		if (user) {
+		//			user.rsvps = userRsvps;
+		//		}
+		//
+		//		console.log(req.user, user);
+		//
+		//		res.send(user);
+		//	});
+		//});
+
+		User.findById(req.user, function(err, user) {
 			if (err) { res.send(err); }
 
-			rsvps.forEach(function(rsvp) {
-				userRsvps.push(rsvp);
-			});
+			console.log('req.user:', req.user, 'user:', user);
 
-			User.findOne({_id: req.user}, function(err, user) {
-				if (err) { res.send(err); }
-
-				if (user) {
-					user.rsvps = userRsvps;
+			Rsvp.find({userId: req.user}, function(err, rsvps) {
+				if (err) {
+					res.send(err);
 				}
 
-				console.log(req.user, user);
+				console.log('rsvps:', rsvps);
 
-				res.send(user);
+				user.rsvps = [];
+
+				if (rsvps) {
+					rsvps.forEach(function (rsvp) {
+						user.rsvps.push(rsvp);
+					});
+				}
 			});
+
+			console.log('about to send user:', req.user, user);
+
+			res.send(user);
 		});
 
 		//User.findById(req.user, function(err, user) {
