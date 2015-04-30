@@ -91,11 +91,8 @@ module.exports = function(app, config) {
 
 	app.get('/api/me', ensureAuthenticated, function(req, res) {
 		User.findById(req.user, function(err, user) {
-
-			// TODO: what if there are no RSVPs for this user? Then the following fails
-
-			Rsvp.find({userId: req.user}, function(err, rsvps) {
-				if (err || !!rsvps) {
+			Rsvp.find({userId: req.user}, function(error, rsvps) {
+				if (!!rsvps === false) {
 					console.log('send user, no rsvps');
 					res.send(user);
 				}

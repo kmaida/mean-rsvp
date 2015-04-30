@@ -7,7 +7,7 @@
 var mongoose = require('mongoose');
 var config = require('../config');
 
-mongoose.set('debug', true);
+//mongoose.set('debug', true);
 
 var _alphanum = /^[a-z0-9]+$/i;
 

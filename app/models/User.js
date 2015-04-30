@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var encrypt = require('mongoose-encryption');
 var config = require('../config');
 
-mongoose.set('debug', true);
+//mongoose.set('debug', true);
 
 var userSchema = new mongoose.Schema({
 	isAdmin: Boolean,

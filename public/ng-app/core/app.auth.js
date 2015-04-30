@@ -9,7 +9,8 @@
 	authConfig.$inject = ['$authProvider'];
 
 	function authConfig($authProvider) {
-		$authProvider.loginUrl = 'http://rsvp.kmaida.io/auth/login';
+		//$authProvider.loginUrl = 'http://rsvp.kmaida.io/auth/login';
+		$authProvider.loginUrl = 'http://localhost:8080/login';
 
 		$authProvider.facebook({
 			clientId: '471837599630371'
